@@ -66,6 +66,11 @@ class SDNControllerApp : public ApplicationBase
     // File descriptors for external communication
     std::ofstream *stateFile;
 
+    // Command processing
+    std::string commandFile;
+    simtime_t lastCommandCheck;
+    cMessage *checkCommandTimer;
+
   protected:
     virtual int numInitStages() const override { return NUM_INIT_STAGES; }
     virtual void initialize(int stage) override;
@@ -89,6 +94,10 @@ class SDNControllerApp : public ApplicationBase
     virtual void loadConfiguration();
     virtual void saveState();
     virtual void exportTopology();
+
+    // Command processing
+    virtual void processCommands();
+    virtual void parseAndExecuteCommand(const std::string &cmdJson);
 
   public:
     SDNControllerApp();

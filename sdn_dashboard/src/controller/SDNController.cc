@@ -21,6 +21,7 @@ SDNControllerApp::SDNControllerApp()
     nextFlowId = 1;
     nextSliceId = 1;
     stateFile = nullptr;
+    checkCommandTimer = nullptr;
 }
 
 SDNControllerApp::~SDNControllerApp()
@@ -28,6 +29,9 @@ SDNControllerApp::~SDNControllerApp()
     if (stateFile) {
         stateFile->close();
         delete stateFile;
+    }
+    if (checkCommandTimer) {
+        cancelAndDelete(checkCommandTimer);
     }
 }
 
@@ -58,15 +62,32 @@ void SDNControllerApp::initialize(int stage)
         std::string stateFilePath = "results/controller_state.json";
         stateFile = new std::ofstream(stateFilePath);
 
+        // Setup command file path
+        commandFile = "results/commands.json";
+        lastCommandCheck = simTime();
+
+        // Schedule periodic command checking
+        checkCommandTimer = new cMessage("checkCommands");
+        scheduleAt(simTime() + 1.0, checkCommandTimer);
+
         // Export initial state
         saveState();
         exportTopology();
+
+        EV << "Command processing enabled. Checking " << commandFile << " every 1 second." << endl;
     }
 }
 
 void SDNControllerApp::handleMessageWhenUp(cMessage *msg)
 {
-    if (socket.belongsToSocket(msg)) {
+    if (msg == checkCommandTimer) {
+        // Periodic command processing
+        processCommands();
+        // Schedule next check
+        scheduleAt(simTime() + 1.0, checkCommandTimer);
+        return;
+    }
+    else if (socket.belongsToSocket(msg)) {
         Packet *packet = check_and_cast<Packet *>(msg);
         processPacket(packet);
     }
@@ -343,6 +364,234 @@ bool SDNControllerApp::removeSlice(int sliceId)
 {
     deleteSlice(sliceId);
     return true;
+}
+
+void SDNControllerApp::processCommands()
+{
+    // Check if command file exists
+    std::ifstream cmdFile(commandFile);
+    if (!cmdFile.good()) {
+        return; // No command file, nothing to process
+    }
+
+    // Read entire file
+    std::string content((std::istreambuf_iterator<char>(cmdFile)),
+                        std::istreambuf_iterator<char>());
+    cmdFile.close();
+
+    if (content.empty() || content.length() < 10) {
+        return; // Empty or invalid file
+    }
+
+    EV << "Processing command from file: " << commandFile << endl;
+    EV << "Command content: " << content.substr(0, 100) << "..." << endl;
+
+    // Parse and execute command
+    parseAndExecuteCommand(content);
+
+    // Clear command file after processing
+    std::ofstream clearFile(commandFile, std::ios::trunc);
+    clearFile.close();
+
+    EV << "Command processed and file cleared." << endl;
+}
+
+void SDNControllerApp::parseAndExecuteCommand(const std::string &cmdJson)
+{
+    // Simple string-based parsing (in production, use a proper JSON library)
+    // This implementation looks for key patterns in the JSON
+
+    try {
+        if (cmdJson.find("CREATE_SLICE") != std::string::npos) {
+            EV << "Executing CREATE_SLICE command" << endl;
+
+            // Extract slice data from JSON
+            NetworkSlice newSlice;
+
+            // Parse name
+            size_t namePos = cmdJson.find("\"name\":");
+            if (namePos != std::string::npos) {
+                size_t start = cmdJson.find("\"", namePos + 7) + 1;
+                size_t end = cmdJson.find("\"", start);
+                newSlice.name = cmdJson.substr(start, end - start);
+            }
+
+            // Parse vlanId
+            size_t vlanPos = cmdJson.find("\"vlanId\":");
+            if (vlanPos != std::string::npos) {
+                size_t start = vlanPos + 9;
+                size_t end = cmdJson.find_first_of(",}", start);
+                newSlice.vlanId = std::stoi(cmdJson.substr(start, end - start));
+            }
+
+            // Parse bandwidth
+            size_t bwPos = cmdJson.find("\"bandwidth\":");
+            if (bwPos != std::string::npos) {
+                size_t start = bwPos + 12;
+                size_t end = cmdJson.find_first_of(",}", start);
+                newSlice.bandwidthMbps = std::stod(cmdJson.substr(start, end - start));
+            }
+
+            // Parse isolated
+            newSlice.isolated = (cmdJson.find("\"isolated\":true") != std::string::npos) ||
+                               (cmdJson.find("\"isolated\": true") != std::string::npos);
+
+            // Parse hosts array
+            size_t hostsPos = cmdJson.find("\"hosts\":[");
+            if (hostsPos != std::string::npos) {
+                size_t start = hostsPos + 9;
+                size_t end = cmdJson.find("]", start);
+                std::string hostsStr = cmdJson.substr(start, end - start);
+
+                // Extract individual IP addresses
+                size_t pos = 0;
+                while ((pos = hostsStr.find("\"", pos)) != std::string::npos) {
+                    size_t ipStart = pos + 1;
+                    size_t ipEnd = hostsStr.find("\"", ipStart);
+                    if (ipEnd != std::string::npos) {
+                        std::string ip = hostsStr.substr(ipStart, ipEnd - ipStart);
+                        if (!ip.empty() && ip.find(".") != std::string::npos) {
+                            newSlice.hostIPs.push_back(ip);
+                        }
+                        pos = ipEnd + 1;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            // Create the slice if we have valid data
+            if (!newSlice.name.empty() && newSlice.vlanId > 0 && !newSlice.hostIPs.empty()) {
+                createSlice(newSlice);
+                EV << "Created slice: " << newSlice.name << " with " << newSlice.hostIPs.size() << " hosts" << endl;
+            } else {
+                EV << "ERROR: Invalid slice data in command" << endl;
+            }
+        }
+        else if (cmdJson.find("DELETE_SLICE") != std::string::npos) {
+            EV << "Executing DELETE_SLICE command" << endl;
+
+            // Extract slice ID
+            size_t idPos = cmdJson.find("\"id\":");
+            if (idPos != std::string::npos) {
+                size_t start = idPos + 5;
+                size_t end = cmdJson.find_first_of(",}", start);
+                int sliceId = std::stoi(cmdJson.substr(start, end - start));
+
+                deleteSlice(sliceId);
+                EV << "Deleted slice ID: " << sliceId << endl;
+            }
+        }
+        else if (cmdJson.find("UPDATE_SLICE") != std::string::npos) {
+            EV << "Executing UPDATE_SLICE command" << endl;
+
+            // Extract slice ID and updated data
+            size_t idPos = cmdJson.find("\"id\":");
+            if (idPos != std::string::npos) {
+                size_t start = idPos + 5;
+                size_t end = cmdJson.find_first_of(",}", start);
+                int sliceId = std::stoi(cmdJson.substr(start, end - start));
+
+                // Find existing slice and update it
+                auto it = slices.find(sliceId);
+                if (it != slices.end()) {
+                    NetworkSlice updatedSlice = it->second;
+
+                    // Update bandwidth if present
+                    size_t bwPos = cmdJson.find("\"bandwidth\":");
+                    if (bwPos != std::string::npos) {
+                        size_t bwStart = bwPos + 12;
+                        size_t bwEnd = cmdJson.find_first_of(",}", bwStart);
+                        updatedSlice.bandwidthMbps = std::stod(cmdJson.substr(bwStart, bwEnd - bwStart));
+                    }
+
+                    updateSlice(updatedSlice);
+                    EV << "Updated slice ID: " << sliceId << endl;
+                }
+            }
+        }
+        else if (cmdJson.find("ADD_FLOW") != std::string::npos) {
+            EV << "Executing ADD_FLOW command" << endl;
+
+            FlowRule newFlow;
+
+            // Parse srcIP
+            size_t srcPos = cmdJson.find("\"srcIP\":");
+            if (srcPos != std::string::npos) {
+                size_t start = cmdJson.find("\"", srcPos + 8) + 1;
+                size_t end = cmdJson.find("\"", start);
+                newFlow.srcIP = cmdJson.substr(start, end - start);
+            }
+
+            // Parse dstIP
+            size_t dstPos = cmdJson.find("\"dstIP\":");
+            if (dstPos != std::string::npos) {
+                size_t start = cmdJson.find("\"", dstPos + 8) + 1;
+                size_t end = cmdJson.find("\"", start);
+                newFlow.dstIP = cmdJson.substr(start, end - start);
+            }
+
+            // Parse action
+            size_t actionPos = cmdJson.find("\"action\":");
+            if (actionPos != std::string::npos) {
+                size_t start = cmdJson.find("\"", actionPos + 9) + 1;
+                size_t end = cmdJson.find("\"", start);
+                newFlow.action = cmdJson.substr(start, end - start);
+            }
+
+            // Parse priority
+            size_t prioPos = cmdJson.find("\"priority\":");
+            if (prioPos != std::string::npos) {
+                size_t start = prioPos + 11;
+                size_t end = cmdJson.find_first_of(",}", start);
+                newFlow.priority = std::stoi(cmdJson.substr(start, end - start));
+            } else {
+                newFlow.priority = 100; // Default
+            }
+
+            // Parse sliceId
+            size_t slicePos = cmdJson.find("\"sliceId\":");
+            if (slicePos != std::string::npos) {
+                size_t start = slicePos + 10;
+                size_t end = cmdJson.find_first_of(",}", start);
+                newFlow.sliceId = std::stoi(cmdJson.substr(start, end - start));
+            }
+
+            // Initialize other fields
+            newFlow.srcPort = 0;
+            newFlow.dstPort = 0;
+            newFlow.outputPort = 0;
+
+            // Install the flow if we have valid data
+            if (!newFlow.srcIP.empty() && !newFlow.action.empty()) {
+                installFlowRule(newFlow);
+                EV << "Added flow: " << newFlow.srcIP << " -> " << newFlow.dstIP
+                   << " (action: " << newFlow.action << ")" << endl;
+            } else {
+                EV << "ERROR: Invalid flow data in command" << endl;
+            }
+        }
+        else if (cmdJson.find("DELETE_FLOW") != std::string::npos) {
+            EV << "Executing DELETE_FLOW command" << endl;
+
+            // Extract flow ID
+            size_t idPos = cmdJson.find("\"id\":");
+            if (idPos != std::string::npos) {
+                size_t start = idPos + 5;
+                size_t end = cmdJson.find_first_of(",}", start);
+                int flowId = std::stoi(cmdJson.substr(start, end - start));
+
+                removeFlowRule(flowId);
+                EV << "Deleted flow ID: " << flowId << endl;
+            }
+        }
+        else {
+            EV << "Unknown command type in JSON" << endl;
+        }
+    }
+    catch (const std::exception& e) {
+        EV << "ERROR parsing command: " << e.what() << endl;
+    }
 }
 
 } // namespace sdn_dashboard
