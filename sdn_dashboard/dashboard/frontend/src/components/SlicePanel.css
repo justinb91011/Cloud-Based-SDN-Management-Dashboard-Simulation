@@ -1,0 +1,87 @@
+.slice-panel {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.slice-panel h2 {
+  margin-top: 0;
+}
+
+.create-form {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.create-form h3 {
+  margin-top: 0;
+}
+
+.slice-list {
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.slice-item {
+  background-color: white;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.slice-item:hover {
+  border-color: #4CAF50;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.slice-item.selected {
+  border-color: #4CAF50;
+  background-color: #f0f8f0;
+}
+
+.slice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slice-header h3 {
+  margin: 0;
+}
+
+.slice-details {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.slice-details p {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.slice-hosts {
+  margin-top: 10px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.slice-hosts h4 {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.slice-hosts ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.slice-hosts li {
+  padding: 5px 0;
+  font-family: monospace;
+}
