@@ -10,6 +10,10 @@ A comprehensive Software-Defined Networking (SDN) management dashboard built on 
 4. [Environment Configuration](#environment-configuration)
 5. [Project Structure](#project-structure)
 6. [Running the Project](#running-the-project)
+   - [Cloud Topology Simulation](#running-the-cloud-topology-simulation)
+   - [Network Slicing Simulation](#running-the-network-slicing-simulation)
+   - [Dashboard Backend](#running-the-dashboard-backend)
+   - [Dashboard Frontend](#running-the-dashboard-frontend)
 7. [Development Workflow](#development-workflow)
 8. [Common Commands Reference](#common-commands-reference)
 9. [Troubleshooting](#troubleshooting)
@@ -642,6 +646,170 @@ Host0-3 Host4-7 Host8-11
 
 **Permission denied on libINET.dylib**
 - Solution: Check that INET was built successfully: `ls -lh ../../../inet/src/libINET.dylib`
+
+### Running the Network Slicing Simulation
+
+The network slicing simulation demonstrates multi-tenant cloud environments with slice isolation, VLAN tagging, and hierarchical switching architecture. This simulation creates three distinct network slices with proper IP addressing and traffic isolation.
+
+#### Network Architecture
+
+The SliceableCloudTopology implements a 3-tier hierarchical architecture:
+
+```
+                    Controller (10.0.0.x)
+                     /                \
+                    /                  \
+            CoreSwitch1              CoreSwitch2
+                 / | \                / | \
+                /  |  \              /  |  \
+          AggSwitch[0-2] (full mesh connectivity)
+               /     |      \
+              /      |       \
+        EdgeSwitch[0-2] (one per slice)
+           /     |      \
+     Slice 0  Slice 1  Slice 2
+    (VLAN 10) (VLAN 20) (VLAN 30)
+    Hosts 0-3  Hosts 4-7  Hosts 8-11
+```
+
+**Network Slices**:
+- **Slice 0 (Tenant A)**: VLAN 10, IPs 10.0.10.1-4, 4 hosts
+- **Slice 1 (Tenant B)**: VLAN 20, IPs 10.0.20.1-4, 4 hosts  
+- **Slice 2 (Tenant C)**: VLAN 30, IPs 10.0.30.1-4, 4 hosts
+
+#### Quick Validation Test (Recommended)
+
+For quick verification that the topology initializes correctly:
+
+```bash
+# Navigate to simulation directory
+cd sdn_dashboard/simulations
+
+# Source OMNeT++ environment
+source ../../setenv
+
+# Run 1-second initialization test
+opp_run -l /Users/justinbravo/Desktop/Coding/School/Cloud_Computing/inet/src/INET \
+        -n .:/Users/justinbravo/Desktop/Coding/School/Cloud_Computing/inet/src \
+        -u Cmdenv -c General -f test-phase2.ini
+```
+
+**Expected result**: Completes in < 1 second, all 12 hosts initialized with correct IP addresses.
+
+#### Light Traffic Test
+
+For testing with minimal network traffic:
+
+```bash
+# Same directory and environment as above
+opp_run -l /Users/justinbravo/Desktop/Coding/School/Cloud_Computing/inet/src/INET \
+        -n .:/Users/justinbravo/Desktop/Coding/School/Cloud_Computing/inet/src \
+        -u Cmdenv -c General -f slicing-lite.ini --sim-time-limit=10s
+```
+
+**What this does**:
+- Only 3 hosts send ping packets (one per slice)
+- 2-second intervals between pings
+- Tests slice connectivity without overwhelming the simulation
+- Completes in reasonable time (~30 seconds for 10s simulation)
+
+#### Configuration Files
+
+Three test configurations are available:
+
+| Configuration | Traffic Load | Use Case | Runtime |
+|--------------|--------------|----------|---------|
+| `test-phase2.ini` | None | Quick validation of network initialization | < 1 second |
+| `slicing-lite.ini` | Light | Test slice connectivity with minimal traffic | ~30 seconds for 10s sim |
+| `slicing.ini` | Full | All hosts generate traffic (very slow!) | Not recommended for testing |
+
+#### What to Expect
+
+When running the simulation, you'll see:
+
+1. **Network Initialization**:
+   ```
+   Setting up network "sdn_dashboard.simulations.networks.SliceableCloudTopology"...
+   Initializing...
+   ```
+
+2. **IP Address Assignment**:
+   - Slice 0 hosts: 10.0.10.1 through 10.0.10.4
+   - Slice 1 hosts: 10.0.20.1 through 10.0.20.4
+   - Slice 2 hosts: 10.0.30.1 through 10.0.30.4
+
+3. **Completion**:
+   ```
+   Simulation time limit reached -- at t=1s
+   Calling finish() at end of Run #0...
+   ```
+
+#### Viewing Results
+
+After the simulation completes:
+
+```bash
+# Check generated result files
+ls -lh results/
+
+# View scalar statistics
+opp_scavetool scalar -F CSV -o output.csv results/General-#0.sca
+
+# Check what was recorded
+head output.csv
+```
+
+#### Verifying Slice Configuration
+
+To verify that slices are properly configured, check the simulation output for:
+
+✅ **Slice 0 (VLAN 10)**:
+- host[0]: 10.0.10.1/24
+- host[1]: 10.0.10.2/24
+- host[2]: 10.0.10.3/24
+- host[3]: 10.0.10.4/24
+
+✅ **Slice 1 (VLAN 20)**:
+- host[4]: 10.0.20.1/24
+- host[5]: 10.0.20.2/24
+- host[6]: 10.0.20.3/24
+- host[7]: 10.0.20.4/24
+
+✅ **Slice 2 (VLAN 30)**:
+- host[8]: 10.0.30.1/24
+- host[9]: 10.0.30.2/24
+- host[10]: 10.0.30.3/24
+- host[11]: 10.0.30.4/24
+
+#### Troubleshooting Network Slicing Simulation
+
+**Error: "Cannot resolve module type 'IntegratedCanvasVisualizer'"**
+- This module is commented out for Cmdenv compatibility
+- Make sure you're using SliceableCloudTopology.ned from the repository
+
+**Error: "Failed to configure unique address"**
+- Check that network-config.xml exists in the simulations directory
+- Verify the configurator line in the .ini file: `*.configurator.config = xmldoc("network-config.xml")`
+
+**Simulation takes too long**
+- Use `test-phase2.ini` for quick validation (no traffic)
+- Use `slicing-lite.ini` for light traffic testing
+- Avoid `slicing.ini` for routine testing (generates millions of events)
+
+**INET library not found**
+- Verify INET path: `ls /Users/justinbravo/Desktop/Coding/School/Cloud_Computing/inet/src/INET`
+- Adjust the `-l` parameter in the opp_run command if INET is in a different location
+
+#### Performance Notes
+
+The original `slicing.ini` configuration generates excessive events because all 12 hosts continuously send ping packets. This can result in:
+- ~250,000 events per second
+- ~94 million events for just 1.26 seconds of simulation time
+- Very long execution times (hours for a few simulation seconds)
+
+For this reason, use:
+- `test-phase2.ini` for validation (instant)
+- `slicing-lite.ini` for communication testing (reasonable runtime)
 
 ### Starting OMNeT++ Simulations (Generic)
 

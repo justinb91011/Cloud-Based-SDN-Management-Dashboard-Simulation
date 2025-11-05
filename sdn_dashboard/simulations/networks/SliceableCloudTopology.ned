@@ -3,7 +3,7 @@ package sdn_dashboard.simulations.networks;
 import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
 import inet.node.ethernet.EthernetSwitch;
 import inet.node.inet.StandardHost;
-import inet.visualizer.integrated.IntegratedCanvasVisualizer;
+// import inet.visualizer.integrated.IntegratedCanvasVisualizer;  // Only needed for GUI
 import inet.linklayer.vlan.VlanInterface;
 
 network SliceableCloudTopology
@@ -34,9 +34,10 @@ network SliceableCloudTopology
             @display("p=100,50");
         }
 
-        visualizer: IntegratedCanvasVisualizer {
-            @display("p=100,150");
-        }
+        // Visualizer only needed for GUI mode
+        // visualizer: IntegratedCanvasVisualizer {
+        //     @display("p=100,150");
+        // }
 
         // SDN Controller with enhanced capabilities
         controller: StandardHost {

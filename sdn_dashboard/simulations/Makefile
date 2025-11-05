@@ -2,11 +2,11 @@
 # OMNeT++/OMNEST Makefile for sdn_sim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -o sdn_sim -I../../../inet/src -L../../../inet/src -lINET -n .:../../../inet/src
+#  opp_makemake -f --deep -o sdn_sim -I../../inet/src -L../../inet/src -lINET -n .:../../inet/src
 #
 
 # C++ include paths (with -I)
-INCLUDE_PATH = -I../../../inet/src
+INCLUDE_PATH = -I../../inet/src
 
 # Output directory
 PROJECT_OUTPUT_DIR = out
