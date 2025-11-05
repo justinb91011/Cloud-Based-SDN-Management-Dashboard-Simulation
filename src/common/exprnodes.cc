@@ -101,7 +101,7 @@ ExprNode *ExprNodeFactory::createStdMathFunction(const char *name_)
     if (name == "sqrt") return createMathFunction("sqrt", sqrt);
     if (name == "fabs") return createMathFunction("fabs", fabs);
     if (name == "fmod") return createMathFunction("fmod", fmod);
-    if (name == "hypot") return createMathFunction("hypot", hypot);
+    if (name == "hypot") return createMathFunction("hypot", static_cast<double(*)(double,double)>(hypot));
     if (name == "log") return createMathFunction("log", log);
     if (name == "log10") return createMathFunction("log10", log10);
     throw opp_runtime_error("Not a standard <cmath> function: '%s'", name_);

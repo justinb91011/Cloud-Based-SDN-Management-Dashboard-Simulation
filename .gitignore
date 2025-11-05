@@ -173,3 +173,16 @@ backups
 /doc/src/manual/tools/*.tex
 
 
+.polyglot.META-INF
+.polyglot.*
+node_modules/
+
+# SDN Dashboard simulation results
+/sdn_dashboard/simulations/results/*.sca
+/sdn_dashboard/simulations/results/*.vec
+/sdn_dashboard/simulations/results/*.vci
+/sdn_dashboard/simulations/results/*.elog
+/sdn_dashboard/simulations/results/*.slog
+
+# Keep results directory structure
+!/sdn_dashboard/simulations/results/.gitkeep
