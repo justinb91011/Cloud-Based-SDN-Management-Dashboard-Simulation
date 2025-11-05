@@ -5,6 +5,7 @@ import inet.node.ethernet.EthernetSwitch;
 import inet.node.inet.StandardHost;
 // import inet.visualizer.integrated.IntegratedCanvasVisualizer;  // Only needed for GUI
 import inet.linklayer.vlan.VlanInterface;
+import sdn_dashboard.src.controller.SDNControllerApp;
 
 network SliceableCloudTopology
 {
@@ -42,6 +43,8 @@ network SliceableCloudTopology
         // SDN Controller with enhanced capabilities
         controller: StandardHost {
             @display("p=700,50;i=device/server_l");
+            numApps = 1;
+            app[0].typename = "SDNControllerApp";
         }
 
         // Core layer - 2 switches for redundancy
