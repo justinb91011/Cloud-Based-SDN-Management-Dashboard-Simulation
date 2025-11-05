@@ -5,7 +5,7 @@ import inet.node.ethernet.EthernetSwitch;
 import inet.node.inet.StandardHost;
 // import inet.visualizer.integrated.IntegratedCanvasVisualizer;  // Only needed for GUI
 import inet.linklayer.vlan.VlanInterface;
-import sdn_dashboard.src.controller.SDNControllerApp;
+import sdn_dashboard.simulations.SDNControllerApp;
 
 network SliceableCloudTopology
 {

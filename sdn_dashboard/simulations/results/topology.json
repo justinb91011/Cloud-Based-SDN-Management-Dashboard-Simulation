@@ -1,0 +1,27 @@
+{
+  "nodes": [
+    {"id": "controller", "type": "controller"},
+    {"id": "coreSwitch1", "type": "switch"},
+    {"id": "coreSwitch2", "type": "switch"},
+    {"id": "aggSwitch0", "type": "switch"},
+    {"id": "aggSwitch1", "type": "switch"},
+    {"id": "aggSwitch2", "type": "switch"},
+    {"id": "edgeSwitch0", "type": "switch"},
+    {"id": "edgeSwitch1", "type": "switch"},
+    {"id": "edgeSwitch2", "type": "switch"},
+    {"id": "host0", "type": "host", "slice": 0},
+    {"id": "host1", "type": "host", "slice": 0},
+    {"id": "host2", "type": "host", "slice": 0},
+    {"id": "host3", "type": "host", "slice": 0},
+    {"id": "host4", "type": "host", "slice": 1},
+    {"id": "host5", "type": "host", "slice": 1},
+    {"id": "host6", "type": "host", "slice": 1},
+    {"id": "host7", "type": "host", "slice": 1},
+    {"id": "host8", "type": "host", "slice": 2},
+    {"id": "host9", "type": "host", "slice": 2},
+    {"id": "host10", "type": "host", "slice": 2},
+    {"id": "host11", "type": "host", "slice": 2}
+  ],
+  "links": [
+  ]
+}

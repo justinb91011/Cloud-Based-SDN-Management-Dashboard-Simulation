@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for sdn_sim
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -o sdn_sim -I../../../inet/src -I../src -L../../../inet/out/clang-release/src -lINET ../src/controller/SDNController.cc
+#  opp_makemake -f --deep -o sdn_sim -I../../../inet/src -L../../../inet/out/clang-release/src -lINET
 #
 
 # Name of target to be created (-o option)
@@ -19,10 +19,10 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(QTENV_LIBS) $(CMDENV_LIBS)
 #USERIF_LIBS = $(QTENV_LIBS)
 
 # C++ include paths (with -I)
-INCLUDE_PATH = -I../../../inet/src -I../src
+INCLUDE_PATH = -I../../../inet/src
 
 # Additional object and library files to link with
-EXTRA_OBJS = ../src/out/clang-release/controller/SDNController.o
+EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
 LIBS = $(LDFLAG_LIBPATH)../../../inet/out/clang-release/src  -lINET
@@ -33,7 +33,7 @@ PROJECTRELATIVE_PATH =
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)
 
 # Object files for local .cc, .msg and .sm files
-OBJS =
+OBJS = $O/SDNController.o
 
 # Message files
 MSGFILES =

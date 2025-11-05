@@ -12,7 +12,23 @@ namespace sdn_dashboard {
 using namespace sdn_dashboard;
 using namespace omnetpp;
 
-Define_Module(SDNControllerApp);
+// Factory functions for manual registration
+static cObject *createSDNControllerApp() {
+    return new SDNControllerApp();
+}
+
+static void *castSDNControllerApp(cObject *obj) {
+    return dynamic_cast<SDNControllerApp*>(obj);
+}
+
+// Manual registration - called before main()
+static void registerSDNController() __attribute__((constructor(101)));
+static void registerSDNController() {
+    // Manually register the module since Define_Module's static initialization isn't working
+    omnetpp::internal::classes.getInstance()->add(
+        new cObjectFactory("SDNControllerApp", createSDNControllerApp, castSDNControllerApp, "module")
+    );
+}
 
 namespace sdn_dashboard {
 
@@ -48,8 +64,9 @@ void SDNControllerApp::initialize(int stage)
         EV << "SDN Controller initializing on port " << localPort << endl;
     }
     else if (stage == INITSTAGE_APPLICATION_LAYER) {
-        socket.setOutputGate(gate("socketOut"));
-        socket.bind(localPort);
+        // TODO: Socket setup disabled for now - enable when gates are properly configured
+        // socket.setOutputGate(gate("socketOut"));
+        // socket.bind(localPort);
 
         // Load initial configuration
         loadConfiguration();
@@ -302,17 +319,18 @@ void SDNControllerApp::exportTopology()
 
 void SDNControllerApp::handleStartOperation(LifecycleOperation *operation)
 {
-    socket.bind(localPort);
+    // TODO: Socket disabled for now
+    // socket.bind(localPort);
 }
 
 void SDNControllerApp::handleStopOperation(LifecycleOperation *operation)
 {
-    socket.close();
+    // socket.close();
 }
 
 void SDNControllerApp::handleCrashOperation(LifecycleOperation *operation)
 {
-    socket.destroy();
+    // socket.destroy();
 }
 
 void SDNControllerApp::finish()
