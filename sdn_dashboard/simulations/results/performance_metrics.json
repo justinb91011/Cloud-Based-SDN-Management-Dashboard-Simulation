@@ -1,0 +1,2719 @@
+{
+  "apiResponseTimes": [
+    {
+      "endpoint": "/api/statistics",
+      "duration": 4,
+      "timestamp": 1762388353985
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 6,
+      "timestamp": 1762388378756
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388388606
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388388606
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388388607
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388388608
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388388609
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388388609
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 1,
+      "timestamp": 1762388388610
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388388610
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388388628
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388388629
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388388629
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388388630
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388388641
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388391622
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388393633
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388393635
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388397115
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388397115
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388398633
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388398634
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388403635
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388403636
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388408634
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388408635
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388413634
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388413636
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 2,
+      "timestamp": 1762388418637
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388418638
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 3,
+      "timestamp": 1762388423635
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 2,
+      "timestamp": 1762388423639
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388428633
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388428635
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 2,
+      "timestamp": 1762388433634
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388433636
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388438631
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388438633
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388443636
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388443638
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388448635
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388448637
+    },
+    {
+      "endpoint": "/api/slices/3",
+      "duration": 3,
+      "timestamp": 1762388450369
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388450371
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388450372
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388450375
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 2,
+      "timestamp": 1762388453634
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388453637
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388458639
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388458640
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388464183
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388464184
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388469185
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388469187
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388474183
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388474184
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388479184
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388479186
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388484184
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388484185
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 1,
+      "timestamp": 1762388487066
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 0,
+      "timestamp": 1762388487081
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388487091
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388487102
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388487120
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487124
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487125
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388487129
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388487142
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487144
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487145
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388487158
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388487170
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 1,
+      "timestamp": 1762388487181
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388487193
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388487227
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388487229
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487229
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388487355
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487357
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487367
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388487486
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388487489
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388487498
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388487622
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487623
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487634
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388487754
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487756
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487757
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388487888
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487890
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388487894
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388488022
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488024
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488025
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388488159
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488161
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488172
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388488289
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488291
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488303
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388488420
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488423
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488433
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388488581
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388488583
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488595
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388488596
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488610
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488610
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388488622
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488623
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488625
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388488695
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488696
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488696
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388488773
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488775
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488780
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388488850
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488852
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488857
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388488929
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488931
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388488935
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489002
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489003
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489009
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489080
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388489082
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489087
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489158
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489160
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489166
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388489186
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388489186
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489238
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489239
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489240
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489318
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489319
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489328
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489397
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489398
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388489407
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489473
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489474
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388489476
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388489552
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489554
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388489558
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388489625
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388489628
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489633
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489696
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489699
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489704
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388489772
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489774
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489779
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489850
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489852
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489857
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388489927
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388489929
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388489935
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388490003
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388490006
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388490011
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388490082
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490084
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490091
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388490172
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490174
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490187
+    },
+    {
+      "endpoint": "/api/slices/16",
+      "duration": 0,
+      "timestamp": 1762388490193
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490209
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490209
+    },
+    {
+      "endpoint": "/api/slices/16",
+      "duration": 1,
+      "timestamp": 1762388490213
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490230
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490230
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388490238
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388490336
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388490394
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490395
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490396
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388490411
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490412
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388490414
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388490428
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490429
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490431
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388490466
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388490477
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388490490
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388490503
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388490515
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388490537
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388490548
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388490560
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388490571
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388490583
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388490602
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388490612
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388490621
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388490630
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388490639
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490658
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490668
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490677
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490687
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490698
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 0,
+      "timestamp": 1762388490717
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 1,
+      "timestamp": 1762388490727
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 0,
+      "timestamp": 1762388490736
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 0,
+      "timestamp": 1762388490745
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 1,
+      "timestamp": 1762388490755
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 0,
+      "timestamp": 1762388490778
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 0,
+      "timestamp": 1762388490793
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 0,
+      "timestamp": 1762388490806
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 0,
+      "timestamp": 1762388490816
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 0,
+      "timestamp": 1762388490826
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388490846
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388490856
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388490865
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388490875
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388490885
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388490904
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388490953
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388494184
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388494186
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388498655
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388498656
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388503634
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388503636
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388509182
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388509183
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388514185
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388514187
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388519185
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388519187
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388524185
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388524186
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388529185
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388529186
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388534184
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388534184
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388534402
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388534406
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388534420
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388534534
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388534536
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388534551
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388534664
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388534665
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388534673
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388534795
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388534797
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388534804
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388534925
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388534928
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388534935
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388535057
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535059
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388535066
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388535187
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388535189
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535204
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388535315
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535316
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535332
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388535449
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535450
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535454
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388535585
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535587
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535594
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388535747
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535748
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535755
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388535762
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535763
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535763
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388535788
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535789
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535791
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388535864
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535866
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535872
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388535936
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535938
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388535945
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536012
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536014
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536020
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536090
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536091
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536098
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536163
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536165
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536171
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388536237
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536239
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388536258
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536314
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536315
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388536332
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388536385
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536386
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536389
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536460
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536461
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536464
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536538
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536539
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388536540
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388536616
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536618
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536623
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536696
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536697
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536704
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536774
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536776
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536783
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388536853
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388536856
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536862
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388536932
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536933
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388536940
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388537010
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537012
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388537020
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388537082
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388537084
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537090
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388537157
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537158
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537162
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 1,
+      "timestamp": 1762388537235
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537237
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388537245
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388537322
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388537323
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388537340
+    },
+    {
+      "endpoint": "/api/slices/32",
+      "duration": 0,
+      "timestamp": 1762388537341
+    },
+    {
+      "endpoint": "/api/slices/32",
+      "duration": 1,
+      "timestamp": 1762388537360
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537368
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537368
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537370
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388537371
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388537385
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388537467
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388537521
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537522
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537525
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388537539
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1762388537540
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537540
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388537556
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537557
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537561
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388537593
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388537604
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388537613
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 0,
+      "timestamp": 1762388537623
+    },
+    {
+      "endpoint": "/api/slices",
+      "duration": 1,
+      "timestamp": 1762388537634
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388537654
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388537664
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388537674
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388537683
+    },
+    {
+      "endpoint": "/api/flows",
+      "duration": 0,
+      "timestamp": 1762388537692
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388537712
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388537722
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388537732
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 0,
+      "timestamp": 1762388537741
+    },
+    {
+      "endpoint": "/api/topology",
+      "duration": 1,
+      "timestamp": 1762388537751
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537770
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537779
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537788
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537797
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537806
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 1,
+      "timestamp": 1762388537826
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 0,
+      "timestamp": 1762388537835
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 0,
+      "timestamp": 1762388537844
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 0,
+      "timestamp": 1762388537853
+    },
+    {
+      "endpoint": "/api/health",
+      "duration": 0,
+      "timestamp": 1762388537862
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 0,
+      "timestamp": 1762388537882
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 0,
+      "timestamp": 1762388537891
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 1,
+      "timestamp": 1762388537901
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 0,
+      "timestamp": 1762388537910
+    },
+    {
+      "endpoint": "/api/status",
+      "duration": 1,
+      "timestamp": 1762388537920
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388537939
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388537949
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388537958
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388537967
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388537976
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1762388537996
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 6,
+      "timestamp": 1762388539191
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388539192
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 2,
+      "timestamp": 1762388543634
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388543636
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388549186
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388549187
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388554185
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388554188
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388559181
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388559182
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388564185
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388564187
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388569183
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388569185
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388574181
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388574182
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388579182
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388579183
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388584187
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388584189
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1762388589182
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388589184
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388594185
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388594187
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1762388599185
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1762388599188
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 2,
+      "timestamp": 1762388604185
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1762388604187
+    }
+  ],
+  "websocketLatency": [],
+  "sliceOperations": [
+    {
+      "operation": "delete",
+      "sliceId": 3,
+      "duration": 2,
+      "success": true,
+      "timestamp": 1762388450368
+    },
+    {
+      "operation": "create",
+      "sliceId": 3,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388487119
+    },
+    {
+      "operation": "create",
+      "sliceId": 4,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388487227
+    },
+    {
+      "operation": "create",
+      "sliceId": 5,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388487355
+    },
+    {
+      "operation": "create",
+      "sliceId": 6,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388487486
+    },
+    {
+      "operation": "create",
+      "sliceId": 7,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388487621
+    },
+    {
+      "operation": "create",
+      "sliceId": 8,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388487753
+    },
+    {
+      "operation": "create",
+      "sliceId": 9,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388487888
+    },
+    {
+      "operation": "create",
+      "sliceId": 10,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488021
+    },
+    {
+      "operation": "create",
+      "sliceId": 11,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488158
+    },
+    {
+      "operation": "create",
+      "sliceId": 12,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388488289
+    },
+    {
+      "operation": "create",
+      "sliceId": 13,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488420
+    },
+    {
+      "operation": "create",
+      "sliceId": 14,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488580
+    },
+    {
+      "operation": "create",
+      "sliceId": 15,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488596
+    },
+    {
+      "operation": "create",
+      "sliceId": 16,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388490172
+    },
+    {
+      "operation": "create",
+      "sliceId": 17,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388490393
+    },
+    {
+      "operation": "create",
+      "sliceId": 18,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388490410
+    },
+    {
+      "operation": "create",
+      "sliceId": 19,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388490428
+    },
+    {
+      "operation": "create",
+      "sliceId": 20,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388534402
+    },
+    {
+      "operation": "create",
+      "sliceId": 21,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388534534
+    },
+    {
+      "operation": "create",
+      "sliceId": 22,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388534663
+    },
+    {
+      "operation": "create",
+      "sliceId": 23,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388534794
+    },
+    {
+      "operation": "create",
+      "sliceId": 24,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388534925
+    },
+    {
+      "operation": "create",
+      "sliceId": 25,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535056
+    },
+    {
+      "operation": "create",
+      "sliceId": 26,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535186
+    },
+    {
+      "operation": "create",
+      "sliceId": 27,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535315
+    },
+    {
+      "operation": "create",
+      "sliceId": 28,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535448
+    },
+    {
+      "operation": "create",
+      "sliceId": 29,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535585
+    },
+    {
+      "operation": "create",
+      "sliceId": 30,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535746
+    },
+    {
+      "operation": "create",
+      "sliceId": 31,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535761
+    },
+    {
+      "operation": "create",
+      "sliceId": 32,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388537321
+    },
+    {
+      "operation": "create",
+      "sliceId": 33,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388537521
+    },
+    {
+      "operation": "create",
+      "sliceId": 34,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388537538
+    },
+    {
+      "operation": "create",
+      "sliceId": 35,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388537556
+    }
+  ],
+  "flowOperations": [
+    {
+      "operation": "add",
+      "flowId": 13,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388487142
+    },
+    {
+      "operation": "add",
+      "flowId": 14,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488622
+    },
+    {
+      "operation": "add",
+      "flowId": 15,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488694
+    },
+    {
+      "operation": "add",
+      "flowId": 16,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488772
+    },
+    {
+      "operation": "add",
+      "flowId": 17,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488849
+    },
+    {
+      "operation": "add",
+      "flowId": 18,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388488928
+    },
+    {
+      "operation": "add",
+      "flowId": 19,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489001
+    },
+    {
+      "operation": "add",
+      "flowId": 20,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489079
+    },
+    {
+      "operation": "add",
+      "flowId": 21,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388489158
+    },
+    {
+      "operation": "add",
+      "flowId": 22,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489237
+    },
+    {
+      "operation": "add",
+      "flowId": 23,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489317
+    },
+    {
+      "operation": "add",
+      "flowId": 24,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489396
+    },
+    {
+      "operation": "add",
+      "flowId": 25,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489472
+    },
+    {
+      "operation": "add",
+      "flowId": 26,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489552
+    },
+    {
+      "operation": "add",
+      "flowId": 27,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489625
+    },
+    {
+      "operation": "add",
+      "flowId": 28,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388489696
+    },
+    {
+      "operation": "add",
+      "flowId": 29,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489772
+    },
+    {
+      "operation": "add",
+      "flowId": 30,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388489850
+    },
+    {
+      "operation": "add",
+      "flowId": 31,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388489926
+    },
+    {
+      "operation": "add",
+      "flowId": 32,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388490003
+    },
+    {
+      "operation": "add",
+      "flowId": 33,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388490081
+    },
+    {
+      "operation": "add",
+      "flowId": 34,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535788
+    },
+    {
+      "operation": "add",
+      "flowId": 35,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535864
+    },
+    {
+      "operation": "add",
+      "flowId": 36,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388535936
+    },
+    {
+      "operation": "add",
+      "flowId": 37,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536011
+    },
+    {
+      "operation": "add",
+      "flowId": 38,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536089
+    },
+    {
+      "operation": "add",
+      "flowId": 39,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536162
+    },
+    {
+      "operation": "add",
+      "flowId": 40,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536237
+    },
+    {
+      "operation": "add",
+      "flowId": 41,
+      "duration": 1,
+      "success": true,
+      "timestamp": 1762388536314
+    },
+    {
+      "operation": "add",
+      "flowId": 42,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536385
+    },
+    {
+      "operation": "add",
+      "flowId": 43,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536459
+    },
+    {
+      "operation": "add",
+      "flowId": 44,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536537
+    },
+    {
+      "operation": "add",
+      "flowId": 45,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536616
+    },
+    {
+      "operation": "add",
+      "flowId": 46,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536695
+    },
+    {
+      "operation": "add",
+      "flowId": 47,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536774
+    },
+    {
+      "operation": "add",
+      "flowId": 48,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536853
+    },
+    {
+      "operation": "add",
+      "flowId": 49,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388536931
+    },
+    {
+      "operation": "add",
+      "flowId": 50,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388537010
+    },
+    {
+      "operation": "add",
+      "flowId": 51,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388537081
+    },
+    {
+      "operation": "add",
+      "flowId": 52,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388537157
+    },
+    {
+      "operation": "add",
+      "flowId": 53,
+      "duration": 0,
+      "success": true,
+      "timestamp": 1762388537234
+    }
+  ],
+  "systemLoad": [
+    {
+      "heapUsed": 8512296,
+      "heapTotal": 11108352,
+      "external": 2088135,
+      "timestamp": 1762388401320
+    },
+    {
+      "heapUsed": 8784888,
+      "heapTotal": 10584064,
+      "external": 2096457,
+      "timestamp": 1762388431321
+    },
+    {
+      "heapUsed": 9198304,
+      "heapTotal": 10584064,
+      "external": 2096457,
+      "timestamp": 1762388461323
+    },
+    {
+      "heapUsed": 12905280,
+      "heapTotal": 16613376,
+      "external": 2153771,
+      "timestamp": 1762388491324
+    },
+    {
+      "heapUsed": 12645584,
+      "heapTotal": 16875520,
+      "external": 2165607,
+      "timestamp": 1762388521325
+    },
+    {
+      "heapUsed": 14028936,
+      "heapTotal": 16089088,
+      "external": 2185450,
+      "timestamp": 1762388551326
+    },
+    {
+      "heapUsed": 14146528,
+      "heapTotal": 17137664,
+      "external": 2204683,
+      "timestamp": 1762388581325
+    }
+  ],
+  "timestamp": 1762388352757
+}

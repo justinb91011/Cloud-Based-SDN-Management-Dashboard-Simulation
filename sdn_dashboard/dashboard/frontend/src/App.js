@@ -5,6 +5,7 @@ import SlicePanel from './components/SlicePanel';
 import FlowPanel from './components/FlowPanel';
 import Statistics from './components/Statistics';
 import ConnectionStatus from './components/ConnectionStatus';
+import PerformanceMetrics from './components/PerformanceMetrics';
 import api from './services/api';
 
 function App() {
@@ -272,6 +273,10 @@ function App() {
             onDeleteFlow={handleDeleteFlow}
           />
         </div>
+      </div>
+
+      <div className="metrics-section">
+        <PerformanceMetrics apiService={api} />
       </div>
     </div>
   );

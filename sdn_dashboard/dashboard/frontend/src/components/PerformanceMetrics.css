@@ -1,0 +1,250 @@
+.performance-metrics {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.performance-metrics.loading,
+.performance-metrics.error {
+  text-align: center;
+  padding: 40px;
+  font-size: 16px;
+}
+
+.performance-metrics.error p {
+  color: #f44336;
+  margin-bottom: 10px;
+}
+
+.metrics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.metrics-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.metrics-controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.metrics-controls label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.metrics-controls input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.metrics-controls button {
+  padding: 8px 16px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.metrics-controls button:hover {
+  background-color: #0b7dda;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.metric-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid #4CAF50;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.metric-card.clickable {
+  cursor: pointer;
+}
+
+.metric-card.clickable:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.metric-title {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.metric-value {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.metric-details {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+
+.metric-subtitle {
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.success-rate {
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+/* Detailed View */
+.detailed-view {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.detailed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.detailed-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.detailed-header button {
+  padding: 6px 12px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.detailed-header button:hover {
+  background-color: #d32f2f;
+}
+
+.detailed-content {
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.detailed-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.detailed-content thead {
+  position: sticky;
+  top: 0;
+  background-color: #f5f5f5;
+  z-index: 1;
+}
+
+.detailed-content th {
+  padding: 12px 8px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.detailed-content td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #666;
+}
+
+.detailed-content tr:hover {
+  background-color: #fafafa;
+}
+
+.detailed-content td.operation {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #2196F3;
+}
+
+.detailed-content .status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.detailed-content .status.success {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.detailed-content .status.failed {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .metric-value {
+    font-size: 24px;
+  }
+}

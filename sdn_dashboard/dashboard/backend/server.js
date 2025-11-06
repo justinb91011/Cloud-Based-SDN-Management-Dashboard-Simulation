@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const WebSocket = require('ws');
 const path = require('path');
+const MetricsCollector = require('./metricsCollector');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -28,6 +29,26 @@ let topology = {
     nodes: [],
     links: []
 };
+
+// Initialize metrics collector
+const metricsCollector = new MetricsCollector(RESULTS_DIR);
+
+// Record system load periodically
+setInterval(() => {
+    metricsCollector.recordSystemLoad();
+}, 30000); // Every 30 seconds
+
+// Middleware to track API response times
+app.use((req, res, next) => {
+    const start = Date.now();
+
+    res.on('finish', () => {
+        const duration = Date.now() - start;
+        metricsCollector.recordAPIResponse(req.path, duration);
+    });
+
+    next();
+});
 
 // Load initial data
 function loadState() {
@@ -98,10 +119,13 @@ app.get('/api/slices/:id', (req, res) => {
 
 // Create new slice
 app.post('/api/slices', (req, res) => {
+    const start = Date.now();
     const { name, vlanId, bandwidth, hosts, isolated, acl } = req.body;
 
     // Validate input
     if (!name || !vlanId || !bandwidth || !hosts) {
+        const duration = Date.now() - start;
+        metricsCollector.recordSliceOperation('create', 0, duration, false);
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -131,6 +155,9 @@ app.post('/api/slices', (req, res) => {
         path.join(RESULTS_DIR, 'commands.json'),
         JSON.stringify(command, null, 2)
     );
+
+    const duration = Date.now() - start;
+    metricsCollector.recordSliceOperation('create', newSlice.id, duration, true);
 
     broadcastUpdate();
     res.status(201).json(newSlice);
@@ -170,10 +197,13 @@ app.put('/api/slices/:id', (req, res) => {
 
 // Delete slice
 app.delete('/api/slices/:id', (req, res) => {
+    const start = Date.now();
     const sliceId = parseInt(req.params.id);
     const sliceIndex = currentState.slices.findIndex(s => s.id === sliceId);
 
     if (sliceIndex === -1) {
+        const duration = Date.now() - start;
+        metricsCollector.recordSliceOperation('delete', sliceId, duration, false);
         return res.status(404).json({ error: 'Slice not found' });
     }
 
@@ -191,6 +221,9 @@ app.delete('/api/slices/:id', (req, res) => {
         path.join(RESULTS_DIR, 'commands.json'),
         JSON.stringify(command, null, 2)
     );
+
+    const duration = Date.now() - start;
+    metricsCollector.recordSliceOperation('delete', sliceId, duration, true);
 
     broadcastUpdate();
     res.json(deletedSlice);
@@ -223,9 +256,12 @@ app.get('/api/flows/:id', (req, res) => {
 
 // Create new flow
 app.post('/api/flows', (req, res) => {
+    const start = Date.now();
     const { srcIP, dstIP, action, priority, sliceId } = req.body;
 
     if (!srcIP || !dstIP || !action) {
+        const duration = Date.now() - start;
+        metricsCollector.recordFlowOperation('add', 0, duration, false);
         return res.status(400).json({ error: 'Missing required fields' });
     }
 
@@ -254,16 +290,22 @@ app.post('/api/flows', (req, res) => {
         JSON.stringify(command, null, 2)
     );
 
+    const duration = Date.now() - start;
+    metricsCollector.recordFlowOperation('add', newFlow.id, duration, true);
+
     broadcastUpdate();
     res.status(201).json(newFlow);
 });
 
 // Delete flow
 app.delete('/api/flows/:id', (req, res) => {
+    const start = Date.now();
     const flowId = parseInt(req.params.id);
     const flowIndex = currentState.flows.findIndex(f => f.id === flowId);
 
     if (flowIndex === -1) {
+        const duration = Date.now() - start;
+        metricsCollector.recordFlowOperation('delete', flowId, duration, false);
         return res.status(404).json({ error: 'Flow not found' });
     }
 
@@ -280,6 +322,9 @@ app.delete('/api/flows/:id', (req, res) => {
         path.join(RESULTS_DIR, 'commands.json'),
         JSON.stringify(command, null, 2)
     );
+
+    const duration = Date.now() - start;
+    metricsCollector.recordFlowOperation('delete', flowId, duration, true);
 
     broadcastUpdate();
     res.json(deletedFlow);
@@ -326,6 +371,16 @@ app.get('/api/status', (req, res) => {
             lastUpdate: currentState.timestamp
         }
     });
+});
+
+// Metrics endpoints
+app.get('/api/metrics', (req, res) => {
+    res.json(metricsCollector.getStats());
+});
+
+app.get('/api/metrics/recent', (req, res) => {
+    const count = parseInt(req.query.count) || 100;
+    res.json(metricsCollector.getRecentMetrics(count));
 });
 
 // WebSocket for real-time updates

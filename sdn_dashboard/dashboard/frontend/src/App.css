@@ -42,6 +42,14 @@
   border-left: 1px solid #ddd;
 }
 
+.metrics-section {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-top: 2px solid #ddd;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
 /* Loading and Error States */
 .loading, .error {
   display: flex;

@@ -1,7 +1,17 @@
 {
-  "type": "DELETE_SLICE",
+  "type": "CREATE_SLICE",
   "data": {
-    "id": 4
+    "id": 35,
+    "name": "TenantC",
+    "vlanId": 402,
+    "bandwidth": 1500,
+    "hosts": [
+      "10.0.6.1",
+      "10.0.6.2",
+      "10.0.6.3"
+    ],
+    "isolated": true,
+    "acl": []
   },
-  "timestamp": 1762387228893
+  "timestamp": 1762388537555
 }
