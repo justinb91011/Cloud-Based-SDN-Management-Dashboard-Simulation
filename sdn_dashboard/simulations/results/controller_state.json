@@ -1,0 +1,151 @@
+{
+  "timestamp": 5,
+  "slices": [
+    {
+      "id": 1,
+      "name": "Tenant_A",
+      "vlanId": 10,
+      "bandwidth": 100,
+      "isolated": true,
+      "hosts": ["10.0.10.1", "10.0.10.2", "10.0.10.3", "10.0.10.4"]
+    },
+    {
+      "id": 2,
+      "name": "Tenant_B",
+      "vlanId": 20,
+      "bandwidth": 200,
+      "isolated": true,
+      "hosts": ["10.0.20.1", "10.0.20.2", "10.0.20.3", "10.0.20.4"]
+    },
+    {
+      "id": 3,
+      "name": "Tenant_C",
+      "vlanId": 30,
+      "bandwidth": 150,
+      "isolated": true,
+      "hosts": ["10.0.30.1", "10.0.30.2", "10.0.30.3", "10.0.30.4"]
+    }
+  ],
+  "flows": [
+    {
+      "id": 1,
+      "srcIP": "10.0.10.1",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 1,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 2,
+      "srcIP": "10.0.10.2",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 1,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 3,
+      "srcIP": "10.0.10.3",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 1,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 4,
+      "srcIP": "10.0.10.4",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 1,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 5,
+      "srcIP": "10.0.20.1",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 2,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 6,
+      "srcIP": "10.0.20.2",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 2,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 7,
+      "srcIP": "10.0.20.3",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 2,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 8,
+      "srcIP": "10.0.20.4",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 2,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 9,
+      "srcIP": "10.0.30.1",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 3,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 10,
+      "srcIP": "10.0.30.2",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 3,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 11,
+      "srcIP": "10.0.30.3",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 3,
+      "packets": 0,
+      "bytes": 0
+    },
+    {
+      "id": 12,
+      "srcIP": "10.0.30.4",
+      "dstIP": "",
+      "action": "forward",
+      "priority": 100,
+      "sliceId": 3,
+      "packets": 0,
+      "bytes": 0
+    }
+  ]
+}

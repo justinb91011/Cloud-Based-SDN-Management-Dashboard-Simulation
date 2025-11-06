@@ -1,0 +1,186 @@
+.App {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.App-header h1 {
+  margin: 0 0 20px 0;
+  font-size: 28px;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.topology-section {
+  flex: 2;
+  padding: 20px;
+  background-color: #f5f5f5;
+  overflow: auto;
+}
+
+.control-panels {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background-color: #fafafa;
+  border-left: 1px solid #ddd;
+}
+
+.metrics-section {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-top: 2px solid #ddd;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Loading and Error States */
+.loading, .error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.loading h2, .error h2 {
+  margin-bottom: 10px;
+}
+
+.loading p, .error p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.error button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error button:hover {
+  background-color: #45a049;
+}
+
+/* Button Styles */
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.create-btn, .add-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.create-btn:hover, .add-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.delete-btn:hover {
+  background-color: #da190b;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+button:disabled:hover {
+  background-color: #cccccc;
+}
+
+/* Input Styles */
+input, select {
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+label input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .topology-section {
+    flex: 1;
+    min-height: 400px;
+  }
+
+  .control-panels {
+    flex: 1;
+    border-left: none;
+    border-top: 1px solid #ddd;
+  }
+}
+
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 20px;
+  }
+
+  .statistics {
+    flex-wrap: wrap;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+}

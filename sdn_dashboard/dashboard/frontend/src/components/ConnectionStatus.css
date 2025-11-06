@@ -1,0 +1,56 @@
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  color: white;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.green .status-dot {
+  background-color: #4CAF50;
+}
+
+.status-indicator.red .status-dot {
+  background-color: #f44336;
+}
+
+.status-indicator.orange .status-dot {
+  background-color: #ff9800;
+}
+
+.last-update {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.status-error {
+  background-color: rgba(244, 67, 54, 0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

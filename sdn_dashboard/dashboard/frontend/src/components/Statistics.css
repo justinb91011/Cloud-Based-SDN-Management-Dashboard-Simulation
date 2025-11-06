@@ -1,0 +1,21 @@
+.statistics {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4CAF50;
+}
