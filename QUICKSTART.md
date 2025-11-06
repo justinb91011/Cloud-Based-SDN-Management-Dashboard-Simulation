@@ -33,6 +33,7 @@ npm start
 ```
 
 Wait for:
+
 ```
 ============================================================
 SDN Dashboard Backend Server
@@ -51,6 +52,7 @@ npm start
 ```
 
 Wait for:
+
 ```
 Compiled successfully!
 
@@ -64,6 +66,6 @@ Browser opens automatically to dashboard! 🎉
 ---
 
 **Need Help?**
+
 - Read: [README.md](sdn_dashboard/README.md)
-- Check: [PHASE6_COMPLETE.md](PHASE6_COMPLETE.md)
 - Test: `./test_integration.sh`
