@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import './TopologyView.css';
 
 function TopologyView({ topology, slices, selectedSlice }) {
   const svgRef = useRef();
+  const [viewMode, setViewMode] = useState('full'); // 'full' or 'slice'
 
   useEffect(() => {
     if (!topology.nodes || topology.nodes.length === 0) return;
@@ -16,6 +17,23 @@ function TopologyView({ topology, slices, selectedSlice }) {
 
     svg.attr('width', width).attr('height', height);
 
+    // Filter nodes based on view mode
+    let visibleNodes = topology.nodes;
+    let visibleLinks = [];
+
+    if (viewMode === 'slice' && selectedSlice) {
+      // Show only nodes relevant to selected slice
+      const sliceId = selectedSlice.id - 1; // Adjust for 0-based index
+      visibleNodes = topology.nodes.filter(node => {
+        if (node.type === 'controller') return true;
+        if (node.type === 'switch') return true; // Show all switches
+        if (node.type === 'host') {
+          return node.slice === sliceId;
+        }
+        return false;
+      });
+    }
+
     // Create groups
     const g = svg.append('g');
 
@@ -26,7 +44,7 @@ function TopologyView({ topology, slices, selectedSlice }) {
 
     // Position nodes by type
     const nodesByType = {};
-    topology.nodes.forEach(node => {
+    visibleNodes.forEach(node => {
       if (!nodesByType[node.type]) {
         nodesByType[node.type] = [];
       }
@@ -66,19 +84,69 @@ function TopologyView({ topology, slices, selectedSlice }) {
 
     // Hosts at bottom, grouped by slice
     if (nodesByType.host) {
-      const hostY = 530;
-      const hostsPerSlice = 4;
+      const hosts = nodesByType.host;
 
-      nodesByType.host.forEach((node, i) => {
-        const sliceId = node.slice !== undefined ? node.slice : 0;
-        const posInSlice = i % hostsPerSlice;
-        const sliceOffset = sliceId * (width / 3);
+      if (viewMode === 'slice' && selectedSlice) {
+        // Compact layout for slice view
+        const hostY = 530;
+        const hostsPerRow = Math.min(hosts.length, 6);
+        hosts.forEach((node, i) => {
+          const row = Math.floor(i / hostsPerRow);
+          const col = i % hostsPerRow;
+          const spacingX = hostsPerRow > 1 ? width / (hostsPerRow + 1) : width / 2;
+          positions[node.id] = {
+            x: spacingX * (col + 1),
+            y: hostY + row * 60
+          };
+        });
+      } else {
+        // Full layout grouped by slice
+        const hostY = 530;
+        const hostsPerSlice = 4;
 
-        positions[node.id] = {
-          x: 100 + sliceOffset + posInSlice * 50,
-          y: hostY
-        };
-      });
+        hosts.forEach((node, i) => {
+          const sliceId = node.slice !== undefined ? node.slice : 0;
+          const posInSlice = i % hostsPerSlice;
+          const sliceOffset = sliceId * (width / 3);
+
+          positions[node.id] = {
+            x: 100 + sliceOffset + posInSlice * 50,
+            y: hostY
+          };
+        });
+      }
+    }
+
+    // Draw slice boundary if in slice view
+    if (viewMode === 'slice' && selectedSlice && nodesByType.host) {
+      const sliceId = selectedSlice.id - 1;
+      const sliceHosts = nodesByType.host.filter(h => h.slice === sliceId);
+      if (sliceHosts.length > 0) {
+        const padding = 40;
+        const xCoords = sliceHosts.map(h => positions[h.id]?.x || 0).filter(x => x > 0);
+        const yCoords = sliceHosts.map(h => positions[h.id]?.y || 0).filter(y => y > 0);
+
+        if (xCoords.length > 0 && yCoords.length > 0) {
+          g.append('rect')
+            .attr('x', Math.min(...xCoords) - padding)
+            .attr('y', Math.min(...yCoords) - padding)
+            .attr('width', Math.max(...xCoords) - Math.min(...xCoords) + padding * 2)
+            .attr('height', Math.max(...yCoords) - Math.min(...yCoords) + padding * 2)
+            .attr('fill', 'none')
+            .attr('stroke', colorScale(sliceId))
+            .attr('stroke-width', 3)
+            .attr('stroke-dasharray', '5,5')
+            .attr('rx', 10);
+
+          g.append('text')
+            .attr('x', Math.min(...xCoords) - padding + 10)
+            .attr('y', Math.min(...yCoords) - padding + 20)
+            .attr('font-size', '14px')
+            .attr('font-weight', 'bold')
+            .attr('fill', colorScale(sliceId))
+            .text(selectedSlice.name);
+        }
+      }
     }
 
     // Draw links (create default topology links if not provided)
@@ -109,9 +177,15 @@ function TopologyView({ topology, slices, selectedSlice }) {
       links.push({ source: `edgeSwitch${sliceId}`, target: node.id });
     });
 
+    // Filter links to only show connections between visible nodes
+    const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
+    const filteredLinks = links.filter(link =>
+      visibleNodeIds.has(link.source) && visibleNodeIds.has(link.target)
+    );
+
     // Draw links
     g.selectAll('line')
-      .data(links)
+      .data(filteredLinks)
       .enter()
       .append('line')
       .attr('x1', d => positions[d.source]?.x || 0)
@@ -119,11 +193,12 @@ function TopologyView({ topology, slices, selectedSlice }) {
       .attr('x2', d => positions[d.target]?.x || 0)
       .attr('y2', d => positions[d.target]?.y || 0)
       .attr('stroke', '#ccc')
-      .attr('stroke-width', 2);
+      .attr('stroke-width', 2)
+      .attr('opacity', viewMode === 'slice' ? 0.3 : 0.6);
 
     // Draw nodes
     const nodes = g.selectAll('circle')
-      .data(topology.nodes)
+      .data(visibleNodes)
       .enter()
       .append('circle')
       .attr('cx', d => positions[d.id]?.x || 0)
@@ -158,10 +233,11 @@ function TopologyView({ topology, slices, selectedSlice }) {
       });
 
     // Add labels
-    g.selectAll('text')
-      .data(topology.nodes)
+    g.selectAll('text.node-label')
+      .data(visibleNodes)
       .enter()
       .append('text')
+      .attr('class', 'node-label')
       .attr('x', d => positions[d.id]?.x || 0)
       .attr('y', d => (positions[d.id]?.y || 0) + 25)
       .attr('text-anchor', 'middle')
@@ -178,11 +254,28 @@ function TopologyView({ topology, slices, selectedSlice }) {
 
     svg.call(zoom);
 
-  }, [topology, slices, selectedSlice]);
+  }, [topology, slices, selectedSlice, viewMode]);
 
   return (
     <div className="topology-view">
-      <h2>Network Topology</h2>
+      <div className="topology-header">
+        <h2>Network Topology</h2>
+        <div className="view-controls">
+          <button
+            className={viewMode === 'full' ? 'active' : ''}
+            onClick={() => setViewMode('full')}
+          >
+            Full View
+          </button>
+          <button
+            className={viewMode === 'slice' ? 'active' : ''}
+            onClick={() => setViewMode('slice')}
+            disabled={!selectedSlice}
+          >
+            Slice View
+          </button>
+        </div>
+      </div>
       <div className="topology-legend">
         <span className="legend-item">
           <span className="legend-circle controller"></span> Controller

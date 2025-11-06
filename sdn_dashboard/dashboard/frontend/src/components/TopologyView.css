@@ -4,9 +4,45 @@
   flex-direction: column;
 }
 
-.topology-view h2 {
-  margin-top: 0;
+.topology-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
+}
+
+.topology-header h2 {
+  margin: 0;
+}
+
+.view-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.view-controls button {
+  padding: 6px 12px;
+  font-size: 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-controls button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.view-controls button.active {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.view-controls button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .topology-legend {
@@ -46,4 +82,10 @@
   background-color: white;
   border-radius: 5px;
   cursor: move;
+  flex: 1;
+}
+
+.node-label {
+  pointer-events: none;
+  user-select: none;
 }

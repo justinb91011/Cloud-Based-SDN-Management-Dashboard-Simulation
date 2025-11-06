@@ -98,7 +98,7 @@ app.get('/api/slices/:id', (req, res) => {
 
 // Create new slice
 app.post('/api/slices', (req, res) => {
-    const { name, vlanId, bandwidth, hosts, isolated } = req.body;
+    const { name, vlanId, bandwidth, hosts, isolated, acl } = req.body;
 
     // Validate input
     if (!name || !vlanId || !bandwidth || !hosts) {
@@ -112,7 +112,8 @@ app.post('/api/slices', (req, res) => {
         vlanId,
         bandwidth,
         hosts,
-        isolated: isolated !== undefined ? isolated : true
+        isolated: isolated !== undefined ? isolated : true,
+        acl: acl || []
     };
 
     // TODO: Send to OMNeT++ controller via command interface
@@ -311,42 +312,126 @@ app.get('/api/health', (req, res) => {
     });
 });
 
+// Status endpoint for connection health
+app.get('/api/status', (req, res) => {
+    res.json({
+        server: 'running',
+        websocket: {
+            connected: connectionState.connected,
+            clients: wss.clients.size,
+            lastHeartbeat: connectionState.lastHeartbeat
+        },
+        simulation: {
+            stateFileExists: fs.existsSync(STATE_FILE),
+            lastUpdate: currentState.timestamp
+        }
+    });
+});
+
 // WebSocket for real-time updates
 const wss = new WebSocket.Server({ noServer: true });
 
+// Connection state management
+let connectionState = {
+    connected: false,
+    lastHeartbeat: Date.now(),
+    reconnectAttempts: 0,
+    maxReconnectAttempts: 5
+};
+
+// Enhanced WebSocket connection with heartbeat
 wss.on('connection', (ws) => {
     console.log('WebSocket client connected');
+    connectionState.connected = true;
+    connectionState.reconnectAttempts = 0;
 
-    // Send initial state
+    // Send initial state with connection confirmation
+    ws.send(JSON.stringify({
+        type: 'CONNECTION_ESTABLISHED',
+        data: {
+            timestamp: Date.now(),
+            status: 'connected'
+        }
+    }));
+
     ws.send(JSON.stringify({
         type: 'INITIAL_STATE',
         data: currentState
     }));
 
+    // Heartbeat mechanism
+    const heartbeatInterval = setInterval(() => {
+        if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({
+                type: 'HEARTBEAT',
+                timestamp: Date.now()
+            }));
+            connectionState.lastHeartbeat = Date.now();
+        }
+    }, 10000); // Every 10 seconds
+
     ws.on('message', (message) => {
-        console.log('Received:', message.toString());
+        try {
+            const msg = JSON.parse(message.toString());
+
+            // Handle heartbeat acknowledgment
+            if (msg.type === 'HEARTBEAT_ACK') {
+                connectionState.lastHeartbeat = Date.now();
+            }
+
+            // Handle other messages
+            console.log('Received:', msg);
+        } catch (err) {
+            console.error('Error parsing message:', err);
+        }
     });
 
     ws.on('close', () => {
         console.log('WebSocket client disconnected');
+        connectionState.connected = false;
+        clearInterval(heartbeatInterval);
     });
 
     ws.on('error', (error) => {
         console.error('WebSocket error:', error);
+        if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({
+                type: 'ERROR',
+                data: {
+                    message: 'Connection error occurred',
+                    timestamp: Date.now()
+                }
+            }));
+        }
     });
 });
 
-function broadcastUpdate() {
+// Enhanced broadcast with error handling
+function broadcastUpdate(updateType = 'STATE_UPDATE') {
     const message = JSON.stringify({
-        type: 'STATE_UPDATE',
-        data: currentState
+        type: updateType,
+        data: currentState,
+        timestamp: Date.now()
     });
+
+    let successCount = 0;
+    let failCount = 0;
 
     wss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
-            client.send(message);
+            try {
+                client.send(message);
+                successCount++;
+            } catch (err) {
+                console.error('Error broadcasting to client:', err);
+                failCount++;
+            }
         }
     });
+
+    if (successCount > 0 || failCount > 0) {
+        console.log(`Broadcast: ${successCount} succeeded, ${failCount} failed`);
+    }
 }
 
 // Start server
@@ -364,6 +449,7 @@ const server = app.listen(PORT, () => {
     console.log('='.repeat(60));
     console.log('\nAvailable endpoints:');
     console.log('  GET  /api/health');
+    console.log('  GET  /api/status');
     console.log('  GET  /api/topology');
     console.log('  GET  /api/slices');
     console.log('  GET  /api/slices/:id');

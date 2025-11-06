@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import TopologyView from './components/TopologyView';
 import SlicePanel from './components/SlicePanel';
 import FlowPanel from './components/FlowPanel';
 import Statistics from './components/Statistics';
+import ConnectionStatus from './components/ConnectionStatus';
 import api from './services/api';
 
 function App() {
@@ -15,43 +16,104 @@ function App() {
   const [ws, setWs] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [connectionStatus, setConnectionStatus] = useState({
+    connected: false,
+    lastUpdate: null,
+    error: null,
+    reconnecting: false
+  });
 
-  // Load initial data
-  useEffect(() => {
-    loadData();
+  const connectWebSocket = useCallback(() => {
+    console.log('Attempting WebSocket connection...');
+    setConnectionStatus(prev => ({ ...prev, reconnecting: true }));
 
-    // Setup WebSocket
     const websocket = new WebSocket('ws://localhost:3001');
 
     websocket.onopen = () => {
       console.log('WebSocket connected');
+      setConnectionStatus({
+        connected: true,
+        lastUpdate: new Date(),
+        error: null,
+        reconnecting: false
+      });
     };
 
     websocket.onmessage = (event) => {
       const message = JSON.parse(event.data);
+      setConnectionStatus(prev => ({ ...prev, lastUpdate: new Date() }));
 
-      if (message.type === 'INITIAL_STATE' || message.type === 'STATE_UPDATE') {
-        setSlices(message.data.slices || []);
-        setFlows(message.data.flows || []);
-        // Update statistics when state changes
-        loadStatistics();
+      switch (message.type) {
+        case 'CONNECTION_ESTABLISHED':
+          console.log('Connection established:', message.data);
+          break;
+
+        case 'INITIAL_STATE':
+        case 'STATE_UPDATE':
+          setSlices(message.data.slices || []);
+          setFlows(message.data.flows || []);
+          loadStatistics();
+          break;
+
+        case 'HEARTBEAT':
+          // Acknowledge heartbeat
+          if (websocket.readyState === WebSocket.OPEN) {
+            websocket.send(JSON.stringify({ type: 'HEARTBEAT_ACK' }));
+          }
+          break;
+
+        case 'ERROR':
+          setConnectionStatus(prev => ({
+            ...prev,
+            error: message.data.message
+          }));
+          break;
+
+        default:
+          console.log('Unknown message type:', message.type);
       }
     };
 
     websocket.onerror = (error) => {
       console.error('WebSocket error:', error);
+      setConnectionStatus(prev => ({
+        ...prev,
+        connected: false,
+        error: 'Connection error occurred'
+      }));
     };
 
     websocket.onclose = () => {
       console.log('WebSocket disconnected');
+      setConnectionStatus(prev => ({
+        ...prev,
+        connected: false,
+        error: 'Connection lost'
+      }));
+
+      // Attempt to reconnect after 3 seconds
+      setTimeout(() => {
+        console.log('Attempting to reconnect...');
+        connectWebSocket();
+      }, 3000);
     };
 
     setWs(websocket);
 
-    return () => {
-      websocket.close();
-    };
+    return websocket;
   }, []);
+
+  // Load initial data
+  useEffect(() => {
+    loadData();
+    const websocket = connectWebSocket();
+
+    return () => {
+      if (websocket) {
+        websocket.close();
+      }
+    };
+  }, [connectWebSocket]);
 
   const loadData = async () => {
     try {
@@ -71,6 +133,10 @@ function App() {
     } catch (error) {
       console.error('Error loading data:', error);
       setError('Failed to load data from backend. Make sure the backend server is running on port 3001.');
+      setConnectionStatus(prev => ({
+        ...prev,
+        error: 'Failed to load data from server'
+      }));
     } finally {
       setLoading(false);
     }
@@ -175,6 +241,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Cloud-Based SDN Management Dashboard</h1>
+        <ConnectionStatus status={connectionStatus} />
         <Statistics data={statistics} />
       </header>
 

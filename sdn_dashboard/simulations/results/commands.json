@@ -1,7 +1,7 @@
 {
-  "type": "DELETE_FLOW",
+  "type": "DELETE_SLICE",
   "data": {
-    "id": 1
+    "id": 4
   },
-  "timestamp": 1762355827909
+  "timestamp": 1762387228893
 }

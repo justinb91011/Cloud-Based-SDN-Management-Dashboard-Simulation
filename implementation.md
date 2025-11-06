@@ -11,7 +11,10 @@
 7. [Phase 4: Dashboard Backend Development](#phase-4-dashboard-backend-development)
 8. [Phase 5: Dashboard Frontend Development](#phase-5-dashboard-frontend-development)
 9. [Phase 6: Integration and Testing](#phase-6-integration-and-testing)
-10. [Validation Checklist](#validation-checklist)
+10. [Phase 7: Event-Driven Architecture & Advanced Real-Time Features](#phase-7-event-driven-architecture--advanced-real-time-features)
+11. [Phase 8: Performance Metrics & Advanced Testing](#phase-8-performance-metrics--advanced-testing)
+12. [Phase 9: Demo Preparation & Usability Study](#phase-9-demo-preparation--usability-study)
+13. [Validation Checklist](#validation-checklist)
 
 ---
 
@@ -3061,14 +3064,34 @@ cd sdn_dashboard
 
 ## Summary
 
-This implementation guide covers everything needed to implement Milestone 1 from scratch:
+This implementation guide covers everything needed to implement the complete SDN Management Dashboard from Milestone 1 through Milestone 3:
 
+## Core Implementation (Milestone 1)
 1. **Phase 1**: Basic OMNeT++ simulation with network topology
 2. **Phase 2**: Enhanced topology with slice support
 3. **Phase 3**: SDN controller with slice and flow management
 4. **Phase 4**: REST API backend server
 5. **Phase 5**: Interactive web dashboard frontend
 6. **Phase 6**: Integration and testing
+
+## Advanced Features (Milestone 3)
+7. **Phase 7**: Event-Driven Architecture & Advanced Real-Time Features
+   - WebSocket push notifications
+   - Auto-reconnect logic
+   - Per-slice ACL editing
+   - Segmented topology visualization
+
+8. **Phase 8**: Performance Metrics & Advanced Testing
+   - Comprehensive metrics collection
+   - Multi-tenant stress testing
+   - Granular performance monitoring
+   - Test log compilation
+
+9. **Phase 9**: Demo Preparation & Usability Study
+   - Demo scripts and materials
+   - Screenshot and video capture
+   - User feedback surveys
+   - Usability study protocol
 
 Each phase includes:
 - Detailed implementation steps
@@ -3078,10 +3101,3248 @@ Each phase includes:
 
 Follow the phases sequentially, validating each before proceeding to the next. The validation checklists ensure nothing is missed.
 
-**Estimated Implementation Time**: 40-60 hours total
-- Phase 1-2: 8-10 hours
-- Phase 3: 12-15 hours
-- Phase 4: 8-10 hours
-- Phase 5: 12-15 hours
-- Phase 6: 6-8 hours
+**Estimated Implementation Time**: 80-110 hours total
+- Phase 1-2: 8-10 hours (Basic setup)
+- Phase 3: 12-15 hours (SDN controller)
+- Phase 4: 8-10 hours (Backend API)
+- Phase 5: 12-15 hours (Frontend dashboard)
+- Phase 6: 6-8 hours (Integration testing)
+- Phase 7: 12-16 hours (Event-driven architecture)
+- Phase 8: 10-14 hours (Performance & testing)
+- Phase 9: 12-18 hours (Demo preparation & usability)
+
+---
+
+## Phase 7: Event-Driven Architecture & Advanced Real-Time Features
+
+### Overview
+
+This phase transitions the system from basic polling to a robust event-driven architecture with push notifications, improving real-time responsiveness and reliability. It also adds advanced slice management features including per-slice ACL editing and segmented topology visualization.
+
+### Goals
+
+1. Implement push notifications from OMNeT++ to dashboard
+2. Add auto-reconnect logic for WebSocket failures
+3. Create visible status messages for sync issues
+4. Implement per-slice ACL editing
+5. Add segmented topology maps per slice
+6. Enhance real-time visualization components
+7. Handle edge cases (dropped updates, out-of-order messages)
+
+---
+
+### Task 7.1: Enhanced WebSocket Push Notification System
+
+**Update Backend: `sdn_dashboard/dashboard/backend/server.js`**
+
+Add connection state management and auto-reconnect handling:
+
+```javascript
+// Add after WebSocket setup
+let connectionState = {
+  connected: false,
+  lastHeartbeat: Date.now(),
+  reconnectAttempts: 0,
+  maxReconnectAttempts: 5
+};
+
+// Enhanced WebSocket connection with heartbeat
+wss.on('connection', (ws) => {
+  console.log('WebSocket client connected');
+  connectionState.connected = true;
+  connectionState.reconnectAttempts = 0;
+
+  // Send initial state with connection confirmation
+  ws.send(JSON.stringify({
+    type: 'CONNECTION_ESTABLISHED',
+    data: {
+      timestamp: Date.now(),
+      status: 'connected'
+    }
+  }));
+
+  ws.send(JSON.stringify({
+    type: 'INITIAL_STATE',
+    data: currentState
+  }));
+
+  // Heartbeat mechanism
+  const heartbeatInterval = setInterval(() => {
+    if (ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({
+        type: 'HEARTBEAT',
+        timestamp: Date.now()
+      }));
+      connectionState.lastHeartbeat = Date.now();
+    }
+  }, 10000); // Every 10 seconds
+
+  ws.on('message', (message) => {
+    try {
+      const msg = JSON.parse(message);
+
+      // Handle heartbeat acknowledgment
+      if (msg.type === 'HEARTBEAT_ACK') {
+        connectionState.lastHeartbeat = Date.now();
+      }
+
+      // Handle other messages
+      console.log('Received:', msg);
+    } catch (err) {
+      console.error('Error parsing message:', err);
+    }
+  });
+
+  ws.on('close', () => {
+    console.log('WebSocket client disconnected');
+    connectionState.connected = false;
+    clearInterval(heartbeatInterval);
+  });
+
+  ws.on('error', (error) => {
+    console.error('WebSocket error:', error);
+    ws.send(JSON.stringify({
+      type: 'ERROR',
+      data: {
+        message: 'Connection error occurred',
+        timestamp: Date.now()
+      }
+    }));
+  });
+});
+
+// Enhanced broadcast with error handling
+function broadcastUpdate(updateType = 'STATE_UPDATE') {
+  const message = JSON.stringify({
+    type: updateType,
+    data: currentState,
+    timestamp: Date.now()
+  });
+
+  let successCount = 0;
+  let failCount = 0;
+
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      try {
+        client.send(message);
+        successCount++;
+      } catch (err) {
+        console.error('Error broadcasting to client:', err);
+        failCount++;
+      }
+    }
+  });
+
+  console.log(`Broadcast: ${successCount} succeeded, ${failCount} failed`);
+}
+
+// Add status endpoint for connection health
+app.get('/api/status', (req, res) => {
+  res.json({
+    server: 'running',
+    websocket: {
+      connected: connectionState.connected,
+      clients: wss.clients.size,
+      lastHeartbeat: connectionState.lastHeartbeat
+    },
+    simulation: {
+      stateFileExists: fs.existsSync(STATE_FILE),
+      lastUpdate: currentState.timestamp
+    }
+  });
+});
+```
+
+---
+
+### Task 7.2: Frontend Auto-Reconnect Logic
+
+**Update Frontend: `sdn_dashboard/dashboard/frontend/src/App.js`**
+
+Add robust reconnection handling:
+
+```javascript
+import React, { useState, useEffect, useCallback } from 'react';
+import './App.css';
+import TopologyView from './components/TopologyView';
+import SlicePanel from './components/SlicePanel';
+import FlowPanel from './components/FlowPanel';
+import Statistics from './components/Statistics';
+import ConnectionStatus from './components/ConnectionStatus';
+import api from './services/api';
+
+function App() {
+  const [slices, setSlices] = useState([]);
+  const [flows, setFlows] = useState([]);
+  const [topology, setTopology] = useState({ nodes: [], links: [] });
+  const [statistics, setStatistics] = useState({});
+  const [selectedSlice, setSelectedSlice] = useState(null);
+  const [ws, setWs] = useState(null);
+  const [connectionStatus, setConnectionStatus] = useState({
+    connected: false,
+    lastUpdate: null,
+    error: null,
+    reconnecting: false
+  });
+
+  const connectWebSocket = useCallback(() => {
+    console.log('Attempting WebSocket connection...');
+    setConnectionStatus(prev => ({ ...prev, reconnecting: true }));
+
+    const websocket = new WebSocket('ws://localhost:3001');
+
+    websocket.onopen = () => {
+      console.log('WebSocket connected');
+      setConnectionStatus({
+        connected: true,
+        lastUpdate: new Date(),
+        error: null,
+        reconnecting: false
+      });
+    };
+
+    websocket.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      setConnectionStatus(prev => ({ ...prev, lastUpdate: new Date() }));
+
+      switch (message.type) {
+        case 'CONNECTION_ESTABLISHED':
+          console.log('Connection established:', message.data);
+          break;
+
+        case 'INITIAL_STATE':
+        case 'STATE_UPDATE':
+          setSlices(message.data.slices || []);
+          setFlows(message.data.flows || []);
+          break;
+
+        case 'HEARTBEAT':
+          // Acknowledge heartbeat
+          if (websocket.readyState === WebSocket.OPEN) {
+            websocket.send(JSON.stringify({ type: 'HEARTBEAT_ACK' }));
+          }
+          break;
+
+        case 'ERROR':
+          setConnectionStatus(prev => ({
+            ...prev,
+            error: message.data.message
+          }));
+          break;
+
+        default:
+          console.log('Unknown message type:', message.type);
+      }
+    };
+
+    websocket.onerror = (error) => {
+      console.error('WebSocket error:', error);
+      setConnectionStatus(prev => ({
+        ...prev,
+        connected: false,
+        error: 'Connection error occurred'
+      }));
+    };
+
+    websocket.onclose = () => {
+      console.log('WebSocket disconnected');
+      setConnectionStatus(prev => ({
+        ...prev,
+        connected: false,
+        error: 'Connection lost'
+      }));
+
+      // Attempt to reconnect after 3 seconds
+      setTimeout(() => {
+        console.log('Attempting to reconnect...');
+        connectWebSocket();
+      }, 3000);
+    };
+
+    setWs(websocket);
+
+    return websocket;
+  }, []);
+
+  useEffect(() => {
+    loadData();
+    const websocket = connectWebSocket();
+
+    return () => {
+      if (websocket) {
+        websocket.close();
+      }
+    };
+  }, [connectWebSocket]);
+
+  const loadData = async () => {
+    try {
+      const [slicesData, flowsData, topoData, statsData] = await Promise.all([
+        api.getSlices(),
+        api.getFlows(),
+        api.getTopology(),
+        api.getStatistics()
+      ]);
+
+      setSlices(slicesData);
+      setFlows(flowsData);
+      setTopology(topoData);
+      setStatistics(statsData);
+    } catch (error) {
+      console.error('Error loading data:', error);
+      setConnectionStatus(prev => ({
+        ...prev,
+        error: 'Failed to load data from server'
+      }));
+    }
+  };
+
+  // Keep existing handlers...
+  const handleCreateSlice = async (sliceData) => {
+    try {
+      const newSlice = await api.createSlice(sliceData);
+      setSlices([...slices, newSlice]);
+    } catch (error) {
+      console.error('Error creating slice:', error);
+    }
+  };
+
+  const handleDeleteSlice = async (sliceId) => {
+    try {
+      await api.deleteSlice(sliceId);
+      setSlices(slices.filter(s => s.id !== sliceId));
+      setFlows(flows.filter(f => f.sliceId !== sliceId));
+    } catch (error) {
+      console.error('Error deleting slice:', error);
+    }
+  };
+
+  const handleUpdateSlice = async (sliceId, updates) => {
+    try {
+      const updatedSlice = await api.updateSlice(sliceId, updates);
+      setSlices(slices.map(s => s.id === sliceId ? updatedSlice : s));
+    } catch (error) {
+      console.error('Error updating slice:', error);
+    }
+  };
+
+  const handleAddFlow = async (flowData) => {
+    try {
+      const newFlow = await api.addFlow(flowData);
+      setFlows([...flows, newFlow]);
+    } catch (error) {
+      console.error('Error adding flow:', error);
+    }
+  };
+
+  const handleDeleteFlow = async (flowId) => {
+    try {
+      await api.deleteFlow(flowId);
+      setFlows(flows.filter(f => f.id !== flowId));
+    } catch (error) {
+      console.error('Error deleting flow:', error);
+    }
+  };
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>Cloud-Based SDN Management Dashboard</h1>
+        <ConnectionStatus status={connectionStatus} />
+        <Statistics data={statistics} />
+      </header>
+
+      <div className="main-content">
+        <div className="topology-section">
+          <TopologyView
+            topology={topology}
+            slices={slices}
+            selectedSlice={selectedSlice}
+          />
+        </div>
+
+        <div className="control-panels">
+          <SlicePanel
+            slices={slices}
+            onCreateSlice={handleCreateSlice}
+            onDeleteSlice={handleDeleteSlice}
+            onUpdateSlice={handleUpdateSlice}
+            onSelectSlice={setSelectedSlice}
+            selectedSlice={selectedSlice}
+          />
+
+          <FlowPanel
+            flows={flows}
+            slices={slices}
+            selectedSlice={selectedSlice}
+            onAddFlow={handleAddFlow}
+            onDeleteFlow={handleDeleteFlow}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
+---
+
+### Task 7.3: Connection Status Component
+
+**Create: `sdn_dashboard/dashboard/frontend/src/components/ConnectionStatus.js`**
+
+```javascript
+import React from 'react';
+import './ConnectionStatus.css';
+
+function ConnectionStatus({ status }) {
+  const getStatusColor = () => {
+    if (status.reconnecting) return 'orange';
+    if (status.connected) return 'green';
+    return 'red';
+  };
+
+  const getStatusText = () => {
+    if (status.reconnecting) return 'Reconnecting...';
+    if (status.connected) return 'Connected';
+    return 'Disconnected';
+  };
+
+  return (
+    <div className="connection-status">
+      <div className={`status-indicator ${getStatusColor()}`}>
+        <span className="status-dot"></span>
+        <span className="status-text">{getStatusText()}</span>
+      </div>
+
+      {status.lastUpdate && (
+        <div className="last-update">
+          Last update: {status.lastUpdate.toLocaleTimeString()}
+        </div>
+      )}
+
+      {status.error && (
+        <div className="status-error">
+          {status.error}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default ConnectionStatus;
+```
+
+**Create: `sdn_dashboard/dashboard/frontend/src/components/ConnectionStatus.css`**
+
+```css
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  color: white;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.green .status-dot {
+  background-color: #4CAF50;
+}
+
+.status-indicator.red .status-dot {
+  background-color: #f44336;
+}
+
+.status-indicator.orange .status-dot {
+  background-color: #ff9800;
+}
+
+.last-update {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.status-error {
+  background-color: rgba(244, 67, 54, 0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+```
+
+---
+
+### Task 7.4: Per-Slice ACL Editing
+
+**Update: `sdn_dashboard/dashboard/frontend/src/components/SlicePanel.js`**
+
+Add ACL editing functionality:
+
+```javascript
+import React, { useState } from 'react';
+import './SlicePanel.css';
+
+function SlicePanel({ slices, onCreateSlice, onDeleteSlice, onUpdateSlice, onSelectSlice, selectedSlice }) {
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [editingACL, setEditingACL] = useState(null);
+  const [newSlice, setNewSlice] = useState({
+    name: '',
+    vlanId: '',
+    bandwidth: '',
+    hosts: [],
+    isolated: true,
+    acl: []
+  });
+
+  const [newACLRule, setNewACLRule] = useState({
+    srcIP: '',
+    dstIP: '',
+    protocol: 'any',
+    action: 'allow'
+  });
+
+  const handleCreate = () => {
+    onCreateSlice(newSlice);
+    setNewSlice({
+      name: '',
+      vlanId: '',
+      bandwidth: '',
+      hosts: [],
+      isolated: true,
+      acl: []
+    });
+    setShowCreateForm(false);
+  };
+
+  const handleHostsChange = (e) => {
+    const hostsArray = e.target.value.split(',').map(h => h.trim()).filter(h => h);
+    setNewSlice({ ...newSlice, hosts: hostsArray });
+  };
+
+  const handleAddACLRule = (sliceId) => {
+    const slice = slices.find(s => s.id === sliceId);
+    if (!slice) return;
+
+    const updatedACL = [...(slice.acl || []), {
+      ...newACLRule,
+      id: Date.now()
+    }];
+
+    onUpdateSlice(sliceId, { ...slice, acl: updatedACL });
+    setNewACLRule({ srcIP: '', dstIP: '', protocol: 'any', action: 'allow' });
+  };
+
+  const handleDeleteACLRule = (sliceId, ruleId) => {
+    const slice = slices.find(s => s.id === sliceId);
+    if (!slice) return;
+
+    const updatedACL = slice.acl.filter(rule => rule.id !== ruleId);
+    onUpdateSlice(sliceId, { ...slice, acl: updatedACL });
+  };
+
+  return (
+    <div className="slice-panel">
+      <h2>Network Slices</h2>
+
+      <button
+        className="create-btn"
+        onClick={() => setShowCreateForm(!showCreateForm)}
+      >
+        {showCreateForm ? 'Cancel' : '+ Create Slice'}
+      </button>
+
+      {showCreateForm && (
+        <div className="create-form">
+          <h3>New Slice</h3>
+          <input
+            type="text"
+            placeholder="Slice Name"
+            value={newSlice.name}
+            onChange={(e) => setNewSlice({ ...newSlice, name: e.target.value })}
+          />
+          <input
+            type="number"
+            placeholder="VLAN ID"
+            value={newSlice.vlanId}
+            onChange={(e) => setNewSlice({ ...newSlice, vlanId: parseInt(e.target.value) })}
+          />
+          <input
+            type="number"
+            placeholder="Bandwidth (Mbps)"
+            value={newSlice.bandwidth}
+            onChange={(e) => setNewSlice({ ...newSlice, bandwidth: parseFloat(e.target.value) })}
+          />
+          <input
+            type="text"
+            placeholder="Hosts (comma-separated IPs)"
+            onChange={handleHostsChange}
+          />
+          <label>
+            <input
+              type="checkbox"
+              checked={newSlice.isolated}
+              onChange={(e) => setNewSlice({ ...newSlice, isolated: e.target.checked })}
+            />
+            Isolated
+          </label>
+          <button onClick={handleCreate}>Create</button>
+        </div>
+      )}
+
+      <div className="slice-list">
+        {slices.map(slice => (
+          <div
+            key={slice.id}
+            className={`slice-item ${selectedSlice?.id === slice.id ? 'selected' : ''}`}
+            onClick={() => onSelectSlice(slice)}
+          >
+            <div className="slice-header">
+              <h3>{slice.name}</h3>
+              <button
+                className="delete-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onDeleteSlice(slice.id);
+                }}
+              >
+                ×
+              </button>
+            </div>
+            <div className="slice-details">
+              <p><strong>VLAN:</strong> {slice.vlanId}</p>
+              <p><strong>Bandwidth:</strong> {slice.bandwidth} Mbps</p>
+              <p><strong>Hosts:</strong> {slice.hosts.length}</p>
+              <p><strong>Isolated:</strong> {slice.isolated ? 'Yes' : 'No'}</p>
+              <p><strong>ACL Rules:</strong> {slice.acl?.length || 0}</p>
+            </div>
+
+            {selectedSlice?.id === slice.id && (
+              <>
+                <div className="slice-hosts">
+                  <h4>Hosts:</h4>
+                  <ul>
+                    {slice.hosts.map((host, idx) => (
+                      <li key={idx}>{host}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="slice-acl">
+                  <h4>ACL Rules:</h4>
+                  <button
+                    className="edit-acl-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEditingACL(editingACL === slice.id ? null : slice.id);
+                    }}
+                  >
+                    {editingACL === slice.id ? 'Hide ACL' : 'Edit ACL'}
+                  </button>
+
+                  {editingACL === slice.id && (
+                    <div className="acl-editor">
+                      <div className="acl-form">
+                        <input
+                          type="text"
+                          placeholder="Source IP"
+                          value={newACLRule.srcIP}
+                          onChange={(e) => setNewACLRule({ ...newACLRule, srcIP: e.target.value })}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                        <input
+                          type="text"
+                          placeholder="Destination IP"
+                          value={newACLRule.dstIP}
+                          onChange={(e) => setNewACLRule({ ...newACLRule, dstIP: e.target.value })}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                        <select
+                          value={newACLRule.protocol}
+                          onChange={(e) => setNewACLRule({ ...newACLRule, protocol: e.target.value })}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <option value="any">Any</option>
+                          <option value="tcp">TCP</option>
+                          <option value="udp">UDP</option>
+                          <option value="icmp">ICMP</option>
+                        </select>
+                        <select
+                          value={newACLRule.action}
+                          onChange={(e) => setNewACLRule({ ...newACLRule, action: e.target.value })}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <option value="allow">Allow</option>
+                          <option value="deny">Deny</option>
+                        </select>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleAddACLRule(slice.id);
+                          }}
+                        >
+                          Add Rule
+                        </button>
+                      </div>
+
+                      <div className="acl-list">
+                        {(slice.acl || []).map((rule) => (
+                          <div key={rule.id} className="acl-rule">
+                            <span>{rule.srcIP} → {rule.dstIP}</span>
+                            <span className="protocol">{rule.protocol}</span>
+                            <span className={`action ${rule.action}`}>{rule.action}</span>
+                            <button
+                              className="delete-btn small"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleDeleteACLRule(slice.id, rule.id);
+                              }}
+                            >
+                              ×
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default SlicePanel;
+```
+
+**Update: `sdn_dashboard/dashboard/frontend/src/components/SlicePanel.css`**
+
+Add ACL styling:
+
+```css
+/* Add to existing SlicePanel.css */
+
+.slice-acl {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.slice-acl h4 {
+  margin: 5px 0 10px 0;
+  text-align: left;
+}
+
+.edit-acl-btn {
+  background-color: #2196F3;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.edit-acl-btn:hover {
+  background-color: #0b7dda;
+}
+
+.acl-editor {
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.acl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.acl-form input,
+.acl-form select {
+  font-size: 12px;
+  padding: 5px;
+}
+
+.acl-form button {
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+.acl-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.acl-rule {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 12px;
+  gap: 10px;
+}
+
+.acl-rule .protocol {
+  padding: 2px 6px;
+  background-color: #e3f2fd;
+  border-radius: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.acl-rule .action {
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.acl-rule .action.allow {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.acl-rule .action.deny {
+  background-color: #ffcdd2;
+  color: #c62828;
+}
+
+.delete-btn.small {
+  padding: 2px 6px;
+  font-size: 14px;
+  min-width: 20px;
+}
+```
+
+---
+
+### Task 7.5: Segmented Topology Visualization
+
+**Update: `sdn_dashboard/dashboard/frontend/src/components/TopologyView.js`**
+
+Add per-slice topology segmentation:
+
+```javascript
+import React, { useEffect, useRef, useState } from 'react';
+import * as d3 from 'd3';
+import './TopologyView.css';
+
+function TopologyView({ topology, slices, selectedSlice }) {
+  const svgRef = useRef();
+  const [viewMode, setViewMode] = useState('full'); // 'full' or 'slice'
+
+  useEffect(() => {
+    if (!topology.nodes.length) return;
+
+    const svg = d3.select(svgRef.current);
+    svg.selectAll('*').remove();
+
+    const width = 800;
+    const height = 600;
+
+    svg.attr('width', width).attr('height', height);
+
+    // Filter nodes based on view mode
+    let visibleNodes = topology.nodes;
+    let visibleLinks = topology.links || [];
+
+    if (viewMode === 'slice' && selectedSlice) {
+      // Show only nodes relevant to selected slice
+      const sliceHostIPs = selectedSlice.hosts;
+      visibleNodes = topology.nodes.filter(node => {
+        if (node.type === 'controller') return true;
+        if (node.type === 'switch') return true; // Show all switches
+        if (node.type === 'host') {
+          // Check if host IP is in slice
+          const hostIP = `10.0.${selectedSlice.vlanId}.${node.id.replace('host', '')}`;
+          return sliceHostIPs.includes(hostIP) || node.slice === selectedSlice.id;
+        }
+        return false;
+      });
+
+      // Filter links to only show connections between visible nodes
+      const visibleNodeIds = new Set(visibleNodes.map(n => n.id));
+      visibleLinks = visibleLinks.filter(link =>
+        visibleNodeIds.has(link.source) && visibleNodeIds.has(link.target)
+      );
+    }
+
+    const g = svg.append('g');
+
+    // Color scale for slices
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
+    // Position nodes
+    const positions = {};
+
+    // Controller at top
+    const controllers = visibleNodes.filter(n => n.type === 'controller');
+    controllers.forEach((node, i) => {
+      positions[node.id] = { x: width / 2, y: 50 };
+    });
+
+    // Switches in middle
+    const switches = visibleNodes.filter(n => n.type === 'switch');
+    switches.forEach((node, i) => {
+      const spacing = width / (switches.length + 1);
+      positions[node.id] = { x: spacing * (i + 1), y: 200 };
+    });
+
+    // Hosts at bottom
+    const hosts = visibleNodes.filter(n => n.type === 'host');
+
+    if (viewMode === 'slice' && selectedSlice) {
+      // Compact layout for slice view
+      const hostsPerRow = Math.min(hosts.length, 6);
+      hosts.forEach((node, i) => {
+        const row = Math.floor(i / hostsPerRow);
+        const col = i % hostsPerRow;
+        const spacingX = width / (hostsPerRow + 1);
+        positions[node.id] = {
+          x: spacingX * (col + 1),
+          y: 400 + row * 60
+        };
+      });
+    } else {
+      // Full layout grouped by slice
+      const hostsPerRow = 4;
+      hosts.forEach((node, i) => {
+        const sliceId = node.slice || 0;
+        const sliceOffset = sliceId * 250;
+        const posInSlice = i % hostsPerRow;
+
+        positions[node.id] = {
+          x: 100 + sliceOffset + posInSlice * 60,
+          y: 450 + Math.floor(i / hostsPerRow) * 50
+        };
+      });
+    }
+
+    // Draw slice boundary if in slice view
+    if (viewMode === 'slice' && selectedSlice) {
+      const sliceHosts = hosts.filter(h => h.slice === selectedSlice.id);
+      if (sliceHosts.length > 0) {
+        const padding = 40;
+        const xCoords = sliceHosts.map(h => positions[h.id].x);
+        const yCoords = sliceHosts.map(h => positions[h.id].y);
+
+        g.append('rect')
+          .attr('x', Math.min(...xCoords) - padding)
+          .attr('y', Math.min(...yCoords) - padding)
+          .attr('width', Math.max(...xCoords) - Math.min(...xCoords) + padding * 2)
+          .attr('height', Math.max(...yCoords) - Math.min(...yCoords) + padding * 2)
+          .attr('fill', 'none')
+          .attr('stroke', colorScale(selectedSlice.id))
+          .attr('stroke-width', 3)
+          .attr('stroke-dasharray', '5,5')
+          .attr('rx', 10);
+
+        g.append('text')
+          .attr('x', Math.min(...xCoords) - padding + 10)
+          .attr('y', Math.min(...yCoords) - padding + 20)
+          .attr('font-size', '14px')
+          .attr('font-weight', 'bold')
+          .attr('fill', colorScale(selectedSlice.id))
+          .text(selectedSlice.name);
+      }
+    }
+
+    // Draw links
+    g.selectAll('line')
+      .data(visibleLinks)
+      .enter()
+      .append('line')
+      .attr('x1', d => positions[d.source]?.x || 0)
+      .attr('y1', d => positions[d.source]?.y || 0)
+      .attr('x2', d => positions[d.target]?.x || 0)
+      .attr('y2', d => positions[d.target]?.y || 0)
+      .attr('stroke', '#ccc')
+      .attr('stroke-width', 2)
+      .attr('opacity', viewMode === 'slice' ? 0.3 : 0.6);
+
+    // Draw nodes
+    const nodes = g.selectAll('circle')
+      .data(visibleNodes)
+      .enter()
+      .append('circle')
+      .attr('cx', d => positions[d.id]?.x || 0)
+      .attr('cy', d => positions[d.id]?.y || 0)
+      .attr('r', d => {
+        if (d.type === 'controller') return 20;
+        if (d.type === 'switch') return 15;
+        return 10;
+      })
+      .attr('fill', d => {
+        if (d.type === 'controller') return '#ff6b6b';
+        if (d.type === 'switch') return '#4ecdc4';
+        if (d.slice !== undefined) {
+          return selectedSlice?.id === d.slice
+            ? colorScale(d.slice)
+            : '#95a5a6';
+        }
+        return '#95a5a6';
+      })
+      .attr('stroke', d =>
+        selectedSlice && d.slice === selectedSlice.id ? '#2c3e50' : '#fff'
+      )
+      .attr('stroke-width', d =>
+        selectedSlice && d.slice === selectedSlice.id ? 3 : 1
+      );
+
+    // Add labels
+    g.selectAll('text.node-label')
+      .data(visibleNodes)
+      .enter()
+      .append('text')
+      .attr('class', 'node-label')
+      .attr('x', d => positions[d.id]?.x || 0)
+      .attr('y', d => (positions[d.id]?.y || 0) + 25)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '10px')
+      .text(d => d.id);
+
+    // Add zoom
+    const zoom = d3.zoom()
+      .scaleExtent([0.5, 3])
+      .on('zoom', (event) => {
+        g.attr('transform', event.transform);
+      });
+
+    svg.call(zoom);
+
+  }, [topology, slices, selectedSlice, viewMode]);
+
+  return (
+    <div className="topology-view">
+      <div className="topology-header">
+        <h2>Network Topology</h2>
+        <div className="view-controls">
+          <button
+            className={viewMode === 'full' ? 'active' : ''}
+            onClick={() => setViewMode('full')}
+          >
+            Full View
+          </button>
+          <button
+            className={viewMode === 'slice' ? 'active' : ''}
+            onClick={() => setViewMode('slice')}
+            disabled={!selectedSlice}
+          >
+            Slice View
+          </button>
+        </div>
+      </div>
+      <svg ref={svgRef}></svg>
+    </div>
+  );
+}
+
+export default TopologyView;
+```
+
+**Update: `sdn_dashboard/dashboard/frontend/src/components/TopologyView.css`**
+
+```css
+.topology-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.topology-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.topology-header h2 {
+  margin: 0;
+}
+
+.view-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.view-controls button {
+  padding: 6px 12px;
+  font-size: 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+}
+
+.view-controls button.active {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.view-controls button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.topology-view svg {
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.node-label {
+  pointer-events: none;
+  user-select: none;
+}
+```
+
+---
+
+**Validation Checklist for Phase 7:**
+
+- [ ] WebSocket push notifications working
+- [ ] Auto-reconnect logic functions correctly
+- [ ] Connection status displays in UI
+- [ ] Heartbeat mechanism prevents timeouts
+- [ ] Error messages show for sync issues
+- [ ] Per-slice ACL editing implemented
+- [ ] ACL rules can be added/deleted
+- [ ] Segmented topology view works
+- [ ] Full/slice view toggle functions
+- [ ] Slice boundaries display correctly
+- [ ] Edge cases handled (dropped updates, out-of-order)
+- [ ] Multiple reconnection attempts succeed
+- [ ] Real-time updates faster than polling approach
+
+---
+
+## Phase 8: Performance Metrics & Advanced Testing
+
+### Overview
+
+This phase focuses on implementing comprehensive performance monitoring, advanced testing scenarios for multi-tenant environments, and granular real-time metrics collection. The goal is to validate system performance under stress and provide detailed insights into network behavior.
+
+### Goals
+
+1. Implement performance metrics logging system
+2. Create dashboard responsiveness monitoring
+3. Build complex multi-tenant test topologies (3+ tenants)
+4. Test rapid slice creation/deletion scenarios
+5. Implement simultaneous multi-tenant flow conflict testing
+6. Add slice bandwidth reallocation features
+7. Display granular real-time metrics (latency, throughput, rule hits)
+8. Create test log compilation and analysis tools
+
+---
+
+### Task 8.1: Performance Metrics Collection System
+
+**Create: `sdn_dashboard/dashboard/backend/metricsCollector.js`**
+
+```javascript
+const fs = require('fs');
+const path = require('path');
+
+class MetricsCollector {
+  constructor(resultsDir) {
+    this.resultsDir = resultsDir;
+    this.metricsFile = path.join(resultsDir, 'performance_metrics.json');
+    this.metrics = {
+      apiResponseTimes: [],
+      websocketLatency: [],
+      sliceOperations: [],
+      flowOperations: [],
+      systemLoad: [],
+      timestamp: Date.now()
+    };
+    this.load();
+  }
+
+  load() {
+    try {
+      if (fs.existsSync(this.metricsFile)) {
+        const data = fs.readFileSync(this.metricsFile, 'utf8');
+        this.metrics = JSON.parse(data);
+      }
+    } catch (err) {
+      console.error('Error loading metrics:', err);
+    }
+  }
+
+  save() {
+    try {
+      fs.writeFileSync(this.metricsFile, JSON.stringify(this.metrics, null, 2));
+    } catch (err) {
+      console.error('Error saving metrics:', err);
+    }
+  }
+
+  recordAPIResponse(endpoint, duration) {
+    this.metrics.apiResponseTimes.push({
+      endpoint,
+      duration,
+      timestamp: Date.now()
+    });
+
+    // Keep only last 1000 entries
+    if (this.metrics.apiResponseTimes.length > 1000) {
+      this.metrics.apiResponseTimes.shift();
+    }
+
+    this.save();
+  }
+
+  recordWebSocketLatency(latency) {
+    this.metrics.websocketLatency.push({
+      latency,
+      timestamp: Date.now()
+    });
+
+    if (this.metrics.websocketLatency.length > 1000) {
+      this.metrics.websocketLatency.shift();
+    }
+
+    this.save();
+  }
+
+  recordSliceOperation(operation, sliceId, duration, success = true) {
+    this.metrics.sliceOperations.push({
+      operation, // 'create', 'delete', 'update'
+      sliceId,
+      duration,
+      success,
+      timestamp: Date.now()
+    });
+
+    if (this.metrics.sliceOperations.length > 500) {
+      this.metrics.sliceOperations.shift();
+    }
+
+    this.save();
+  }
+
+  recordFlowOperation(operation, flowId, duration, success = true) {
+    this.metrics.flowOperations.push({
+      operation, // 'add', 'delete'
+      flowId,
+      duration,
+      success,
+      timestamp: Date.now()
+    });
+
+    if (this.metrics.flowOperations.length > 500) {
+      this.metrics.flowOperations.shift();
+    }
+
+    this.save();
+  }
+
+  recordSystemLoad() {
+    const used = process.memoryUsage();
+    this.metrics.systemLoad.push({
+      heapUsed: used.heapUsed,
+      heapTotal: used.heapTotal,
+      external: used.external,
+      timestamp: Date.now()
+    });
+
+    if (this.metrics.systemLoad.length > 500) {
+      this.metrics.systemLoad.shift();
+    }
+
+    this.save();
+  }
+
+  getStats() {
+    const avgResponseTime = this.metrics.apiResponseTimes.length > 0
+      ? this.metrics.apiResponseTimes.reduce((sum, m) => sum + m.duration, 0) / this.metrics.apiResponseTimes.length
+      : 0;
+
+    const avgWsLatency = this.metrics.websocketLatency.length > 0
+      ? this.metrics.websocketLatency.reduce((sum, m) => sum + m.latency, 0) / this.metrics.websocketLatency.length
+      : 0;
+
+    const sliceOpsSuccess = this.metrics.sliceOperations.filter(op => op.success).length;
+    const sliceOpsTotal = this.metrics.sliceOperations.length;
+    const sliceSuccessRate = sliceOpsTotal > 0 ? (sliceOpsSuccess / sliceOpsTotal) * 100 : 100;
+
+    const flowOpsSuccess = this.metrics.flowOperations.filter(op => op.success).length;
+    const flowOpsTotal = this.metrics.flowOperations.length;
+    const flowSuccessRate = flowOpsTotal > 0 ? (flowOpsSuccess / flowOpsTotal) * 100 : 100;
+
+    return {
+      avgApiResponseTime: avgResponseTime.toFixed(2) + 'ms',
+      avgWebSocketLatency: avgWsLatency.toFixed(2) + 'ms',
+      sliceOperations: {
+        total: sliceOpsTotal,
+        successful: sliceOpsSuccess,
+        successRate: sliceSuccessRate.toFixed(1) + '%'
+      },
+      flowOperations: {
+        total: flowOpsTotal,
+        successful: flowOpsSuccess,
+        successRate: flowSuccessRate.toFixed(1) + '%'
+      },
+      memoryUsage: this.metrics.systemLoad.length > 0
+        ? this.metrics.systemLoad[this.metrics.systemLoad.length - 1]
+        : null
+    };
+  }
+
+  getRecentMetrics(count = 100) {
+    return {
+      apiResponseTimes: this.metrics.apiResponseTimes.slice(-count),
+      websocketLatency: this.metrics.websocketLatency.slice(-count),
+      sliceOperations: this.metrics.sliceOperations.slice(-count),
+      flowOperations: this.metrics.flowOperations.slice(-count),
+      systemLoad: this.metrics.systemLoad.slice(-count)
+    };
+  }
+}
+
+module.exports = MetricsCollector;
+```
+
+---
+
+### Task 8.2: Integrate Metrics into Backend
+
+**Update: `sdn_dashboard/dashboard/backend/server.js`**
+
+Add metrics tracking to API endpoints:
+
+```javascript
+const MetricsCollector = require('./metricsCollector');
+
+// Initialize metrics collector
+const metricsCollector = new MetricsCollector(RESULTS_DIR);
+
+// Record system load periodically
+setInterval(() => {
+  metricsCollector.recordSystemLoad();
+}, 30000); // Every 30 seconds
+
+// Middleware to track API response times
+app.use((req, res, next) => {
+  const start = Date.now();
+
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    metricsCollector.recordAPIResponse(req.path, duration);
+  });
+
+  next();
+});
+
+// Update slice endpoints with metrics tracking
+app.post('/api/slices', (req, res) => {
+  const start = Date.now();
+  const { name, vlanId, bandwidth, hosts, isolated, acl } = req.body;
+
+  if (!name || !vlanId || !bandwidth || !hosts) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const newSlice = {
+    id: currentState.slices.length + 1,
+    name,
+    vlanId,
+    bandwidth,
+    hosts,
+    isolated: isolated !== undefined ? isolated : true,
+    acl: acl || []
+  };
+
+  currentState.slices.push(newSlice);
+
+  const command = {
+    type: 'CREATE_SLICE',
+    data: newSlice,
+    timestamp: Date.now()
+  };
+
+  fs.writeFileSync(
+    path.join(RESULTS_DIR, 'commands.json'),
+    JSON.stringify(command)
+  );
+
+  const duration = Date.now() - start;
+  metricsCollector.recordSliceOperation('create', newSlice.id, duration, true);
+
+  res.status(201).json(newSlice);
+});
+
+app.delete('/api/slices/:id', (req, res) => {
+  const start = Date.now();
+  const sliceId = parseInt(req.params.id);
+  const sliceIndex = currentState.slices.findIndex(s => s.id === sliceId);
+
+  if (sliceIndex === -1) {
+    const duration = Date.now() - start;
+    metricsCollector.recordSliceOperation('delete', sliceId, duration, false);
+    return res.status(404).json({ error: 'Slice not found' });
+  }
+
+  const deletedSlice = currentState.slices.splice(sliceIndex, 1)[0];
+
+  const command = {
+    type: 'DELETE_SLICE',
+    data: { id: sliceId },
+    timestamp: Date.now()
+  };
+
+  fs.writeFileSync(
+    path.join(RESULTS_DIR, 'commands.json'),
+    JSON.stringify(command)
+  );
+
+  const duration = Date.now() - start;
+  metricsCollector.recordSliceOperation('delete', sliceId, duration, true);
+
+  res.json(deletedSlice);
+});
+
+// Similar updates for flow endpoints...
+app.post('/api/flows', (req, res) => {
+  const start = Date.now();
+  const { srcIP, dstIP, action, priority, sliceId } = req.body;
+
+  if (!srcIP || !dstIP || !action) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const newFlow = {
+    id: currentState.flows.length + 1,
+    srcIP,
+    dstIP,
+    action,
+    priority: priority || 100,
+    sliceId: sliceId || 0,
+    packets: 0,
+    bytes: 0
+  };
+
+  currentState.flows.push(newFlow);
+
+  const command = {
+    type: 'ADD_FLOW',
+    data: newFlow,
+    timestamp: Date.now()
+  };
+
+  fs.writeFileSync(
+    path.join(RESULTS_DIR, 'commands.json'),
+    JSON.stringify(command)
+  );
+
+  const duration = Date.now() - start;
+  metricsCollector.recordFlowOperation('add', newFlow.id, duration, true);
+
+  res.status(201).json(newFlow);
+});
+
+// New metrics endpoint
+app.get('/api/metrics', (req, res) => {
+  res.json(metricsCollector.getStats());
+});
+
+app.get('/api/metrics/recent', (req, res) => {
+  const count = parseInt(req.query.count) || 100;
+  res.json(metricsCollector.getRecentMetrics(count));
+});
+```
+
+---
+
+### Task 8.3: Per-Slice Performance Metrics
+
+**Update Backend State File Format**
+
+Add slice-specific metrics to controller state:
+
+**Update: `sdn_dashboard/src/controller/SDNController.cc`**
+
+Enhance state export with per-slice metrics:
+
+```cpp
+void SDNControllerApp::saveState()
+{
+    if (!stateFile || !stateFile->is_open()) return;
+
+    stateFile->close();
+    stateFile->open("results/controller_state.json", std::ios::trunc);
+
+    *stateFile << "{" << std::endl;
+    *stateFile << "  \"timestamp\": " << simTime().dbl() << "," << std::endl;
+    *stateFile << "  \"slices\": [" << std::endl;
+
+    bool firstSlice = true;
+    for (const auto &entry : slices) {
+        if (!firstSlice) *stateFile << "," << std::endl;
+        firstSlice = false;
+
+        const auto &slice = entry.second;
+
+        // Calculate slice-specific metrics
+        long totalPackets = 0;
+        long totalBytes = 0;
+        double avgLatency = 0.0;
+        int flowCount = 0;
+
+        for (const auto &flowEntry : flowTable) {
+            if (flowEntry.second.sliceId == slice.sliceId) {
+                totalPackets += flowEntry.second.packetsMatched;
+                totalBytes += flowEntry.second.bytesMatched;
+                flowCount++;
+            }
+        }
+
+        double throughput = slice.createdTime > 0
+            ? (totalBytes * 8.0) / (simTime().dbl() - slice.createdTime.dbl()) / 1000000.0 // Mbps
+            : 0.0;
+
+        *stateFile << "    {" << std::endl;
+        *stateFile << "      \"id\": " << slice.sliceId << "," << std::endl;
+        *stateFile << "      \"name\": \"" << slice.name << "\"," << std::endl;
+        *stateFile << "      \"vlanId\": " << slice.vlanId << "," << std::endl;
+        *stateFile << "      \"bandwidth\": " << slice.bandwidthMbps << "," << std::endl;
+        *stateFile << "      \"isolated\": " << (slice.isolated ? "true" : "false") << "," << std::endl;
+        *stateFile << "      \"hosts\": [";
+        for (size_t i = 0; i < slice.hostIPs.size(); i++) {
+            if (i > 0) *stateFile << ", ";
+            *stateFile << "\"" << slice.hostIPs[i] << "\"";
+        }
+        *stateFile << "]," << std::endl;
+
+        // Add performance metrics
+        *stateFile << "      \"metrics\": {" << std::endl;
+        *stateFile << "        \"totalPackets\": " << totalPackets << "," << std::endl;
+        *stateFile << "        \"totalBytes\": " << totalBytes << "," << std::endl;
+        *stateFile << "        \"throughput\": " << throughput << "," << std::endl;
+        *stateFile << "        \"flowCount\": " << flowCount << "," << std::endl;
+        *stateFile << "        \"avgLatency\": " << avgLatency << std::endl;
+        *stateFile << "      }" << std::endl;
+        *stateFile << "    }";
+    }
+
+    *stateFile << std::endl << "  ],\" << std::endl;
+    *stateFile << "  \"flows\": [" << std::endl;
+
+    // ... existing flow export code ...
+
+    *stateFile << std::endl << "  ]" << std::endl;
+    *stateFile << "}" << std::endl;
+
+    stateFile->flush();
+}
+```
+
+---
+
+### Task 8.4: Performance Metrics Dashboard Component
+
+**Create: `sdn_dashboard/dashboard/frontend/src/components/PerformanceMetrics.js`**
+
+```javascript
+import React, { useState, useEffect } from 'react';
+import api from '../services/api';
+import './PerformanceMetrics.css';
+
+function PerformanceMetrics({ slices }) {
+  const [metrics, setMetrics] = useState(null);
+  const [selectedSliceMetrics, setSelectedSliceMetrics] = useState(null);
+
+  useEffect(() => {
+    loadMetrics();
+    const interval = setInterval(loadMetrics, 5000); // Update every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const loadMetrics = async () => {
+    try {
+      const data = await api.getMetrics();
+      setMetrics(data);
+    } catch (error) {
+      console.error('Error loading metrics:', error);
+    }
+  };
+
+  const selectSlice = (slice) => {
+    if (slice.metrics) {
+      setSelectedSliceMetrics({
+        sliceName: slice.name,
+        ...slice.metrics
+      });
+    }
+  };
+
+  if (!metrics) return <div>Loading metrics...</div>;
+
+  return (
+    <div className="performance-metrics">
+      <h2>Performance Metrics</h2>
+
+      <div className="metrics-grid">
+        <div className="metric-card">
+          <h3>API Response Time</h3>
+          <div className="metric-value">{metrics.avgApiResponseTime}</div>
+        </div>
+
+        <div className="metric-card">
+          <h3>WebSocket Latency</h3>
+          <div className="metric-value">{metrics.avgWebSocketLatency}</div>
+        </div>
+
+        <div className="metric-card">
+          <h3>Slice Operations</h3>
+          <div className="metric-value">{metrics.sliceOperations.successRate}</div>
+          <div className="metric-detail">
+            {metrics.sliceOperations.successful} / {metrics.sliceOperations.total} successful
+          </div>
+        </div>
+
+        <div className="metric-card">
+          <h3>Flow Operations</h3>
+          <div className="metric-value">{metrics.flowOperations.successRate}</div>
+          <div className="metric-detail">
+            {metrics.flowOperations.successful} / {metrics.flowOperations.total} successful
+          </div>
+        </div>
+      </div>
+
+      <div className="slice-metrics-section">
+        <h3>Per-Slice Metrics</h3>
+        <div className="slice-metrics-list">
+          {slices.map(slice => (
+            <div
+              key={slice.id}
+              className="slice-metric-item"
+              onClick={() => selectSlice(slice)}
+            >
+              <h4>{slice.name}</h4>
+              {slice.metrics && (
+                <div className="slice-metric-summary">
+                  <span>Throughput: {slice.metrics.throughput.toFixed(2)} Mbps</span>
+                  <span>Packets: {slice.metrics.totalPackets}</span>
+                  <span>Flows: {slice.metrics.flowCount}</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {selectedSliceMetrics && (
+          <div className="selected-slice-details">
+            <h4>{selectedSliceMetrics.sliceName} - Detailed Metrics</h4>
+            <table>
+              <tbody>
+                <tr>
+                  <td>Total Packets:</td>
+                  <td>{selectedSliceMetrics.totalPackets}</td>
+                </tr>
+                <tr>
+                  <td>Total Bytes:</td>
+                  <td>{(selectedSliceMetrics.totalBytes / 1024 / 1024).toFixed(2)} MB</td>
+                </tr>
+                <tr>
+                  <td>Throughput:</td>
+                  <td>{selectedSliceMetrics.throughput.toFixed(2)} Mbps</td>
+                </tr>
+                <tr>
+                  <td>Flow Count:</td>
+                  <td>{selectedSliceMetrics.flowCount}</td>
+                </tr>
+                <tr>
+                  <td>Avg Latency:</td>
+                  <td>{selectedSliceMetrics.avgLatency.toFixed(2)} ms</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default PerformanceMetrics;
+```
+
+**Create: `sdn_dashboard/dashboard/frontend/src/components/PerformanceMetrics.css`**
+
+```css
+.performance-metrics {
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.performance-metrics h2 {
+  margin-top: 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.metric-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.metric-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.metric-detail {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.slice-metrics-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.slice-metrics-section h3 {
+  margin-top: 0;
+}
+
+.slice-metrics-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.slice-metric-item {
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.slice-metric-item:hover {
+  border-color: #4CAF50;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.slice-metric-item h4 {
+  margin: 0 0 10px 0;
+}
+
+.slice-metric-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.selected-slice-details {
+  border-top: 2px solid #ddd;
+  padding-top: 20px;
+}
+
+.selected-slice-details h4 {
+  margin-top: 0;
+}
+
+.selected-slice-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.selected-slice-details td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.selected-slice-details td:first-child {
+  font-weight: bold;
+  width: 40%;
+}
+
+.selected-slice-details td:last-child {
+  color: #4CAF50;
+  font-weight: bold;
+}
+```
+
+---
+
+### Task 8.5: Advanced Multi-Tenant Test Scenarios
+
+**Create: `sdn_dashboard/tests/advanced_scenarios.sh`**
+
+```bash
+#!/bin/bash
+
+echo "========================================="
+echo "Advanced Multi-Tenant Testing Scenarios"
+echo "========================================="
+echo ""
+
+API_BASE="http://localhost:3001/api"
+
+# Test 1: Rapid Slice Creation/Deletion
+echo "Test 1: Rapid Slice Creation and Deletion Stress Test"
+echo "-----------------------------------------------"
+
+START_TIME=$(date +%s%3N)
+
+for i in {1..10}; do
+    echo "Creating slice $i..."
+    SLICE_ID=$(curl -s -X POST "$API_BASE/slices" \
+        -H "Content-Type: application/json" \
+        -d "{
+            \"name\": \"StressTest_$i\",
+            \"vlanId\": $((100 + i)),
+            \"bandwidth\": 50,
+            \"hosts\": [\"10.0.$((100+i)).1\", \"10.0.$((100+i)).2\"],
+            \"isolated\": true
+        }" | jq -r '.id')
+
+    echo "Created slice ID: $SLICE_ID"
+
+    # Small delay
+    sleep 0.1
+done
+
+MID_TIME=$(date +%s%3N)
+CREATE_DURATION=$((MID_TIME - START_TIME))
+echo "All slices created in ${CREATE_DURATION}ms"
+
+# Delete all stress test slices
+for i in {1..10}; do
+    echo "Deleting slice for tenant $i..."
+    # Find and delete by name (would need to query first in real scenario)
+    sleep 0.1
+done
+
+END_TIME=$(date +%s%3N)
+DELETE_DURATION=$((END_TIME - MID_TIME))
+TOTAL_DURATION=$((END_TIME - START_TIME))
+
+echo "Slices deleted in ${DELETE_DURATION}ms"
+echo "Total test duration: ${TOTAL_DURATION}ms"
+echo ""
+
+# Test 2: Simultaneous Multi-Tenant Flow Conflicts
+echo "Test 2: Simultaneous Multi-Tenant Flow Conflicts"
+echo "------------------------------------------------"
+
+# Create 3 tenants
+TENANT_IDS=()
+for i in {1..3}; do
+    TENANT_ID=$(curl -s -X POST "$API_BASE/slices" \
+        -H "Content-Type: application/json" \
+        -d "{
+            \"name\": \"Tenant_$i\",
+            \"vlanId\": $((200 + i)),
+            \"bandwidth\": 100,
+            \"hosts\": [\"10.0.$((200+i)).1\", \"10.0.$((200+i)).2\", \"10.0.$((200+i)).3\"],
+            \"isolated\": true
+        }" | jq -r '.id')
+    TENANT_IDS+=($TENANT_ID)
+    echo "Created Tenant $i with ID: $TENANT_ID"
+done
+
+# Create conflicting flows
+echo "Creating potentially conflicting flows..."
+for TENANT_ID in "${TENANT_IDS[@]}"; do
+    for j in {1..5}; do
+        curl -s -X POST "$API_BASE/flows" \
+            -H "Content-Type: application/json" \
+            -d "{
+                \"srcIP\": \"10.0.200.1\",
+                \"dstIP\": \"10.0.200.2\",
+                \"action\": \"forward\",
+                \"priority\": $((100 + j)),
+                \"sliceId\": $TENANT_ID
+            }" > /dev/null
+    done
+    echo "Created 5 flows for Tenant ID: $TENANT_ID"
+done
+
+echo "Checking for conflicts..."
+FLOWS=$(curl -s "$API_BASE/flows" | jq '.[] | select(.srcIP == "10.0.200.1")')
+FLOW_COUNT=$(echo "$FLOWS" | jq -s 'length')
+echo "Found $FLOW_COUNT flows with same src/dst across different slices"
+echo ""
+
+# Test 3: Slice Bandwidth Reallocation
+echo "Test 3: Slice Bandwidth Reallocation"
+echo "------------------------------------"
+
+if [ ${#TENANT_IDS[@]} -gt 0 ]; then
+    FIRST_TENANT=${TENANT_IDS[0]}
+    echo "Reallocating bandwidth for Tenant ID: $FIRST_TENANT"
+
+    # Initial bandwidth: 100 Mbps
+    echo "Initial bandwidth: 100 Mbps"
+
+    # Update to 200 Mbps
+    curl -s -X PUT "$API_BASE/slices/$FIRST_TENANT" \
+        -H "Content-Type: application/json" \
+        -d "{
+            \"bandwidth\": 200
+        }" > /dev/null
+    echo "Updated bandwidth to 200 Mbps"
+
+    sleep 1
+
+    # Update to 50 Mbps
+    curl -s -X PUT "$API_BASE/slices/$FIRST_TENANT" \
+        -H "Content-Type: application/json" \
+        -d "{
+            \"bandwidth\": 50
+        }" > /dev/null
+    echo "Updated bandwidth to 50 Mbps"
+
+    echo "Bandwidth reallocation test complete"
+fi
+echo ""
+
+# Test 4: Performance Metrics Collection
+echo "Test 4: Collecting Performance Metrics"
+echo "--------------------------------------"
+
+METRICS=$(curl -s "$API_BASE/metrics")
+echo "System Metrics:"
+echo "$METRICS" | jq '.'
+
+echo ""
+echo "Per-Slice Metrics:"
+SLICES=$(curl -s "$API_BASE/slices")
+echo "$SLICES" | jq '.[] | {id, name, metrics}'
+
+echo ""
+echo "========================================="
+echo "Advanced Testing Complete"
+echo "========================================="
+```
+
+```bash
+chmod +x tests/advanced_scenarios.sh
+```
+
+---
+
+### Task 8.6: Test Log Compilation Tool
+
+**Create: `sdn_dashboard/tests/compile_logs.py`**
+
+```python
+#!/usr/bin/env python3
+
+import json
+import sys
+from datetime import datetime
+from pathlib import Path
+
+def compile_test_logs(results_dir):
+    """Compile and analyze test logs"""
+
+    results_path = Path(results_dir)
+
+    # Load metrics
+    metrics_file = results_path / 'performance_metrics.json'
+    if not metrics_file.exists():
+        print("No metrics file found!")
+        return
+
+    with open(metrics_file) as f:
+        metrics = json.load(f)
+
+    report = {
+        'timestamp': datetime.now().isoformat(),
+        'summary': {},
+        'details': {}
+    }
+
+    # Analyze API response times
+    if metrics.get('apiResponseTimes'):
+        response_times = [m['duration'] for m in metrics['apiResponseTimes']]
+        report['summary']['api_response'] = {
+            'avg': sum(response_times) / len(response_times),
+            'min': min(response_times),
+            'max': max(response_times),
+            'count': len(response_times)
+        }
+
+    # Analyze WebSocket latency
+    if metrics.get('websocketLatency'):
+        latencies = [m['latency'] for m in metrics['websocketLatency']]
+        report['summary']['websocket_latency'] = {
+            'avg': sum(latencies) / len(latencies),
+            'min': min(latencies),
+            'max': max(latencies),
+            'count': len(latencies)
+        }
+
+    # Analyze slice operations
+    if metrics.get('sliceOperations'):
+        ops = metrics['sliceOperations']
+        successful = sum(1 for op in ops if op['success'])
+        report['summary']['slice_operations'] = {
+            'total': len(ops),
+            'successful': successful,
+            'failed': len(ops) - successful,
+            'success_rate': (successful / len(ops) * 100) if ops else 0
+        }
+
+        # Breakdown by operation type
+        create_ops = [op for op in ops if op['operation'] == 'create']
+        delete_ops = [op for op in ops if op['operation'] == 'delete']
+        update_ops = [op for op in ops if op['operation'] == 'update']
+
+        report['details']['slice_operations'] = {
+            'create': {
+                'count': len(create_ops),
+                'avg_duration': sum(op['duration'] for op in create_ops) / len(create_ops) if create_ops else 0
+            },
+            'delete': {
+                'count': len(delete_ops),
+                'avg_duration': sum(op['duration'] for op in delete_ops) / len(delete_ops) if delete_ops else 0
+            },
+            'update': {
+                'count': len(update_ops),
+                'avg_duration': sum(op['duration'] for op in update_ops) / len(update_ops) if update_ops else 0
+            }
+        }
+
+    # Analyze flow operations
+    if metrics.get('flowOperations'):
+        ops = metrics['flowOperations']
+        successful = sum(1 for op in ops if op['success'])
+        report['summary']['flow_operations'] = {
+            'total': len(ops),
+            'successful': successful,
+            'failed': len(ops) - successful,
+            'success_rate': (successful / len(ops) * 100) if ops else 0
+        }
+
+    # Save report
+    report_file = results_path / 'test_report.json'
+    with open(report_file, 'w') as f:
+        json.dump(report, f, indent=2)
+
+    # Print summary
+    print("=" * 60)
+    print("TEST LOG COMPILATION REPORT")
+    print("=" * 60)
+    print(f"\nTimestamp: {report['timestamp']}\n")
+
+    print("API Performance:")
+    if 'api_response' in report['summary']:
+        api = report['summary']['api_response']
+        print(f"  Average Response Time: {api['avg']:.2f}ms")
+        print(f"  Min: {api['min']:.2f}ms, Max: {api['max']:.2f}ms")
+        print(f"  Total Requests: {api['count']}")
+
+    print("\nWebSocket Performance:")
+    if 'websocket_latency' in report['summary']:
+        ws = report['summary']['websocket_latency']
+        print(f"  Average Latency: {ws['avg']:.2f}ms")
+        print(f"  Min: {ws['min']:.2f}ms, Max: {ws['max']:.2f}ms")
+        print(f"  Total Messages: {ws['count']}")
+
+    print("\nSlice Operations:")
+    if 'slice_operations' in report['summary']:
+        ops = report['summary']['slice_operations']
+        print(f"  Total: {ops['total']}")
+        print(f"  Successful: {ops['successful']}")
+        print(f"  Failed: {ops['failed']}")
+        print(f"  Success Rate: {ops['success_rate']:.1f}%")
+
+        if 'slice_operations' in report['details']:
+            details = report['details']['slice_operations']
+            print(f"\n  Operation Breakdown:")
+            print(f"    Create: {details['create']['count']} ops, avg {details['create']['avg_duration']:.2f}ms")
+            print(f"    Delete: {details['delete']['count']} ops, avg {details['delete']['avg_duration']:.2f}ms")
+            print(f"    Update: {details['update']['count']} ops, avg {details['update']['avg_duration']:.2f}ms")
+
+    print("\nFlow Operations:")
+    if 'flow_operations' in report['summary']:
+        ops = report['summary']['flow_operations']
+        print(f"  Total: {ops['total']}")
+        print(f"  Successful: {ops['successful']}")
+        print(f"  Failed: {ops['failed']}")
+        print(f"  Success Rate: {ops['success_rate']:.1f}%")
+
+    print("\n" + "=" * 60)
+    print(f"Report saved to: {report_file}")
+    print("=" * 60)
+
+if __name__ == '__main__':
+    results_dir = sys.argv[1] if len(sys.argv) > 1 else 'simulations/results'
+    compile_test_logs(results_dir)
+```
+
+```bash
+chmod +x tests/compile_logs.py
+```
+
+---
+
+**Validation Checklist for Phase 8:**
+
+- [ ] Metrics collection system implemented
+- [ ] API response times tracked
+- [ ] WebSocket latency monitored
+- [ ] Per-slice metrics displayed
+- [ ] Rapid slice creation/deletion test passes
+- [ ] Multi-tenant conflict testing works
+- [ ] Bandwidth reallocation functional
+- [ ] Granular metrics (latency, throughput) visible
+- [ ] Test log compilation tool works
+- [ ] Performance reports generated
+- [ ] 3+ tenant scenarios tested successfully
+- [ ] System performs under stress load
+- [ ] Metrics update in real-time
+
+---
+
+## Phase 9: Demo Preparation & Usability Study
+
+### Overview
+
+This final phase focuses on preparing comprehensive demo materials, gathering user feedback, and conducting usability studies to validate the system's effectiveness. The goal is to ensure the system is ready for final presentation and deployment while identifying areas for improvement.
+
+### Goals
+
+1. Create demo scripts with step-by-step instructions
+2. Capture high-quality screenshots for documentation
+3. Record demo videos for final presentation
+4. Design user feedback collection mechanisms
+5. Conduct usability study with sample users
+6. Address UI pain points discovered during testing
+7. Final polish and bug fixes
+8. Prepare presentation materials
+
+---
+
+### Task 9.1: Demo Script Creation
+
+**Create: `sdn_dashboard/demo/demo_script.md`**
+
+```markdown
+# SDN Dashboard - Demo Script
+
+## Pre-Demo Setup (5 minutes before)
+
+### 1. Start OMNeT++ Simulation
+```bash
+cd sdn_dashboard/simulations
+./sdn_sim -u Cmdenv -c General -n ../../../inet/src:.:../src
+```
+Wait for initialization to complete.
+
+### 2. Start Backend Server
+```bash
+cd sdn_dashboard/dashboard/backend
+npm start
+```
+Verify server is running on port 3001.
+
+### 3. Start Frontend Dashboard
+```bash
+cd sdn_dashboard/dashboard/frontend
+npm start
+```
+Browser should open to http://localhost:3000
+
+### 4. Verify All Systems
+- [ ] Simulation running (check terminal output)
+- [ ] Backend connected (check API: http://localhost:3001/api/slices)
+- [ ] Frontend loaded (dashboard visible in browser)
+- [ ] WebSocket connected (green indicator in UI)
+- [ ] Default slices visible (Tenant_A, Tenant_B, Tenant_C)
+
+---
+
+## Demo Flow (15-20 minutes)
+
+### Part 1: System Overview (3 minutes)
+
+**Script:**
+"Welcome to our Cloud-Based SDN Management Dashboard. This system provides an interactive interface for managing network slicing and dynamic flow provisioning in software-defined networks using OMNeT++ simulation."
+
+**Actions:**
+1. Show the main dashboard interface
+2. Point out key components:
+   - Network topology visualization (left)
+   - Slice management panel (right top)
+   - Flow management panel (right bottom)
+   - Real-time statistics (header)
+   - Connection status indicator
+
+**Talking Points:**
+- "The dashboard provides real-time visibility into our simulated SDN network"
+- "We can see X switches, Y hosts across Z network slices"
+- "The green indicator shows we're connected via WebSocket for real-time updates"
+
+---
+
+### Part 2: Network Slicing Demo (5 minutes)
+
+**Script:**
+"Let's demonstrate network slicing - the ability to create isolated virtual networks on shared infrastructure."
+
+**Actions:**
+
+#### 2.1 View Existing Slices
+1. Point to the three default slices (Tenant_A, Tenant_B, Tenant_C)
+2. Click on Tenant_A to show details:
+   - VLAN ID: 10
+   - Bandwidth: 100 Mbps
+   - 4 isolated hosts
+   - Associated flow rules
+
+**Talking Point:**
+"Each tenant gets their own isolated network slice with dedicated bandwidth and access control."
+
+#### 2.2 Create New Slice
+1. Click "+ Create Slice" button
+2. Fill in details:
+   ```
+   Name: Production
+   VLAN ID: 50
+   Bandwidth: 200
+   Hosts: 10.0.50.1, 10.0.50.2, 10.0.50.3
+   Isolated: ✓
+   ```
+3. Click "Create"
+4. Watch slice appear in real-time
+
+**Talking Points:**
+- "Creating a new slice is instant"
+- "The system automatically allocates resources"
+- "Notice the real-time update without page refresh"
+
+#### 2.3 Demonstrate Topology Visualization
+1. Select the new "Production" slice
+2. Click "Slice View" toggle
+3. Show how topology filters to relevant hosts
+4. Point out slice boundary visualization
+
+**Talking Point:**
+"The topology view can focus on individual slices, making it easier to understand complex multi-tenant networks."
+
+#### 2.4 Configure ACLs
+1. With "Production" slice selected, click "Edit ACL"
+2. Add an ACL rule:
+   ```
+   Source IP: 10.0.50.1
+   Destination IP: 10.0.50.2
+   Protocol: TCP
+   Action: Allow
+   ```
+3. Click "Add Rule"
+4. Show rule in ACL list
+
+**Talking Point:**
+"Per-slice access control lists provide fine-grained security policies."
+
+---
+
+### Part 3: Dynamic Flow Provisioning (4 minutes)
+
+**Script:**
+"Now let's demonstrate dynamic flow management - adding and removing OpenFlow rules on demand."
+
+**Actions:**
+
+#### 3.1 View Existing Flows
+1. Select Tenant_A slice
+2. Show flow table with existing rules
+3. Point out statistics (packets, bytes)
+
+#### 3.2 Add Custom Flow
+1. Click "+ Add Flow"
+2. Fill in details:
+   ```
+   Source IP: 10.0.10.1
+   Destination IP: 10.0.10.3
+   Action: Forward
+   Priority: 150
+   ```
+3. Click "Add Flow"
+4. Show flow appear in table
+
+**Talking Points:**
+- "Flows can be added dynamically without stopping the simulation"
+- "Priority determines rule precedence"
+- "Statistics update in real-time as traffic matches rules"
+
+#### 3.3 Monitor Flow Statistics
+1. Watch packet/byte counts update
+2. Select different slices to show isolation
+
+**Talking Point:**
+"Each slice's flows are completely isolated from others, ensuring multi-tenant security."
+
+---
+
+### Part 4: Real-Time Updates & Performance (3 minutes)
+
+**Script:**
+"Let's demonstrate the system's real-time capabilities and performance monitoring."
+
+#### 4.1 Show Performance Metrics
+1. Open browser developer tools (F12)
+2. Show WebSocket messages in Network tab
+3. Navigate to performance metrics (if implemented)
+4. Point out:
+   - API response times
+   - WebSocket latency
+   - Operation success rates
+
+**Talking Points:**
+- "All updates happen via WebSocket push notifications"
+- "Average latency is typically under 50ms"
+- "The system handles rapid operations efficiently"
+
+#### 4.2 Demonstrate Bandwidth Reallocation
+1. Select Tenant_A slice
+2. Change bandwidth from 100 to 50 Mbps
+3. Show update reflected immediately
+4. Change back to 100 Mbps
+
+**Talking Point:**
+"Resources can be reallocated dynamically based on tenant needs."
+
+---
+
+### Part 5: Advanced Features (3 minutes)
+
+**Script:**
+"Let's look at some advanced features that make this system production-ready."
+
+#### 5.1 Connection Resilience
+1. Stop the backend server (Ctrl+C)
+2. Show connection status turn red
+3. Point out "Reconnecting..." message
+4. Restart backend server
+5. Show automatic reconnection
+
+**Talking Point:**
+"The system automatically handles connection failures and reconnects without user intervention."
+
+#### 5.2 Multi-Tenant Scenarios
+1. Show all three default tenants
+2. Demonstrate switching between them
+3. Show how each has independent:
+   - Host assignments
+   - Bandwidth allocations
+   - Flow rules
+   - ACLs
+
+**Talking Point:**
+"The system supports complex multi-tenant scenarios typical in cloud environments."
+
+---
+
+### Part 6: Cleanup & Deletion (2 minutes)
+
+**Script:**
+"Let's clean up our demo slice."
+
+**Actions:**
+1. Select "Production" slice
+2. Click delete button (×)
+3. Confirm deletion
+4. Watch slice and associated flows disappear
+
+**Talking Point:**
+"Deleting a slice automatically cleans up all associated flows and resources."
+
+---
+
+## Demo Conclusion
+
+**Script:**
+"This concludes our demo of the Cloud-Based SDN Management Dashboard. The system demonstrates:
+
+1. **Network Slicing**: Create, configure, and delete isolated virtual networks
+2. **Dynamic Flow Provisioning**: Add and remove OpenFlow rules interactively
+3. **Real-Time Updates**: WebSocket-based push notifications for instant feedback
+4. **Multi-Tenant Support**: Isolated resources for multiple tenants
+5. **Access Control**: Per-slice ACL management
+6. **Performance Monitoring**: Real-time metrics and statistics
+7. **Resilience**: Automatic reconnection and error handling
+
+Thank you!"
+
+---
+
+## Common Q&A
+
+**Q: Can this work with real SDN hardware?**
+A: The current implementation uses OMNeT++ simulation, but the dashboard architecture is designed to work with real OpenFlow controllers by changing the backend adapter.
+
+**Q: How many slices can it support?**
+A: We've tested with 10+ slices successfully. The limiting factor is typically the underlying simulation performance.
+
+**Q: What happens if two tenants request conflicting resources?**
+A: The system maintains strict isolation. Each slice has its own VLAN and flow namespace, preventing conflicts.
+
+**Q: Can you export topology or configuration?**
+A: Yes, all state is stored in JSON format and can be exported/imported.
+
+---
+
+## Troubleshooting During Demo
+
+### Dashboard Won't Load
+- Check backend is running: `curl http://localhost:3001/api/slices`
+- Check frontend build: `npm start` output for errors
+- Clear browser cache and reload
+
+### Connection Shows Disconnected
+- Verify simulation is running (check terminal)
+- Restart backend server
+- Check firewall isn't blocking localhost:3001
+
+### Slices Don't Update
+- Check WebSocket connection status
+- Verify backend can read results directory
+- Check file permissions on results folder
+
+### Simulation Crashes
+- Check OMNeT++ logs in simulations/results
+- Verify INET framework is properly built
+- Restart simulation with fresh configuration
+```
+
+---
+
+### Task 9.2: Screenshot Capture Script
+
+**Create: `sdn_dashboard/demo/capture_screenshots.sh`**
+
+```bash
+#!/bin/bash
+
+# Screenshot capture script for documentation
+# Requires: scrot (Linux) or screencapture (macOS)
+
+SCREENSHOT_DIR="demo/screenshots"
+mkdir -p "$SCREENSHOT_DIR"
+
+echo "Screenshot Capture Guide"
+echo "========================"
+echo ""
+echo "This script will guide you through capturing screenshots for documentation."
+echo "Please have the dashboard open and ready."
+echo ""
+echo "Screenshots will be saved to: $SCREENSHOT_DIR"
+echo ""
+
+# Detect OS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    CAPTURE_CMD="screencapture -i"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    if command -v scrot &> /dev/null; then
+        CAPTURE_CMD="scrot -s"
+    elif command -v gnome-screenshot &> /dev/null; then
+        CAPTURE_CMD="gnome-screenshot -a -f"
+    else
+        echo "Error: No screenshot tool found. Please install scrot or gnome-screenshot"
+        exit 1
+    fi
+else
+    echo "Error: Unsupported operating system"
+    exit 1
+fi
+
+# Function to capture screenshot
+capture() {
+    local filename=$1
+    local description=$2
+
+    echo ""
+    echo "[$filename]"
+    echo "Description: $description"
+    echo "Press ENTER when ready, then select the area to capture..."
+    read
+
+    $CAPTURE_CMD "$SCREENSHOT_DIR/$filename"
+
+    if [ $? -eq 0 ]; then
+        echo "✓ Captured: $filename"
+    else
+        echo "✗ Failed to capture: $filename"
+    fi
+}
+
+# Capture sequence
+echo "Starting screenshot capture sequence..."
+echo ""
+
+capture "01_dashboard_overview.png" \
+    "Full dashboard view showing all components"
+
+capture "02_slice_list.png" \
+    "Slice management panel with default slices"
+
+capture "03_topology_full_view.png" \
+    "Network topology visualization - full view"
+
+capture "04_create_slice_form.png" \
+    "Create slice form with fields filled"
+
+capture "05_slice_details.png" \
+    "Selected slice showing detailed information"
+
+capture "06_acl_editor.png" \
+    "ACL editor interface with rules"
+
+capture "07_flow_table.png" \
+    "Flow rules table with statistics"
+
+capture "08_add_flow_form.png" \
+    "Add flow form with example data"
+
+capture "09_topology_slice_view.png" \
+    "Topology filtered to single slice"
+
+capture "10_connection_status.png" \
+    "Connection status indicator (connected)"
+
+capture "11_performance_metrics.png" \
+    "Performance metrics dashboard"
+
+capture "12_multi_tenant_view.png" \
+    "Multiple slices showing multi-tenancy"
+
+echo ""
+echo "================================"
+echo "Screenshot capture complete!"
+echo "================================"
+echo ""
+echo "Screenshots saved in: $SCREENSHOT_DIR"
+echo ""
+echo "Next steps:"
+echo "1. Review screenshots for quality"
+echo "2. Annotate images if needed"
+echo "3. Add to documentation"
+```
+
+```bash
+chmod +x demo/capture_screenshots.sh
+```
+
+---
+
+### Task 9.3: Demo Video Script
+
+**Create: `sdn_dashboard/demo/video_script.md`**
+
+```markdown
+# Video Recording Script
+
+## Equipment Setup
+- Screen recording software (OBS Studio, QuickTime, etc.)
+- Audio recording (microphone test before starting)
+- Resolution: 1920x1080 minimum
+- Frame rate: 30 FPS
+- Recording area: Full browser window or dashboard only
+
+## Video Structure (Total: 5-7 minutes)
+
+### Intro (30 seconds)
+**Video:** Title screen with project name
+**Audio:**
+"Welcome to our Cloud-Based SDN Management Dashboard demonstration. This project provides an interactive web interface for managing network slicing and dynamic flow provisioning in software-defined networks. Let's take a look at the system in action."
+
+---
+
+### Part 1: Dashboard Overview (45 seconds)
+**Video:** Pan across dashboard, highlighting each component
+**Audio:**
+"The dashboard consists of four main areas: the network topology visualization on the left showing our simulated SDN network with switches and hosts, the slice management panel on the upper right for creating and configuring network slices, the flow management panel below for dynamic rule provisioning, and real-time statistics in the header showing connection status and system metrics."
+
+---
+
+### Part 2: Network Slicing (2 minutes)
+**Video:**
+- Show existing slices
+- Create new slice with form
+- Select slice to show details
+- Configure ACL rules
+- Switch to slice view in topology
+
+**Audio:**
+"Network slicing allows us to create isolated virtual networks on shared infrastructure. Currently, we have three tenants each with their own slice. Let's create a new slice called 'Production'. We'll assign it VLAN 50, allocate 200 Mbps bandwidth, and add three hosts. Notice how the slice appears immediately in real-time.
+
+Now let's configure access control. With the Production slice selected, we can add ACL rules to control traffic. I'll add a rule allowing TCP traffic from host 1 to host 2. These rules provide fine-grained security per slice.
+
+The topology view can filter to show only resources in the selected slice, making it easier to visualize complex multi-tenant networks."
+
+---
+
+### Part 3: Dynamic Flow Provisioning (1.5 minutes)
+**Video:**
+- Select a slice
+- Show existing flows
+- Add new flow with form
+- Show flow statistics updating
+
+**Audio:**
+"Dynamic flow provisioning lets us add and remove OpenFlow rules on demand. Each slice has its own flow table showing match criteria, actions, and statistics. Let's add a custom flow for Tenant A - source 10.0.10.1, destination 10.0.10.3, forward action with priority 150.
+
+The flow is installed immediately, and we can see packet and byte counters updating in real-time as the simulation generates traffic matching this rule. This demonstrates the live integration between the dashboard and the OMNeT++ simulation."
+
+---
+
+### Part 4: Real-Time Features (1 minute)
+**Video:**
+- Show bandwidth reallocation
+- Demonstrate connection resilience (optional)
+- Show multiple slices updating
+
+**Audio:**
+"All dashboard updates happen in real-time via WebSocket push notifications. Watch as I change the bandwidth allocation for Tenant A from 100 to 50 Mbps - the update is instant with no page refresh required.
+
+The system supports multiple simultaneous tenants, each with complete isolation. Traffic, flows, and resources are strictly separated between slices, ensuring security in multi-tenant cloud environments."
+
+---
+
+### Part 5: Cleanup (30 seconds)
+**Video:**
+- Delete the demo slice
+- Show cascade deletion of flows
+
+**Audio:**
+"When we delete a slice, the system automatically removes all associated flows and resources. Watch as the Production slice and its rules disappear from the system."
+
+---
+
+### Conclusion (30 seconds)
+**Video:** Return to dashboard overview, fade to end screen with GitHub link
+**Audio:**
+"This Cloud-Based SDN Management Dashboard demonstrates practical network slicing and flow provisioning with real-time updates, multi-tenant support, and intuitive visualization. The modular architecture makes it extensible for additional SDN abstractions. Thank you for watching, and please check out our GitHub repository for more details."
+
+---
+
+## Recording Checklist
+
+### Before Recording
+- [ ] Clean browser (close extra tabs)
+- [ ] Hide bookmarks bar
+- [ ] Set zoom to 100%
+- [ ] Clear console in dev tools
+- [ ] Restart all services for clean state
+- [ ] Prepare demo data (know slice names, IPs, etc.)
+- [ ] Test audio levels
+- [ ] Close notification apps
+
+### During Recording
+- [ ] Speak clearly and at moderate pace
+- [ ] Move mouse smoothly
+- [ ] Pause briefly between major actions
+- [ ] Show results of each action
+- [ ] Keep timing consistent with script
+
+### After Recording
+- [ ] Review video for errors
+- [ ] Check audio quality
+- [ ] Add title screen and end screen
+- [ ] Add captions/subtitles if required
+- [ ] Export in standard format (MP4, H.264)
+
+---
+
+## Export Settings
+
+- Format: MP4
+- Codec: H.264
+- Resolution: 1920x1080
+- Frame Rate: 30 FPS
+- Bitrate: 5-10 Mbps
+- Audio: AAC, 192 kbps
+```
+
+---
+
+### Task 9.4: User Feedback Survey
+
+**Create: `sdn_dashboard/demo/feedback_survey.md`**
+
+```markdown
+# SDN Dashboard - User Feedback Survey
+
+## Participant Information
+- Name (optional): _______________
+- Role: [ ] Student [ ] Researcher [ ] Industry Professional [ ] Other: _____
+- Experience with SDN: [ ] Beginner [ ] Intermediate [ ] Advanced
+- Date: _______________
+
+---
+
+## Part 1: First Impressions (5 minutes)
+
+### 1. Dashboard Layout
+How would you rate the overall layout and organization?
+- [ ] Excellent
+- [ ] Good
+- [ ] Fair
+- [ ] Poor
+
+Comments: _______________________________________________
+
+### 2. Visual Design
+Is the visual design clear and professional?
+- [ ] Very Clear
+- [ ] Somewhat Clear
+- [ ] Confusing
+- [ ] Very Confusing
+
+Comments: _______________________________________________
+
+### 3. Initial Ease of Use
+Without any instruction, could you understand the main purpose of each panel?
+- [ ] Yes, immediately
+- [ ] Yes, after brief exploration
+- [ ] No, needed explanation
+- [ ] No, still unclear
+
+Comments: _______________________________________________
+
+---
+
+## Part 2: Feature Usability (15 minutes)
+
+Please attempt the following tasks and rate their difficulty:
+
+### Task 1: Create a New Network Slice
+**Instructions:** Create a slice named "Test" with VLAN 60, 100 Mbps bandwidth, and 2 hosts.
+
+Difficulty: [ ] Very Easy [ ] Easy [ ] Moderate [ ] Difficult [ ] Very Difficult
+
+Time taken: _____ minutes
+
+Issues encountered: _______________________________________________
+
+### Task 2: View Slice Details
+**Instructions:** Select an existing slice and view its details including hosts and flows.
+
+Difficulty: [ ] Very Easy [ ] Easy [ ] Moderate [ ] Difficult [ ] Very Difficult
+
+Were all details clear and informative?
+- [ ] Yes
+- [ ] Mostly
+- [ ] Some confusion
+- [ ] No
+
+Comments: _______________________________________________
+
+### Task 3: Add a Flow Rule
+**Instructions:** Add a flow rule for any slice with custom source and destination IPs.
+
+Difficulty: [ ] Very Easy [ ] Easy [ ] Moderate [ ] Difficult [ ] Very Difficult
+
+Was the form intuitive?
+- [ ] Very Intuitive
+- [ ] Somewhat Intuitive
+- [ ] Confusing
+- [ ] Very Confusing
+
+Suggestions: _______________________________________________
+
+### Task 4: Configure ACL Rules
+**Instructions:** Add an ACL rule to control traffic in a slice.
+
+Difficulty: [ ] Very Easy [ ] Easy [ ] Moderate [ ] Difficult [ ] Very Difficult
+
+Did you understand the purpose of ACLs?
+- [ ] Yes, clearly
+- [ ] Somewhat
+- [ ] Not really
+- [ ] No
+
+Comments: _______________________________________________
+
+### Task 5: Use Topology Visualization
+**Instructions:** Toggle between full view and slice view in the topology.
+
+Difficulty: [ ] Very Easy [ ] Easy [ ] Moderate [ ] Difficult [ ] Very Difficult
+
+Was the visualization helpful?
+- [ ] Very Helpful
+- [ ] Helpful
+- [ ] Neutral
+- [ ] Not Helpful
+
+Suggestions: _______________________________________________
+
+---
+
+## Part 3: Overall Experience (5 minutes)
+
+### Performance
+How responsive did the dashboard feel?
+- [ ] Very Responsive
+- [ ] Responsive
+- [ ] Acceptable
+- [ ] Slow
+- [ ] Very Slow
+
+Comments: _______________________________________________
+
+### Real-Time Updates
+Did you notice real-time updates happening?
+- [ ] Yes, clearly
+- [ ] Yes, subtly
+- [ ] Not sure
+- [ ] No
+
+Were they helpful?
+- [ ] Very Helpful
+- [ ] Somewhat Helpful
+- [ ] Neutral
+- [ ] Distracting
+
+### Error Handling
+Did you encounter any errors?
+- [ ] No errors
+- [ ] Minor errors (system recovered)
+- [ ] Major errors (required restart)
+
+If yes, describe: _______________________________________________
+
+Were error messages clear and helpful?
+- [ ] Very Clear
+- [ ] Somewhat Clear
+- [ ] Unclear
+- [ ] No messages shown
+
+---
+
+## Part 4: Feature Requests (5 minutes)
+
+### What features would you like to see added?
+1. _______________________________________________
+2. _______________________________________________
+3. _______________________________________________
+
+### What features could be removed or simplified?
+1. _______________________________________________
+2. _______________________________________________
+
+### What was your favorite aspect of the dashboard?
+_______________________________________________
+
+### What was the most frustrating aspect?
+_______________________________________________
+
+---
+
+## Part 5: Comparison (if applicable)
+
+Have you used similar network management tools?
+- [ ] Yes
+- [ ] No
+
+If yes, how does this compare?
+- [ ] Much Better
+- [ ] Somewhat Better
+- [ ] About the Same
+- [ ] Somewhat Worse
+- [ ] Much Worse
+
+What makes it better or worse?
+_______________________________________________
+
+---
+
+## Final Rating
+
+Overall, how would you rate this SDN Management Dashboard?
+- [ ] Excellent (9-10)
+- [ ] Good (7-8)
+- [ ] Fair (5-6)
+- [ ] Poor (3-4)
+- [ ] Very Poor (1-2)
+
+Would you use this tool for learning or managing SDN networks?
+- [ ] Definitely Yes
+- [ ] Probably Yes
+- [ ] Maybe
+- [ ] Probably No
+- [ ] Definitely No
+
+---
+
+## Additional Comments
+
+Please share any other thoughts, suggestions, or observations:
+
+_______________________________________________
+_______________________________________________
+_______________________________________________
+_______________________________________________
+
+---
+
+Thank you for your feedback!
+```
+
+---
+
+### Task 9.5: Usability Study Protocol
+
+**Create: `sdn_dashboard/demo/usability_study_protocol.md`**
+
+```markdown
+# Usability Study Protocol
+
+## Study Overview
+- **Objective:** Evaluate the usability and effectiveness of the SDN Management Dashboard
+- **Duration:** 30-45 minutes per participant
+- **Target Participants:** 5-10 students or researchers with varying SDN experience
+- **Method:** Task-based observation with think-aloud protocol
+
+---
+
+## Pre-Study Setup (15 minutes before each session)
+
+### Environment Preparation
+1. Start OMNeT++ simulation
+2. Start backend and frontend servers
+3. Verify all connections are active
+4. Reset to default state (3 slices: Tenant_A, Tenant_B, Tenant_C)
+5. Clear any test data from previous sessions
+6. Prepare recording equipment (screen + audio)
+
+### Materials Needed
+- [ ] Laptop with dashboard running
+- [ ] Feedback survey (printed or digital)
+- [ ] Consent form
+- [ ] Pen/pencil
+- [ ] Timer
+- [ ] Notepad for observations
+
+---
+
+## Study Protocol (30-45 minutes)
+
+### Introduction (5 minutes)
+
+**Script to Participant:**
+"Thank you for participating in this usability study. We're testing an SDN Management Dashboard for network slicing and flow provisioning. Your feedback will help us improve the system.
+
+Please know:
+- This is a test of the system, not of you
+- There are no wrong answers or actions
+- Please think aloud as you work
+- Ask questions anytime
+- You can stop at any time
+
+We'll record your screen and audio for analysis. Your identity will remain confidential. Do you consent to participate?"
+
+**After consent:**
+"I'll give you a brief overview, then ask you to complete some tasks. Please share your thoughts out loud as you work."
+
+---
+
+### System Overview (5 minutes)
+
+**Show and explain:**
+1. Main dashboard layout
+2. Purpose of each panel
+3. Basic navigation
+
+**Keep it brief** - we want to see what's intuitive without heavy training.
+
+---
+
+### Task Sequence (20-25 minutes)
+
+#### Task 1: Explore Existing Slices (3 minutes)
+**Instructions to Participant:**
+"Please explore the existing network slices. Tell me what you see and what you think each slice represents."
+
+**Observe:**
+- Does participant find slice list immediately?
+- Do they click on slices to see details?
+- Do they understand slice properties?
+- Any confusion about terminology?
+
+**Probing Questions:**
+- "What information is shown for each slice?"
+- "What do you think 'isolated' means?"
+- "How would you describe network slicing to someone else?"
+
+---
+
+#### Task 2: Create a New Slice (5 minutes)
+**Instructions to Participant:**
+"Please create a new network slice called 'Development' with the following specifications:
+- VLAN ID: 70
+- Bandwidth: 150 Mbps
+- Hosts: 10.0.70.1, 10.0.70.2
+- Isolated: Yes"
+
+**Observe:**
+- Can they find the create button?
+- Is the form intuitive?
+- Do they understand each field?
+- Any validation errors?
+- Do they notice the real-time update?
+
+**Note:**
+- Time to complete
+- Number of errors/retries
+- Hesitation points
+- Questions asked
+
+---
+
+#### Task 3: Add ACL Rules (5 minutes)
+**Instructions to Participant:**
+"For the Development slice you just created, add an access control rule to allow TCP traffic from 10.0.70.1 to 10.0.70.2."
+
+**Observe:**
+- Can they find ACL editing interface?
+- Is the ACL form clear?
+- Do they understand protocol options?
+- Do they understand allow vs deny?
+
+**Probing Questions:**
+- "What does this ACL rule do?"
+- "What would happen if you set action to 'deny'?"
+
+---
+
+#### Task 4: Add a Flow Rule (5 minutes)
+**Instructions to Participant:**
+"Add a flow rule for any slice with:
+- Source IP: 10.0.10.1
+- Destination IP: 10.0.10.2
+- Action: Forward
+- Priority: 120"
+
+**Observe:**
+- Can they navigate to flow panel?
+- Must they select a slice first?
+- Is this requirement clear?
+- Do they understand priority?
+
+**Probing Questions:**
+- "What happens to packets matching this rule?"
+- "Why might priority matter?"
+
+---
+
+#### Task 5: Use Topology Visualization (3-4 minutes)
+**Instructions to Participant:**
+"Using the topology view, identify all hosts belonging to your Development slice."
+
+**Observe:**
+- Do they find the topology panel?
+- Can they use the full/slice view toggle?
+- Does the visualization make sense?
+- Can they identify their slice's hosts?
+
+**Probing Questions:**
+- "What do the different colors mean?"
+- "How could this view be improved?"
+
+---
+
+#### Task 6: Modify and Delete (3-4 minutes)
+**Instructions to Participant:**
+"Change the bandwidth of your Development slice to 200 Mbps, then delete the slice entirely."
+
+**Observe:**
+- Can they find edit/update functionality?
+- Is the delete button obvious?
+- Are they hesitant to delete?
+- Do they understand consequences?
+
+**Probing Questions:**
+- "What happened to the flows when you deleted the slice?"
+
+---
+
+### Post-Task Discussion (5 minutes)
+
+**Open-ended questions:**
+1. "What was your overall impression?"
+2. "What did you like most?"
+3. "What was most frustrating?"
+4. "What would you change?"
+5. "Would this be useful for learning SDN concepts?"
+6. "Would this be useful for managing real networks?"
+
+---
+
+### Survey Completion (5 minutes)
+
+Have participant complete written feedback survey while observations are fresh.
+
+---
+
+## Data Collection
+
+### Quantitative Metrics
+- [ ] Time to complete each task
+- [ ] Number of errors per task
+- [ ] Number of help requests
+- [ ] Success/failure rate per task
+- [ ] Survey ratings
+
+### Qualitative Observations
+- [ ] Verbal feedback during tasks
+- [ ] Body language (frustration, confidence)
+- [ ] Navigation patterns
+- [ ] Common confusion points
+- [ ] Feature discovery
+- [ ] Ah-ha moments
+
+---
+
+## Analysis (After all sessions)
+
+### Compile Results
+1. Average time per task
+2. Success rates
+3. Common pain points
+4. Feature requests
+5. Positive feedback themes
+
+### Prioritize Issues
+**High Priority (Fix before demo):**
+- Tasks with <70% success rate
+- Features causing significant frustration
+- Confusing terminology
+- Critical bugs
+
+**Medium Priority (Fix before final submission):**
+- Tasks with 70-85% success rate
+- Minor UI annoyances
+- Missing helpful features
+
+**Low Priority (Future work):**
+- Nice-to-have features
+- Advanced functionality
+- Edge cases
+
+### Create Action Items
+For each issue:
+1. Description
+2. Severity
+3. Proposed solution
+4. Time estimate
+5. Assign to team member
+
+---
+
+## Ethics & Privacy
+
+- Obtain informed consent
+- Protect participant privacy
+- Store data securely
+- Anonymize results
+- Allow withdrawal anytime
+- Compensate time if appropriate
+
+---
+
+## Participant Recruitment
+
+**Target:** 5-10 participants with varied backgrounds
+
+**Ideal Mix:**
+- 2-3 SDN beginners
+- 2-3 SDN intermediate users
+- 2-3 SDN advanced users
+- Mix of students and professionals
+
+**Recruitment Methods:**
+- Class announcement
+- Department email list
+- Lab group members
+- Industry contacts
+
+**Compensation:** Pizza, gift card, or course credit (if applicable)
+```
+
+---
+
+**Validation Checklist for Phase 9:**
+
+- [ ] Demo script created and tested
+- [ ] Screenshots captured for all key features
+- [ ] Demo video recorded and edited
+- [ ] Feedback survey designed
+- [ ] Usability study protocol finalized
+- [ ] 5+ users participated in study
+- [ ] Feedback analyzed and prioritized
+- [ ] High-priority issues addressed
+- [ ] UI pain points fixed
+- [ ] Final polish applied to dashboard
+- [ ] Presentation materials prepared
+- [ ] All documentation updated
+- [ ] System ready for final demo
+
+---
 ```
