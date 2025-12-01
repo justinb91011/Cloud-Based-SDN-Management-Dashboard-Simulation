@@ -1,17 +1,14 @@
 {
-  "type": "CREATE_SLICE",
+  "type": "START_EXPERIMENT",
   "data": {
-    "id": 35,
-    "name": "TenantC",
-    "vlanId": 402,
-    "bandwidth": 1500,
-    "hosts": [
-      "10.0.6.1",
-      "10.0.6.2",
-      "10.0.6.3"
-    ],
-    "isolated": true,
-    "acl": []
+    "experimentId": "exp_1764618245146",
+    "config": {
+      "scenarioId": "STRESS_MAX_SLICES",
+      "tenantCount": 3,
+      "sliceCount": 3,
+      "loadLevel": "medium",
+      "aclPattern": "default"
+    }
   },
-  "timestamp": 1762388537555
+  "timestamp": 1764618245158
 }

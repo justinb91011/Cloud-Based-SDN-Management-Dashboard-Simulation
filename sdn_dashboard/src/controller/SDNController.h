@@ -98,6 +98,12 @@ class SDNControllerApp : public ApplicationBase
     // Command processing
     virtual void processCommands();
     virtual void parseAndExecuteCommand(const std::string &cmdJson);
+    virtual void exportMetrics();
+
+  protected:
+    // Metrics export
+    std::ofstream *metricsFile;
+    simtime_t lastMetricsExport;
 
   public:
     SDNControllerApp();
