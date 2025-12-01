@@ -383,6 +383,175 @@ app.get('/api/metrics/recent', (req, res) => {
     res.json(metricsCollector.getRecentMetrics(count));
 });
 
+// --- Experiment Endpoints (Mock Implementation) ---
+
+let experiments = [];
+
+// List experiments
+app.get('/api/experiments', (req, res) => {
+    res.json(experiments);
+});
+
+// Start experiment
+app.post('/api/experiments', (req, res) => {
+    const { scenarioId, tenantCount, sliceCount, loadLevel, aclPattern } = req.body;
+
+    const experimentId = `exp_${Date.now()}`;
+    const newExperiment = {
+        id: experimentId,
+        name: `${scenarioId} (${new Date().toLocaleTimeString()})`,
+        config: { scenarioId, tenantCount, sliceCount, loadLevel, aclPattern },
+        status: 'running',
+        progress: 0,
+        timestamp: Date.now(),
+        metrics: null
+    };
+
+    experiments.unshift(newExperiment); // Add to beginning
+
+    // Simulate experiment progress
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 10;
+        newExperiment.progress = progress;
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            newExperiment.status = 'done';
+            newExperiment.metrics = generateMockMetrics(newExperiment.config);
+        }
+    }, 1000); // Complete in 10 seconds
+
+    res.json({ experimentId });
+});
+
+// Get experiment status
+app.get('/api/experiments/:id/status', (req, res) => {
+    const exp = experiments.find(e => e.id === req.params.id);
+    if (!exp) return res.status(404).json({ error: 'Experiment not found' });
+    res.json({ status: exp.status, progress: exp.progress });
+});
+
+// Get experiment metrics
+app.get('/api/experiments/:id/metrics', (req, res) => {
+    const exp = experiments.find(e => e.id === req.params.id);
+    if (!exp) return res.status(404).json({ error: 'Experiment not found' });
+    if (!exp.metrics) return res.status(400).json({ error: 'Metrics not available yet' });
+
+    // Handle format=csv
+    if (req.query.format === 'csv') {
+        res.header('Content-Type', 'text/csv');
+        res.attachment(`${exp.id}_metrics.csv`);
+        return res.send(generateCsv(exp.metrics));
+    }
+
+    res.json(exp.metrics);
+});
+
+// Helper to generate mock metrics
+function generateMockMetrics(config) {
+    const slices = [];
+    const summary = {};
+    const sliceCount = parseInt(config.sliceCount) || 3;
+
+    // Generate time series data
+    for (let t = 0; t <= 60; t += 5) { // 0 to 60 seconds
+        const point = { timestamp: t };
+        for (let i = 1; i <= sliceCount; i++) {
+            const sliceId = `Slice_${i}`;
+            // Randomize based on loadLevel
+            const baseLatency = config.loadLevel === 'high' ? 50 : 10;
+            const baseThroughput = config.loadLevel === 'high' ? 800 : 200;
+
+            point[sliceId] = {
+                latency: baseLatency + Math.random() * 20,
+                throughput: baseThroughput + Math.random() * 100
+            };
+        }
+        slices.push(point);
+    }
+
+    // Flatten slices for the chart (recharts expects flat objects)
+    const flatSlices = slices.map(pt => {
+        const flat = { timestamp: pt.timestamp };
+        for (let i = 1; i <= sliceCount; i++) {
+            flat[`Slice_${i}`] = pt[`Slice_${i}`].latency; // Default to latency for simple view, or handle in frontend
+            // Actually, let's provide separate arrays or a structure the frontend expects
+            // Frontend TimeSeriesChart expects: [{ timestamp: 10, sliceA: 50, sliceB: 60 }, ...]
+            // So we need to decide if we send latency or throughput. 
+            // The frontend handles switching, so we should probably send a structure that supports both.
+            // But the current TimeSeriesChart implementation just plots all keys except timestamp.
+            // Let's adjust the mock to return what the frontend expects for the default view, 
+            // OR update the frontend to handle nested data.
+            // The frontend ExperimentView separates them: data={metrics.slices} metric={chartMetric}
+            // But wait, TimeSeriesChart just plots all keys. 
+            // So we should probably return TWO arrays in the response: slicesLatency and slicesThroughput?
+            // Or just return the complex object and let frontend parse?
+            // Let's look at ExperimentView.js: 
+            // <TimeSeriesChart data={metrics.slices} ... />
+            // It passes the SAME data for both. This implies the data should have keys like "Slice_1" containing the value.
+            // So we can't have both latency and throughput in the same object with the same key "Slice_1".
+            // We need to fix this in the frontend or backend.
+            // Let's fix the backend to return a structure that works, or update frontend.
+            // Let's return `slices` as an array of objects where keys are `Slice_1_latency`, `Slice_1_throughput`?
+            // No, ExperimentView has a toggle `chartMetric`.
+            // If I change the data passed to TimeSeriesChart based on metric, I need to transform it.
+            // Let's make the mock return `slices` as an array of objects with `timestamp`, `Slice_1`, `Slice_2`... 
+            // BUT wait, if I toggle, I need different values.
+            // Let's return `slicesLatency` and `slicesThroughput` in the response, and update ExperimentView to use the right one.
+        }
+        return flat;
+    });
+
+    // Re-doing the mock generation to be compatible with the simple frontend
+    const slicesLatency = [];
+    const slicesThroughput = [];
+
+    for (let t = 0; t <= 60; t += 5) {
+        const ptLat = { timestamp: t };
+        const ptThr = { timestamp: t };
+
+        for (let i = 1; i <= sliceCount; i++) {
+            const sliceId = `Slice_${i}`;
+            const baseLatency = config.loadLevel === 'high' ? 50 : 10;
+            const baseThroughput = config.loadLevel === 'high' ? 800 : 200;
+
+            ptLat[sliceId] = +(baseLatency + Math.random() * 20).toFixed(2);
+            ptThr[sliceId] = +(baseThroughput + Math.random() * 100).toFixed(2);
+        }
+        slicesLatency.push(ptLat);
+        slicesThroughput.push(ptThr);
+    }
+
+    // Generate summary
+    for (let i = 1; i <= sliceCount; i++) {
+        const sliceId = `Slice_${i}`;
+        summary[sliceId] = {
+            avgLatency: +(20 + Math.random() * 10).toFixed(2),
+            p95Latency: +(40 + Math.random() * 10).toFixed(2),
+            avgThroughput: +(500 + Math.random() * 200).toFixed(2),
+            aclHitRate: +(0.8 + Math.random() * 0.2).toFixed(2)
+        };
+    }
+
+    return {
+        slices: slicesLatency, // Default to latency for now, or we can change frontend to look for specific prop
+        slicesLatency,
+        slicesThroughput,
+        summary
+    };
+}
+
+function generateCsv(metrics) {
+    // Simple CSV generation for summary
+    const header = 'SliceID,AvgLatency,P95Latency,AvgThroughput,ACLHitRate\n';
+    const rows = Object.keys(metrics.summary).map(id => {
+        const m = metrics.summary[id];
+        return `${id},${m.avgLatency},${m.p95Latency},${m.avgThroughput},${m.aclHitRate}`;
+    }).join('\n');
+    return header + rows;
+}
+
 // WebSocket for real-time updates
 const wss = new WebSocket.Server({ noServer: true });
 

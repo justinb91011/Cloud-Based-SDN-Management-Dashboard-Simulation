@@ -9,7 +9,12 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "keywords": ["sdn", "dashboard", "network", "slicing"],
+  "keywords": [
+    "sdn",
+    "dashboard",
+    "network",
+    "slicing"
+  ],
   "author": "Justin and Taran",
   "license": "MIT",
   "dependencies": {
@@ -17,7 +22,8 @@
     "d3": "^7.9.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-scripts": "^5.0.1"
+    "react-scripts": "^5.0.1",
+    "recharts": "^3.5.1"
   },
   "browserslist": {
     "production": [

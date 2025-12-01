@@ -242,37 +242,59 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Cloud-Based SDN Management Dashboard</h1>
+        <div className="header-nav"> {/* New navigation buttons */}
+          <button
+            className={currentView === 'dashboard' ? 'active' : ''}
+            onClick={() => setCurrentView('dashboard')}
+          >
+            Network Control
+          </button>
+          <button
+            className={currentView === 'experiments' ? 'active' : ''}
+            onClick={() => setCurrentView('experiments')}
+          >
+            Experiments
+          </button>
+        </div>
         <ConnectionStatus status={connectionStatus} />
         <Statistics data={statistics} />
       </header>
 
       <div className="main-content">
-        <div className="topology-section">
-          <TopologyView
-            topology={topology}
-            slices={slices}
-            selectedSlice={selectedSlice}
-          />
-        </div>
+        {currentView === 'dashboard' ? (
+          <>
+            <div className="topology-section">
+              <TopologyView
+                topology={topology}
+                slices={slices}
+                selectedSlice={selectedSlice}
+              />
+            </div>
 
-        <div className="control-panels">
-          <SlicePanel
-            slices={slices}
-            onCreateSlice={handleCreateSlice}
-            onDeleteSlice={handleDeleteSlice}
-            onUpdateSlice={handleUpdateSlice}
-            onSelectSlice={setSelectedSlice}
-            selectedSlice={selectedSlice}
-          />
+            <div className="control-panels">
+              <SlicePanel
+                slices={slices}
+                onCreateSlice={handleCreateSlice}
+                onDeleteSlice={handleDeleteSlice}
+                onUpdateSlice={handleUpdateSlice}
+                onSelectSlice={setSelectedSlice}
+                selectedSlice={selectedSlice}
+              />
 
-          <FlowPanel
-            flows={flows}
-            slices={slices}
-            selectedSlice={selectedSlice}
-            onAddFlow={handleAddFlow}
-            onDeleteFlow={handleDeleteFlow}
-          />
-        </div>
+              <FlowPanel
+                flows={flows}
+                slices={slices}
+                selectedSlice={selectedSlice}
+                onAddFlow={handleAddFlow}
+                onDeleteFlow={handleDeleteFlow}
+              />
+            </div>
+          </>
+        ) : (
+          <div className="full-width-panel"> {/* Render ExperimentView */}
+            <ExperimentView />
+          </div>
+        )}
       </div>
 
       <div className="metrics-section">
