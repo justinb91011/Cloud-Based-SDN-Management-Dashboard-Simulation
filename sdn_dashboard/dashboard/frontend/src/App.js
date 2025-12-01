@@ -6,6 +6,7 @@ import FlowPanel from './components/FlowPanel';
 import Statistics from './components/Statistics';
 import ConnectionStatus from './components/ConnectionStatus';
 import PerformanceMetrics from './components/PerformanceMetrics';
+import ExperimentView from './components/ExperimentView';
 import api from './services/api';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [topology, setTopology] = useState({ nodes: [], links: [] });
   const [statistics, setStatistics] = useState({});
   const [selectedSlice, setSelectedSlice] = useState(null);
+  const [currentView, setCurrentView] = useState('dashboard');
   const [ws, setWs] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
