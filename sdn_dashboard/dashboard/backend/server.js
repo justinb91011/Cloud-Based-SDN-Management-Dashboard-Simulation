@@ -472,6 +472,36 @@ app.get('/api/experiments/:id/metrics', (req, res) => {
 
     if (!exp.metrics) return res.status(400).json({ error: 'Metrics not available yet' });
 
+    // Transform history data for chart display
+    // Chart expects: [{ timestamp: 1, Slice1: value, Slice2: value }, ...}]
+    // OMNeT++ provides: [{ timestamp: 1, slices: [{sliceId: 1, latency: 25, throughput: 75}, ...}] }, ...]
+    if (exp.metrics.history && Array.isArray(exp.metrics.history)) {
+        // Create flattened arrays for latency and throughput
+        const slicesLatency = exp.metrics.history.map(point => {
+            const flattened = { timestamp: point.timestamp };
+            if (point.slices && Array.isArray(point.slices)) {
+                point.slices.forEach(slice => {
+                    flattened[`Slice ${slice.sliceId}`] = slice.latency;
+                });
+            }
+            return flattened;
+        });
+
+        const slicesThroughput = exp.metrics.history.map(point => {
+            const flattened = { timestamp: point.timestamp };
+            if (point.slices && Array.isArray(point.slices)) {
+                point.slices.forEach(slice => {
+                    flattened[`Slice ${slice.sliceId}`] = slice.throughput;
+                });
+            }
+            return flattened;
+        });
+
+        // Add flattened data to metrics
+        exp.metrics.slicesLatency = slicesLatency;
+        exp.metrics.slicesThroughput = slicesThroughput;
+    }
+
     // Handle format=csv
     if (req.query.format === 'csv') {
         res.header('Content-Type', 'text/csv');
