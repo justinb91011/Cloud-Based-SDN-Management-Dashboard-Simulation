@@ -175,62 +175,63 @@ Both should show paths. ✅
 
 ## Building the Simulation
 
-Now we'll compile your custom SDN controller and simulation.
+The simulation is built directly in the `simulations/` directory with controller source files.
 
-### Step 1: Build the Controller Module
+### Step 1: Copy Controller Files to Simulations Directory
 
 ```bash
-cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation/sdn_dashboard/src
+cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation/sdn_dashboard/simulations
+
+# Copy controller source files
+cp ../src/controller/SDNController.cc ./
+cp ../src/controller/SDNController.h ./
 ```
 
-**Create Makefile:**
-```bash
-opp_makemake -f --deep \
-  -o sdn_controller \
-  -I$INET_ROOT/src \
-  -L$INET_ROOT/src \
-  -lINET
-```
+**Why?** The OMNeT++ build system compiles everything together in the simulations directory.
 
-**Build:**
+---
+
+### Step 2: Source OMNeT++ Environment
+
+**CRITICAL:** You must source the OMNeT++ environment before building:
+
 ```bash
-make MODE=release -j4
+source ~/Desktop/JHUFall2025/Cloud/tj_omnet/setenv
 ```
 
 **Expected output:**
 ```
-Creating executable: sdn_controller
+NOTE: We are running on Apple Silicon, but you have downloaded the x86_64 version...
+Environment for 'omnetpp-6.0.1' in directory '... /tj_omnet' is ready.
 ```
-
-**Verify:**
-```bash
-ls -lh sdn_controller
-```
-
-You should see the compiled binary (about 2-3 MB). ✅
 
 ---
 
-### Step 2: Build the Simulation Binary
+### Step 3: Create Makefile
 
-```bash
-cd ../simulations
-```
-
-**Create Makefile:**
 ```bash
 opp_makemake -f --deep \
   -o sdn_sim \
   -I$INET_ROOT/src \
+  -I../../../inet/src \
   -L$INET_ROOT/src \
-  -lINET \
-  -L../src \
-  -lsdn_controller
+  -L../../../inet/src \
+  -lINET
 ```
 
-**Build:**
+**What this does:**
+- `-o sdn_sim` - Names the output executable
+- `-I` flags - Include directories for headers
+- `-L` flags - Library search paths
+- `-lINET` - Links against INET Framework
+
+---
+
+### Step 4: Build
+
 ```bash
-make MODE=release -j4
+make clean
+make MODE=release
 ```
 
 **Expected output:**
@@ -238,19 +239,38 @@ make MODE=release -j4
 Creating executable: sdn_sim
 ```
 
-**Verify:**
-```bash
-ls -lh sdn_sim
-```
-
-You should see the simulation executable (about 3-5 MB). ✅
+**Build time:** 30-60 seconds ⏱️
 
 ---
 
-### Step 3: Test the Simulation
+### Step 5: Verify Build
+
+``` bash
+ls -lh sdn_sim
+```
+
+**Expected:** `sdn_sim` executable, approximately 100-200 KB
 
 ```bash
-./sdn_sim -u Cmdenv -c General -t 5s
+ls -lh out/clang-release/sdn_sim
+```
+
+**Expected:** Actual binary in `out/clang-release/`, approximately 100-200 KB
+
+✅ If both exist, build successful!
+
+---
+
+### Step 6: Test the Simulation
+
+**Source environment first:**
+```bash
+source ~/Desktop/JHUFall2025/Cloud/tj_omnet/setenv
+```
+
+**Run a 10-second test:**
+```bash
+./sdn_sim -u Cmdenv -n .:../src:../../../inet/src --sim-time-limit=10s
 ```
 
 **Expected output:**
@@ -258,32 +278,39 @@ You should see the simulation executable (about 3-5 MB). ✅
 OMNeT++ Discrete Event Simulation  (C) 1992-2024 Andras Varga, OpenSim Ltd.
 Version: 6.0.1
 
-Setting up Cmdenv...
 Loading NED files from .: 4
-Preparing for running configuration General, run #0...
+Preparing for running configuration SimpleTopology, run #0...
 
+Initializing...
 ** Event #1  t=0   Elapsed: 0.000s (0m 00s)
-Initializing module SliceableCloudTopology...
 SDN Controller initializing on port 6653
 Created network slice 1 (Tenant_A)
 Created network slice 2 (Tenant_B)
 Created network slice 3 (Tenant_C)
 Installed flow rule 1 from 10.0.10.1 to
+Installed flow rule 2 from 10.0.10.2 to
+...
+Installed flow rule 12 from 10.0.30.4 to
 Command processing enabled. Checking results/commands.json every 1 second.
 
-<!> Simulation time limit reached -- at t=5s
+Running simulation...
+** Event #100  t=1   ...
+** Event #200  t=2   ...
+...
+<!> Simulation time limit reached -- at t=10s
 ```
 
 **Success indicators:**
-- ✅ Simulation starts without errors
+- ✅ No compilation errors
 - ✅ SDN Controller initializes
-- ✅ 3 slices created (Tenant_A, B, C)
-- ✅ 12 flow rules installed
+- ✅ 3 network slices created (Tenant_A, B, C)
+- ✅ 12 flow rules installed (4 per slice)
 - ✅ Command processing enabled
+- ✅ Simulation runs and processes events
 
 ---
 
-### Step 4: Check Generated Files
+### Step 7: Verify Generated Files
 
 ```bash
 ls -la results/
@@ -291,19 +318,42 @@ ls -la results/
 
 **Expected files:**
 ```
-controller_state.json    ← Network slices and flows
-topology.json            ← Network topology (21 nodes)
-commands.json            ← Commands from dashboard (may be empty)
-General-#0.sca          ← OMNeT++ scalar results
-General-#0.vec          ← OMNeT++ vector results
+metrics.json               ← Real-time metrics data (CRITICAL for dashboard)
+controller_state.json      ← Network slices and flows
+topology.json              ← Network topology (21 nodes)
+commands.json              ← Commands from dashboard
+General-#0.vec             ← OMNeT++ vector results
+General-#0.vci             ← Vector index
 ```
 
-**Verify controller_state.json:**
+**Check metrics.json:**
 ```bash
-cat results/controller_state.json
+tail -20 results/metrics.json
 ```
 
-**Expected:** JSON with 3 slices and 12 flows. ✅
+**Expected:** JSON with timestamp, slices array, summary metrics, and history array:
+```json
+{
+  "timestamp": 10,
+  "slices": [
+    {"sliceId": 1, "latency": 25, "throughput": 75},
+    {"sliceId": 2, "latency": 18, "throughput": 120},
+    {"sliceId": 3, "latency": 22, "throughput": 95}
+  ],
+  "summary": {
+    "avgLatency": 21.67,
+    "p95Latency": 24.5,
+    "avgThroughput": 96.67,
+    "aclHitRate": 0.85
+  },
+  "history": [
+    {"timestamp": 1, "slices": [...]},
+    ...
+  ]
+}
+```
+
+✅ If `metrics.json` exists and has this structure, simulation is working perfectly!
 
 ---
 
@@ -668,23 +718,28 @@ npm install
 
 ### Start Everything (3 Terminals)
 
-**Terminal 1 - Backend:**
+**Terminal 1 - OMNeT++ Simulation:**
 ```bash
-cd sdn_dashboard/dashboard/backend
+cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation/sdn_dashboard/simulations
+source ~/Desktop/JHUFall2025/Cloud/tj_omnet/setenv
+./sdn_sim -u Cmdenv -n .:../src:../../../inet/src
+```
+
+**Terminal 2 - Backend:**
+```bash
+cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation/sdn_dashboard/dashboard/backend
 npm start
 ```
 
-**Terminal 2 - Frontend:**
+**Terminal 3 - Frontend:**
 ```bash
-cd sdn_dashboard/dashboard/frontend
+cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation/sdn_dashboard/dashboard/frontend
 npm start
 ```
 
-**Terminal 3 - Simulation (optional):**
-```bash
-cd sdn_dashboard/simulations
-./sdn_sim -u Cmdenv -c General
-```
+**Start in this order:** Simulation → Backend → Frontend
+
+Browser opens automatically to http://localhost:3000 🎉
 
 ---
 
@@ -702,28 +757,32 @@ killall sdn_sim
 
 ### Rebuild After Code Changes
 
-**Controller changes:**
+**Controller changes (SDNController.cc/h):**
 ```bash
-cd sdn_dashboard/src
+cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation/sdn_dashboard/simulations
+cp ../src/controller/SDNController.cc ./
+cp ../src/controller/SDNController.h ./
+source ~/Desktop/JHUFall2025/Cloud/tj_omnet/setenv
 make clean && make MODE=release
 ```
 
-**Simulation changes:**
+**Simulation configuration changes (.ned/.ini):**
 ```bash
-cd sdn_dashboard/simulations
+cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation/sdn_dashboard/simulations
+source ~/Desktop/JHUFall2025/Cloud/tj_omnet/setenv
 make clean && make MODE=release
 ```
 
 **Backend changes:**
 ```bash
-cd sdn_dashboard/dashboard/backend
-# Just restart: Ctrl+C, then npm start
+# Just restart: Ctrl+C in Terminal 2, then
+npm start
 ```
 
 **Frontend changes:**
 ```bash
-cd sdn_dashboard/dashboard/frontend
-# Hot reload automatic, or restart: Ctrl+C, then npm start
+# Hot reload automatic, or restart: Ctrl+C in Terminal 3, then
+npm start
 ```
 
 ---

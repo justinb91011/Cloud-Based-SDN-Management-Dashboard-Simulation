@@ -5,6 +5,7 @@ import inet.applications.contract.IApp;
 simple SDNControllerApp like IApp
 {
     parameters:
+        @class(sdn_dashboard::SDNControllerApp);
         int localPort = default(6653);  // OpenFlow default port
         string sliceConfigFile = default("slices.json");
         string flowConfigFile = default("flows.json");

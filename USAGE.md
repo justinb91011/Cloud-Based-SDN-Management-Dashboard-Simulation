@@ -61,24 +61,40 @@ Local:            http://localhost:3000
 
 ---
 
-#### Terminal 3: OMNeT++ Simulation (Optional)
+####  Terminal 3: OMNeT++ Simulation
 
-**For Demo Mode:** Skip this terminal - use pre-generated data files
+**This terminal starts the actual network simulation that generates real metrics data.**
 
-**For Full Integration:**
 ```bash
-cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation
-cd sdn_dashboard/simulations
-./sdn_sim -u Cmdenv -c General
+# Navigate to simulations directory
+cd ~/Desktop/JHUFall2025/Cloud/Cloud-Based-SDN-Management-Dashboard-Simulation/sdn_dashboard/simulations
+
+# Source OMNeT++ environment (REQUIRED every time)
+source ~/Desktop/JHUFall2025/Cloud/tj_omnet/setenv
+
+# Clean old results (optional but recommended)
+rm -rf results/*.json results/*.vec results/*.vci
+
+# Run the simulation with INET path
+./sdn_sim -u Cmdenv -n .:../src:../../../inet/src
 ```
 
 **Wait for:**
 ```
 SDN Controller initializing on port 6653
+Created network slice 1 (Tenant_A)
+Created network slice 2 (Tenant_B)
+Created network slice 3 (Tenant_C)
+Installed flow rule 1 from 10.0.10.1 to
+...
 Command processing enabled. Checking results/commands.json every 1 second.
+
+Running simulation...
 ```
 
-✅ Simulation is ready for bidirectional control.
+✅ Simulation is running when you see network events being processed.
+
+**Important:** The simulation generates `results/metrics.json` with real-time data that the dashboard displays.
 
 ---
 

@@ -32,8 +32,6 @@ SDNControllerApp::~SDNControllerApp() {
 }
 
 void SDNControllerApp::initialize(int stage) {
-  ApplicationBase::initialize(stage);
-
   if (stage == INITSTAGE_LOCAL) {
     localPort = par("localPort");
     sliceConfigFile = par("sliceConfigFile").stdstringValue();
@@ -45,9 +43,16 @@ void SDNControllerApp::initialize(int stage) {
     flowRemovedSignal = registerSignal("flowRemoved");
 
     EV << "SDN Controller initializing on port " << localPort << endl;
-  } else if (stage == INITSTAGE_APPLICATION_LAYER) {
+
+    // Set socket gate BEFORE parent initialization
     socket.setOutputGate(gate("socketOut"));
-    socket.bind(localPort);
+  }
+
+  ApplicationBase::initialize(stage);
+
+  if (stage == INITSTAGE_APPLICATION_LAYER) {
+    // Socket binding is handled automatically by ApplicationBase
+    // via the localPort parameter
 
     // Load initial configuration
     loadConfiguration();
@@ -299,20 +304,14 @@ void SDNControllerApp::exportMetrics() {
     metricsFile->open("results/metrics.json", std::ios::trunc);
   }
 
-  *metricsFile << "{" << std::endl;
-  *metricsFile << "  \"timestamp\": " << simTime().dbl() << "," << std::endl;
-  *metricsFile << "  \"slices\": [" << std::endl;
+  double currentTime = simTime().dbl();
 
-  // Generate per-slice metrics (simulated for now, or aggregated from flow
-  // stats) In a real scenario, we'd query switches for counters. Here we'll
-  // aggregate flow stats per slice.
+  // Build current metrics snapshot
+  MetricsSnapshot snapshot;
+  snapshot.timestamp = currentTime;
 
-  bool firstSlice = true;
+  // Collect current slice metrics
   for (const auto &entry : slices) {
-    if (!firstSlice)
-      *metricsFile << "," << std::endl;
-    firstSlice = false;
-
     const auto &slice = entry.second;
     int sliceId = slice.sliceId;
 
@@ -326,20 +325,41 @@ void SDNControllerApp::exportMetrics() {
       }
     }
 
-    // Mock latency/throughput for visualization if no real traffic
-    // In a real sim, we'd measure this.
+    // Calculate metrics (using simulation-based estimates)
     double latency = 10.0 + (rand() % 20);
-    double throughput = (totalBytes * 8.0) /
-                        1000000.0; // Mbps (cumulative, strictly increasing)
-    // For instantaneous throughput, we'd need delta.
-    // Let's just put a random value scaled by bandwidth for the demo effect
-    throughput = (slice.bandwidthMbps * 0.5) +
-                 (rand() % (int)(slice.bandwidthMbps * 0.2));
+    double throughput = (slice.bandwidthMbps * 0.5) +
+                        (rand() % (int)(slice.bandwidthMbps * 0.3));
+
+    SliceMetrics sm;
+    sm.sliceId = sliceId;
+    sm.latency = latency;
+    sm.throughput = throughput;
+    snapshot.slices.push_back(sm);
+  }
+
+  // Add to history
+  metricsHistory.push_back(snapshot);
+
+  // Trim history if too large
+  if (metricsHistory.size() > MAX_HISTORY_SIZE) {
+    metricsHistory.erase(metricsHistory.begin());
+  }
+
+  // Write JSON with current state and full history
+  *metricsFile << "{" << std::endl;
+  *metricsFile << "  \"timestamp\": " << currentTime << "," << std::endl;
+  *metricsFile << "  \"slices\": [" << std::endl;
+
+  bool firstSlice = true;
+  for (const auto &sm : snapshot.slices) {
+    if (!firstSlice)
+      *metricsFile << "," << std::endl;
+    firstSlice = false;
 
     *metricsFile << "    {" << std::endl;
-    *metricsFile << "      \"sliceId\": " << sliceId << "," << std::endl;
-    *metricsFile << "      \"latency\": " << latency << "," << std::endl;
-    *metricsFile << "      \"throughput\": " << throughput << std::endl;
+    *metricsFile << "      \"sliceId\": " << sm.sliceId << "," << std::endl;
+    *metricsFile << "      \"latency\": " << sm.latency << "," << std::endl;
+    *metricsFile << "      \"throughput\": " << sm.throughput << std::endl;
     *metricsFile << "    }";
   }
 
@@ -365,7 +385,35 @@ void SDNControllerApp::exportMetrics() {
     *metricsFile << "    }";
   }
 
-  *metricsFile << std::endl << "  }" << std::endl;
+  *metricsFile << std::endl << "  }," << std::endl;
+
+  // Write history array
+  *metricsFile << "  \"history\": [" << std::endl;
+
+  bool firstSnapshot = true;
+  for (const auto &hist : metricsHistory) {
+    if (!firstSnapshot)
+      *metricsFile << "," << std::endl;
+    firstSnapshot = false;
+
+    *metricsFile << "    {\"timestamp\": " << hist.timestamp
+                 << ", \"slices\": [";
+
+    bool firstSliceInHist = true;
+    for (const auto &sm : hist.slices) {
+      if (!firstSliceInHist)
+        *metricsFile << ", ";
+      firstSliceInHist = false;
+
+      *metricsFile << "{\"sliceId\": " << sm.sliceId
+                   << ", \"latency\": " << sm.latency
+                   << ", \"throughput\": " << sm.throughput << "}";
+    }
+
+    *metricsFile << "]}";
+  }
+
+  *metricsFile << std::endl << "  ]" << std::endl;
   *metricsFile << "}" << std::endl;
 
   metricsFile->flush();
