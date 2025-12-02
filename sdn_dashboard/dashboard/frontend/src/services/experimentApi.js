@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:3001/api';
 
 const experimentApi = {
   // List available scenarios/presets
@@ -58,10 +58,10 @@ const experimentApi = {
       throw error;
     }
   },
-  
+
   // Export metrics
   exportMetrics: (id, format = 'csv') => {
-      window.open(`${API_BASE_URL}/experiments/${id}/metrics?format=${format}`, '_blank');
+    window.open(`${API_BASE_URL}/experiments/${id}/metrics?format=${format}`, '_blank');
   }
 };
 

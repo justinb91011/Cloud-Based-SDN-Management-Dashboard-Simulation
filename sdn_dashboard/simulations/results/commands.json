@@ -1,7 +1,7 @@
 {
   "type": "START_EXPERIMENT",
   "data": {
-    "experimentId": "exp_1764618245146",
+    "experimentId": "exp_1764655171772",
     "config": {
       "scenarioId": "STRESS_MAX_SLICES",
       "tenantCount": 3,
@@ -10,5 +10,5 @@
       "aclPattern": "default"
     }
   },
-  "timestamp": 1764618245158
+  "timestamp": 1764655171788
 }

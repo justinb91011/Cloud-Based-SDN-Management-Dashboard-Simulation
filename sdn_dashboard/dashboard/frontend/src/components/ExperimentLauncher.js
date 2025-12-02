@@ -55,7 +55,8 @@ const ExperimentLauncher = ({ onExperimentStart, onExperimentComplete }) => {
                     const statusUpdate = await experimentApi.getExperimentStatus(experimentId);
                     setStatus(statusUpdate);
 
-                    if (statusUpdate.status === 'done') {
+                    // Check for both 'done' and 'completed' statuses
+                    if (statusUpdate.status === 'done' || statusUpdate.status === 'completed') {
                         clearInterval(pollInterval);
                         setIsRunning(false);
                         if (onExperimentComplete) onExperimentComplete(experimentId);

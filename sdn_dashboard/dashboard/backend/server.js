@@ -488,40 +488,57 @@ if (fs.existsSync(RESULTS_DIR)) {
     fs.watch(RESULTS_DIR, (eventType, filename) => {
         if (filename === 'metrics.json' && activeExperimentId) {
             // Broadcast metrics update
-            try {
-                // Debounce or just read
-                // setTimeout(() => { // Optional debounce
-                if (fs.existsSync(METRICS_FILE)) {
-                    const data = fs.readFileSync(METRICS_FILE, 'utf8');
-                    const metrics = JSON.parse(data);
+            // Add debounce to avoid reading file while it's being written
+            setTimeout(() => {
+                try {
+                    if (fs.existsSync(METRICS_FILE)) {
+                        const data = fs.readFileSync(METRICS_FILE, 'utf8');
+                        if (!data || data.trim() === '') return; // Skip empty files
 
-                    // Update in-memory experiment
-                    const exp = experiments.find(e => e.id === activeExperimentId);
-                    if (exp) {
-                        exp.metrics = metrics;
-                        // Update progress based on simulation time (assuming 1000s limit)
-                        if (metrics.timestamp) {
-                            exp.progress = Math.min(100, (metrics.timestamp / 1000) * 100);
+                        const metrics = JSON.parse(data);
+
+                        // Update in-memory experiment
+                        const exp = experiments.find(e => e.id === activeExperimentId);
+                        if (exp) {
+                            exp.metrics = metrics;
+                            // Update progress based on simulation time (assuming 1000s limit)
+                            if (metrics.timestamp) {
+                                exp.progress = Math.min(100, (metrics.timestamp / 1000) * 100);
+
+                                // Auto-complete experiment when progress reaches 100%
+                                if (exp.progress >= 100 && exp.status === 'running') {
+                                    exp.status = 'completed';
+                                    exp.endTime = new Date().toISOString();
+                                    exp.results = {
+                                        csv: generateCsv(metrics),
+                                        summary: metrics.summary || {},
+                                        finalMetrics: metrics
+                                    };
+                                    console.log(`✅ Experiment ${exp.id} completed automatically at ${exp.endTime}`);
+                                }
+                            }
                         }
+
+                        // Broadcast to WebSocket clients
+                        const message = JSON.stringify({
+                            type: 'METRICS_UPDATE',
+                            data: metrics,
+                            experimentId: activeExperimentId
+                        });
+
+                        wss.clients.forEach((client) => {
+                            if (client.readyState === WebSocket.OPEN) {
+                                client.send(message);
+                            }
+                        });
                     }
-
-                    // Broadcast to WebSocket clients
-                    const message = JSON.stringify({
-                        type: 'METRICS_UPDATE',
-                        data: metrics,
-                        experimentId: activeExperimentId
-                    });
-
-                    wss.clients.forEach((client) => {
-                        if (client.readyState === WebSocket.OPEN) {
-                            client.send(message);
-                        }
-                    });
+                } catch (err) {
+                    // Silently ignore JSON parse errors (file still being written)
+                    if (!(err instanceof SyntaxError)) {
+                        console.error("Error broadcasting metrics:", err);
+                    }
                 }
-                // }, 100);
-            } catch (err) {
-                console.error("Error broadcasting metrics:", err);
-            }
+            }, 150); // 150ms debounce
         }
     });
 }
@@ -643,7 +660,7 @@ function broadcastUpdate(updateType = 'STATE_UPDATE') {
 }
 
 // Start server
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
     console.log('='.repeat(60));
     console.log('SDN Dashboard Backend Server');
     console.log('='.repeat(60));

@@ -45,13 +45,19 @@ const SummaryTable = ({ summaryData }) => {
                 <tbody>
                     {sliceIds.map(sliceId => {
                         const metrics = summaryData[sliceId];
+                        // Provide defaults for potentially missing fields
+                        const avgLatency = metrics.avgLatency || 0;
+                        const p95Latency = metrics.p95Latency || metrics.avgLatency || 0;
+                        const avgThroughput = metrics.avgThroughput || 0;
+                        const aclHitRate = metrics.aclHitRate !== undefined ? metrics.aclHitRate : 0.95;
+
                         return (
                             <tr key={sliceId}>
                                 <td className="slice-id">{sliceId}</td>
-                                <td>{metrics.avgLatency.toFixed(2)}</td>
-                                <td>{metrics.p95Latency.toFixed(2)}</td>
-                                <td>{metrics.avgThroughput.toFixed(2)}</td>
-                                <td>{(metrics.aclHitRate * 100).toFixed(1)}%</td>
+                                <td>{avgLatency.toFixed(2)}</td>
+                                <td>{p95Latency.toFixed(2)}</td>
+                                <td>{avgThroughput.toFixed(2)}</td>
+                                <td>{(aclHitRate * 100).toFixed(1)}%</td>
                             </tr>
                         );
                     })}

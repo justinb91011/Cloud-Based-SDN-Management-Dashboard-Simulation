@@ -30,7 +30,7 @@ function App() {
     console.log('Attempting WebSocket connection...');
     setConnectionStatus(prev => ({ ...prev, reconnecting: true }));
 
-    const websocket = new WebSocket('ws://localhost:3001');
+    const websocket = new WebSocket('ws://127.0.0.1:3001');
 
     websocket.onopen = () => {
       console.log('WebSocket connected');

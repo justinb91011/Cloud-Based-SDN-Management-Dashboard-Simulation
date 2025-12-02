@@ -1,0 +1,25 @@
+{
+  "timestamp": 1000,
+  "slices": [
+    {
+      "sliceId": 1,
+      "latency": 16,
+      "throughput": 66
+    },
+    {
+      "sliceId": 2,
+      "latency": 21,
+      "throughput": 36
+    },
+    {
+      "sliceId": 3,
+      "latency": 26,
+      "throughput": 56
+    }
+  ],
+  "summary": {
+    "1": { "avgLatency": 11, "avgThroughput": 56 },
+    "2": { "avgLatency": 16, "avgThroughput": 36 },
+    "3": { "avgLatency": 21, "avgThroughput": 46 }
+  }
+}
