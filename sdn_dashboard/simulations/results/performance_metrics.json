@@ -1,46 +1,6 @@
 {
   "apiResponseTimes": [
     {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764652317227
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764652317230
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764652150141/status",
-      "duration": 0,
-      "timestamp": 1764652318187
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764652150141/status",
-      "duration": 0,
-      "timestamp": 1764652320189
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764652150141/status",
-      "duration": 1,
-      "timestamp": 1764652322187
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764652322213
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764652322217
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764652150141/status",
-      "duration": 0,
-      "timestamp": 1764652324187
-    },
-    {
       "endpoint": "/api/experiments/exp_1764652150141/status",
       "duration": 0,
       "timestamp": 1764652326188
@@ -4999,6 +4959,46 @@
       "endpoint": "/api/metrics/recent",
       "duration": 1,
       "timestamp": 1764655309651
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764655314647
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764655314648
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764655319646
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764655319648
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764655324650
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764655324653
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764655329648
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764655329650
     }
   ],
   "websocketLatency": [],
@@ -5532,12 +5532,6 @@
     }
   ],
   "systemLoad": [
-    {
-      "heapUsed": 10996640,
-      "heapTotal": 12795904,
-      "external": 2193736,
-      "timestamp": 1764636470312
-    },
     {
       "heapUsed": 11153320,
       "heapTotal": 12959744,
@@ -8531,6 +8525,12 @@
       "heapTotal": 14139392,
       "external": 2219976,
       "timestamp": 1764655281161
+    },
+    {
+      "heapUsed": 11227496,
+      "heapTotal": 13549568,
+      "external": 2212773,
+      "timestamp": 1764655311162
     }
   ],
   "timestamp": 1762388352757
