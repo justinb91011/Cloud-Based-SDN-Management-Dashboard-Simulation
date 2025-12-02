@@ -30,6 +30,9 @@ let topology = {
     links: []
 };
 
+// Global variable to track reset time in simulation seconds
+let lastResetSimTime = 0;
+
 // Initialize metrics collector
 const metricsCollector = new MetricsCollector(RESULTS_DIR);
 
@@ -145,39 +148,50 @@ app.post('/api/slices', (req, res) => {
     currentState.slices.push(newSlice);
 
     // Write command file for OMNeT++ to pick up
+    const commandData = newSlice; // Assuming commandData should be newSlice
     const command = {
         type: 'CREATE_SLICE',
-        data: newSlice,
+        data: commandData,
         timestamp: Date.now()
     };
 
-    fs.writeFileSync(
-        path.join(RESULTS_DIR, 'commands.json'),
-        JSON.stringify(command, null, 2)
-    );
-
-    const duration = Date.now() - start;
-    metricsCollector.recordSliceOperation('create', newSlice.id, duration, true);
-
-    broadcastUpdate();
-    res.status(201).json(newSlice);
+    try {
+        fs.writeFileSync(
+            path.join(RESULTS_DIR, 'commands.json'),
+            JSON.stringify(command) // Use compact JSON for C++ parser compatibility
+        );
+        console.log(`Created slice ${newSlice.id}: ${newSlice.name}`);
+        const duration = Date.now() - start;
+        metricsCollector.recordSliceOperation('create', newSlice.id, duration, true);
+        broadcastUpdate();
+        res.status(201).json(newSlice);
+    } catch (err) {
+        console.error(`Failed to send CREATE_SLICE command for slice ${newSlice.id}:`, err);
+        const duration = Date.now() - start;
+        metricsCollector.recordSliceOperation('create', newSlice.id, duration, false);
+        res.status(500).json({ error: 'Failed to create slice due to command write error' });
+    }
 });
 
 // Update slice
 app.put('/api/slices/:id', (req, res) => {
+    const start = Date.now();
     const sliceId = parseInt(req.params.id);
     const sliceIndex = currentState.slices.findIndex(s => s.id === sliceId);
 
     if (sliceIndex === -1) {
+        const duration = Date.now() - start;
+        metricsCollector.recordSliceOperation('update', sliceId, duration, false);
         return res.status(404).json({ error: 'Slice not found' });
     }
 
     // Update slice
-    currentState.slices[sliceIndex] = {
+    const updatedSlice = {
         ...currentState.slices[sliceIndex],
         ...req.body,
         id: sliceId  // Ensure ID doesn't change
     };
+    currentState.slices[sliceIndex] = updatedSlice;
 
     // Send update command to OMNeT++
     const command = {
@@ -190,6 +204,9 @@ app.put('/api/slices/:id', (req, res) => {
         path.join(RESULTS_DIR, 'commands.json'),
         JSON.stringify(command, null, 2)
     );
+
+    const duration = Date.now() - start;
+    metricsCollector.recordSliceOperation('update', sliceId, duration, true);
 
     broadcastUpdate();
     res.json(currentState.slices[sliceIndex]);
@@ -257,7 +274,7 @@ app.get('/api/flows/:id', (req, res) => {
 // Create new flow
 app.post('/api/flows', (req, res) => {
     const start = Date.now();
-    const { srcIP, dstIP, action, priority, sliceId } = req.body;
+    const { srcIP, dstIP, action, priority, sliceId, protocol } = req.body;
 
     if (!srcIP || !dstIP || !action) {
         const duration = Date.now() - start;
@@ -266,14 +283,15 @@ app.post('/api/flows', (req, res) => {
     }
 
     const newFlow = {
-        id: currentState.flows.length + 1,
+        id: Date.now(),
         srcIP,
         dstIP,
         action,
         priority: priority || 100,
         sliceId: sliceId || 0,
         packets: 0,
-        bytes: 0
+        bytes: 0,
+        protocol: protocol || 'any'
     };
 
     currentState.flows.push(newFlow);
@@ -343,34 +361,90 @@ app.get('/api/statistics', (req, res) => {
     res.json(stats);
 });
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-    res.json({
-        status: 'healthy',
-        uptime: process.uptime(),
-        timestamp: new Date().toISOString(),
-        dataLoaded: {
-            slices: currentState.slices.length,
-            flows: currentState.flows.length,
-            nodes: topology.nodes.length
-        }
-    });
-});
+// Reset state
+app.post('/api/reset', (req, res) => {
+    // 1. Clear metrics history (backend side)
+    metricsCollector.clear();
 
-// Status endpoint for connection health
-app.get('/api/status', (req, res) => {
-    res.json({
-        server: 'running',
-        websocket: {
-            connected: connectionState.connected,
-            clients: wss.clients.size,
-            lastHeartbeat: connectionState.lastHeartbeat
-        },
-        simulation: {
-            stateFileExists: fs.existsSync(STATE_FILE),
-            lastUpdate: currentState.timestamp
+    // 2. Determine current simulation time to filter future metrics
+    const metricsPath = path.join(RESULTS_DIR, 'metrics.json');
+    if (fs.existsSync(metricsPath)) {
+        try {
+            const data = fs.readFileSync(metricsPath, 'utf8');
+            const metrics = JSON.parse(data);
+            if (metrics.timestamp) {
+                lastResetSimTime = metrics.timestamp;
+                console.log(`Resetting metrics view. Hiding history before simTime: ${lastResetSimTime}`);
+            }
+        } catch (err) {
+            console.error("Error reading metrics for reset timestamp:", err);
         }
-    });
+    }
+
+    // 3. Send DELETE_SLICE commands for all existing slices
+    // We must send them sequentially with a delay to ensure OMNeT++ processes them
+    // (since commands.json is polled every 1s)
+    const slicesToDelete = [...currentState.slices];
+
+    if (slicesToDelete.length > 0) {
+        console.log(`Resetting: Deleting ${slicesToDelete.length} slices sequentially...`);
+
+        let delay = 0;
+        slicesToDelete.forEach((slice, index) => {
+            setTimeout(() => {
+                const command = {
+                    type: 'DELETE_SLICE',
+                    data: { id: slice.id },
+                    timestamp: Date.now()
+                };
+
+                try {
+                    fs.writeFileSync(
+                        path.join(RESULTS_DIR, 'commands.json'),
+                        JSON.stringify(command) // Use compact JSON
+                    );
+                    console.log(`Sent DELETE_SLICE for slice ${slice.id}`);
+                } catch (err) {
+                    console.error(`Failed to send DELETE_SLICE for ${slice.id}:`, err);
+                }
+            }, delay);
+
+            // Add 1.5s delay between commands to be safe (simulation polls every 1s)
+            delay += 1500;
+        });
+    }
+
+    currentState = {
+        slices: [],
+        flows: [],
+        timestamp: Date.now()
+    };
+
+    // Write empty state to file
+    fs.writeFileSync(STATE_FILE, JSON.stringify(currentState, null, 2));
+
+    // Send RESET command (ignored by C++, but good for logging)
+    // We send this AFTER the deletes are scheduled
+    setTimeout(() => {
+        const command = {
+            type: 'RESET',
+            timestamp: Date.now()
+        };
+
+        try {
+            fs.writeFileSync(
+                path.join(RESULTS_DIR, 'commands.json'),
+                JSON.stringify(command) // Use compact JSON
+            );
+        } catch (e) {
+            console.error("Error writing RESET command:", e);
+        }
+
+        broadcastUpdate();
+        console.log('State reset completed.');
+    }, (slicesToDelete.length * 1500) + 500);
+
+    res.json({ message: 'State reset initiated. Please wait a few seconds for all slices to be removed.' });
 });
 
 // Metrics endpoints
@@ -402,6 +476,26 @@ app.post('/api/experiments', (req, res) => {
     const experimentId = `exp_${Date.now()}`;
     activeExperimentId = experimentId;
 
+    let startSimTime = 0;
+    // Try to get current simulation time to use as baseline
+    const metricsPath = path.join(RESULTS_DIR, 'metrics.json');
+    if (fs.existsSync(metricsPath)) {
+        try {
+            const data = fs.readFileSync(metricsPath, 'utf8');
+            const metrics = JSON.parse(data);
+            if (metrics.timestamp) {
+                startSimTime = metrics.timestamp;
+            }
+        } catch (err) {
+            console.error("Error reading metrics for start time:", err);
+        }
+    }
+
+    // If we just reset, use that as fallback if metrics file is empty/missing
+    if (startSimTime === 0 && lastResetSimTime > 0) {
+        startSimTime = lastResetSimTime;
+    }
+
     const newExperiment = {
         id: experimentId,
         name: `${scenarioId} (${new Date().toLocaleTimeString()})`,
@@ -409,31 +503,50 @@ app.post('/api/experiments', (req, res) => {
         status: 'running',
         progress: 0,
         timestamp: Date.now(),
+        startSimTime: startSimTime, // Store the simulation time when this experiment started
         metrics: null
     };
 
     experiments.unshift(newExperiment);
 
-    // Send START_EXPERIMENT command to OMNeT++
-    const command = {
-        type: 'START_EXPERIMENT',
-        data: {
-            experimentId,
-            config: newExperiment.config
-        },
-        timestamp: Date.now()
-    };
+    // Send START_EXPERIMENT command to OMNeT++ ONLY if not manual
+    if (scenarioId !== 'manual') {
+        const command = {
+            type: 'START_EXPERIMENT',
+            data: {
+                experimentId,
+                config: newExperiment.config
+            },
+            timestamp: Date.now()
+        };
 
-    fs.writeFileSync(
-        path.join(RESULTS_DIR, 'commands.json'),
-        JSON.stringify(command, null, 2)
-    );
+        fs.writeFileSync(
+            path.join(RESULTS_DIR, 'commands.json'),
+            JSON.stringify(command) // Use compact JSON
+        );
+    } else {
+        console.log(`Started manual session ${experimentId} at simTime ${startSimTime}`);
+    }
 
     const duration = Date.now() - start;
     metricsCollector.recordAPIResponse('/api/experiments', duration); // Reuse metric recording
 
     console.log(`Started experiment ${experimentId}`);
     res.json({ experimentId });
+});
+
+// Stop experiment
+app.post('/api/experiments/:id/stop', (req, res) => {
+    const exp = experiments.find(e => e.id === req.params.id);
+    if (!exp) return res.status(404).json({ error: 'Experiment not found' });
+
+    if (exp.status === 'running') {
+        exp.status = 'completed';
+        exp.endTime = new Date().toISOString();
+        console.log(`Stopped experiment ${exp.id}`);
+    }
+
+    res.json(exp);
 });
 
 // Get experiment status
@@ -464,6 +577,25 @@ app.get('/api/experiments/:id/metrics', (req, res) => {
             try {
                 const data = fs.readFileSync(metricsPath, 'utf8');
                 exp.metrics = JSON.parse(data);
+
+                // FILTERING & NORMALIZATION
+                if (exp.metrics.history) {
+                    // Use experiment's startSimTime if available, otherwise global lastResetSimTime
+                    const baselineTime = exp.startSimTime !== undefined ? exp.startSimTime : lastResetSimTime;
+
+                    // Filter old data
+                    if (baselineTime > 0) {
+                        exp.metrics.history = exp.metrics.history.filter(point => point.timestamp > baselineTime);
+                    }
+
+                    // Normalize timestamps to start from 0 relative to baseline
+                    if (baselineTime > 0) {
+                        exp.metrics.history = exp.metrics.history.map(point => ({
+                            ...point,
+                            timestamp: parseFloat((point.timestamp - baselineTime).toFixed(2))
+                        }));
+                    }
+                }
             } catch (err) {
                 console.error("Error reading metrics.json", err);
             }

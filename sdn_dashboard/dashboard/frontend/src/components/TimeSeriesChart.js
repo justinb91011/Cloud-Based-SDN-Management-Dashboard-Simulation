@@ -5,7 +5,17 @@ const TimeSeriesChart = ({ data, metric, title, yAxisLabel }) => {
     // data format: [{ timestamp: 10, sliceA: 50, sliceB: 60 }, ...]
 
     // Extract slice keys (excluding timestamp)
-    const keys = data.length > 0 ? Object.keys(data[0]).filter(k => k !== 'timestamp') : [];
+    // Extract slice keys (excluding timestamp)
+    // We must check ALL data points, not just the first one, because slices might be added later
+    const allKeys = new Set();
+    data.forEach(point => {
+        Object.keys(point).forEach(key => {
+            if (key !== 'timestamp') {
+                allKeys.add(key);
+            }
+        });
+    });
+    const keys = Array.from(allKeys).sort();
 
     // Color palette for slices
     const colors = ['#8884d8', '#82ca9d', '#ffc658', '#ff7300', '#0088fe', '#00C49F'];

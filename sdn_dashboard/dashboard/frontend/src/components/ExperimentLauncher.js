@@ -77,6 +77,31 @@ const ExperimentLauncher = ({ onExperimentStart, onExperimentComplete }) => {
         }
     };
 
+    const handleManualRun = async () => {
+        setIsRunning(true);
+        setError(null);
+        setStatus({ status: 'running', progress: 0 });
+
+        try {
+            const experimentConfig = {
+                scenarioId: 'manual',
+                ...config
+            };
+
+            const { experimentId } = await experimentApi.runExperiment(experimentConfig);
+
+            if (onExperimentStart) onExperimentStart(experimentId, true); // true for isManual
+
+            // For manual, we don't poll for completion, we just let it run
+            // The parent component handles the view switch
+            setIsRunning(false); // Reset launcher state immediately as we switch view
+
+        } catch (err) {
+            setIsRunning(false);
+            setError("Failed to start manual session.");
+        }
+    };
+
     return (
         <div className="experiment-launcher">
             <h2>Run New Experiment</h2>
@@ -153,6 +178,15 @@ const ExperimentLauncher = ({ onExperimentStart, onExperimentComplete }) => {
                     disabled={isRunning}
                 >
                     {isRunning ? 'Experiment Running...' : 'Start Experiment'}
+                </button>
+
+                <button
+                    className="run-button manual-button"
+                    onClick={handleManualRun}
+                    disabled={isRunning}
+                    style={{ marginLeft: '10px', backgroundColor: '#2196F3' }}
+                >
+                    Start Manual Session (Live)
                 </button>
             </div>
 

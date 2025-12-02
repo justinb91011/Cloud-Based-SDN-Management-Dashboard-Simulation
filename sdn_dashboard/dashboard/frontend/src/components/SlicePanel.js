@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './SlicePanel.css';
 
 function SlicePanel({ slices, onCreateSlice, onDeleteSlice, onUpdateSlice, onSelectSlice, selectedSlice }) {
@@ -238,6 +239,35 @@ function SlicePanel({ slices, onCreateSlice, onDeleteSlice, onUpdateSlice, onSel
             )}
           </div>
         ))}
+      </div>
+
+      <div style={{ marginTop: '20px', borderTop: '1px solid #eee', paddingTop: '20px' }}>
+        <button
+          onClick={async () => {
+            if (window.confirm('Are you sure you want to reset the entire simulation state? This will delete all slices and flows.')) {
+              try {
+                // Assuming axios is imported or available globally
+                // import axios from 'axios';
+                await axios.post('http://localhost:3001/api/reset');
+                alert('State reset successfully');
+                // Force refresh or wait for websocket update
+              } catch (err) {
+                alert('Failed to reset state');
+              }
+            }
+          }}
+          style={{
+            backgroundColor: '#ff4444',
+            color: 'white',
+            padding: '10px',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            width: '100%'
+          }}
+        >
+          Reset Simulation State
+        </button>
       </div>
     </div>
   );

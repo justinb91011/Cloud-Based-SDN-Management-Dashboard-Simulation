@@ -37,6 +37,17 @@ const experimentApi = {
     }
   },
 
+  // Stop a running experiment
+  stopExperiment: async (id) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/experiments/${id}/stop`);
+      return response.data;
+    } catch (error) {
+      console.error("Failed to stop experiment:", error);
+      throw error;
+    }
+  },
+
   // Get metrics for a completed experiment
   getExperimentMetrics: async (id) => {
     try {

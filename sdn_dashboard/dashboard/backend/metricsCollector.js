@@ -35,6 +35,18 @@ class MetricsCollector {
     }
   }
 
+  clear() {
+    this.metrics = {
+      apiResponseTimes: [],
+      websocketLatency: [],
+      sliceOperations: [],
+      flowOperations: [],
+      systemLoad: [],
+      timestamp: Date.now()
+    };
+    this.save();
+  }
+
   recordAPIResponse(endpoint, duration) {
     this.metrics.apiResponseTimes.push({
       endpoint,

@@ -11,16 +11,42 @@ const ExperimentView = () => {
     const [currentExperimentId, setCurrentExperimentId] = useState(null);
     const [metrics, setMetrics] = useState(null);
     const [chartMetric, setChartMetric] = useState('latency'); // latency, throughput
+    const [experimentStatus, setExperimentStatus] = useState('idle'); // idle, running, completed
 
-    const handleExperimentStart = (id) => {
+    // Poll for metrics if running
+    React.useEffect(() => {
+        let interval;
+        if (experimentStatus === 'running' && currentExperimentId) {
+            interval = setInterval(async () => {
+                await loadMetrics(currentExperimentId);
+            }, 1000);
+        }
+        return () => clearInterval(interval);
+    }, [experimentStatus, currentExperimentId]);
+
+    const handleExperimentStart = (id, isManual = false) => {
         setCurrentExperimentId(id);
-        // Stay on launcher while running, progress bar handles feedback
+        if (isManual) {
+            setExperimentStatus('running');
+            setActiveTab('results');
+        } else {
+            setExperimentStatus('running');
+            // Stay on launcher for auto experiments
+        }
     };
 
     const handleExperimentComplete = async (id) => {
         setCurrentExperimentId(id);
+        setExperimentStatus('completed');
         setActiveTab('results');
         await loadMetrics(id);
+    };
+
+    const handleStopExperiment = async () => {
+        if (currentExperimentId) {
+            await experimentApi.stopExperiment(currentExperimentId);
+            setExperimentStatus('completed');
+        }
     };
 
     const loadMetrics = async (id) => {
@@ -52,7 +78,7 @@ const ExperimentView = () => {
                     onClick={() => setActiveTab('results')}
                     disabled={!currentExperimentId}
                 >
-                    Results
+                    Results {experimentStatus === 'running' && '(Live)'}
                 </button>
                 <button
                     className={activeTab === 'comparison' ? 'active' : ''}
@@ -73,8 +99,19 @@ const ExperimentView = () => {
                 {activeTab === 'results' && metrics && (
                     <div className="results-view">
                         <div className="results-header">
-                            <h2>Experiment Results: {currentExperimentId}</h2>
+                            <h2>
+                                {experimentStatus === 'running' ? 'Live Session: ' : 'Experiment Results: '}
+                                {currentExperimentId}
+                            </h2>
                             <div className="export-buttons">
+                                {experimentStatus === 'running' && (
+                                    <button
+                                        onClick={handleStopExperiment}
+                                        style={{ backgroundColor: '#f44336', color: 'white', marginRight: '10px' }}
+                                    >
+                                        Stop Session
+                                    </button>
+                                )}
                                 <button onClick={() => handleExport('csv')}>Download CSV</button>
                                 <button onClick={() => handleExport('json')}>Download JSON</button>
                             </div>
