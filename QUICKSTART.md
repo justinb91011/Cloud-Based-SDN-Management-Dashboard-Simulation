@@ -19,7 +19,41 @@ omnetpp -v      # Should show version 6.0+
 
 ---
 
-## Running the Full System (Recommended)
+## First Time Setup (Run Once)
+
+Before running the system for the first time, you must build the simulation and install dependencies.
+
+### 1. Build the Simulation
+```bash
+# Go to simulation directory
+cd sdn_dashboard/simulations
+
+# Adjust path to where you installed OMNeT++ (relative to sdn_dashboard/simulations)
+source ../../../tj_omnet/setenv
+
+# Copy controller files
+cp ../src/controller/SDNController.cc ./
+cp ../src/controller/SDNController.h ./
+
+# Create Makefile and Build
+opp_makemake -f --deep -o sdn_sim -I$INET_ROOT/src -I../../../inet/src -L$INET_ROOT/src -L../../../inet/src -lINET
+make MODE=release
+```
+
+### 2. Install Project Dependencies
+```bash
+# Backend
+cd ../dashboard/backend
+npm install
+
+# Frontend
+cd ../frontend
+npm install
+```
+
+---
+
+## Running the Full System
 
 To run the complete experiment with real-time feedback, you need **3 separate terminals**.
 
@@ -28,8 +62,8 @@ This runs the OMNeT++ simulation which models the network traffic.
 
 ```bash
 cd sdn_dashboard/simulations
-# Source OMNeT++ environment variables (adjust path if needed)
-# source ~/Desktop/JHUFall2025/Cloud/tj_omnet/setenv
+# Adjust path to where you installed OMNeT++ (relative to sdn_dashboard/simulations)
+source ../../../tj_omnet/setenv
 ./sdn_sim -u Cmdenv -n .:../src:../../../inet/src
 ```
 *Note: Keep this terminal open! It processes the commands from the dashboard.*
@@ -39,7 +73,6 @@ This acts as the bridge between the simulation and the web UI.
 
 ```bash
 cd sdn_dashboard/dashboard/backend
-npm install # Only needed first time
 npm start
 ```
 
@@ -48,7 +81,6 @@ This is the web interface you interact with.
 
 ```bash
 cd sdn_dashboard/dashboard/frontend
-npm install # Only needed first time
 npm start
 ```
 
@@ -63,7 +95,7 @@ Once the system is running (Terminals 1, 2, and 3 active), follow these steps to
 ### Experiment 1: High Throughput Test (Stress Test)
 
 1. Navigate to the **Experiments** tab in the Dashboard.
-2.Select **Scenario Preset: High Throughput**.
+2. Select **Scenario Preset: High Throughput**.
    - **Tenant Count:** 3
    - **Slice Count:** 3
    - **Traffic Load:** High
