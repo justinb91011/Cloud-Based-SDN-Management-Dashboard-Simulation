@@ -1,1284 +1,5004 @@
 {
   "apiResponseTimes": [
     {
-      "endpoint": "/api/reset",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708888649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708889647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 3,
-      "timestamp": 1764707911131
+      "timestamp": 1764708889653
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764707911133
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707911134
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707912029
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707912031
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707912033
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707912033
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707913544
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707913549
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707914553
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707914555
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707915716
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764707915717
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707916136
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707916138
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708890649
     },
     {
       "endpoint": "/api/metrics",
       "duration": 1,
-      "timestamp": 1764707920721
+      "timestamp": 1764708891646
     },
     {
       "endpoint": "/api/metrics/recent",
       "duration": 0,
-      "timestamp": 1764707920722
+      "timestamp": 1764708891649
     },
     {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 1,
-      "timestamp": 1764707925724
+      "timestamp": 1764708891653
     },
     {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707925725
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764707930722
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764707930725
-    },
-    {
-      "endpoint": "/api/slices",
-      "duration": 1,
-      "timestamp": 1764707932809
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707932813
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707932815
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707932819
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707933549
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707933551
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764707935718
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707935719
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764707940722
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764707940723
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764707945724
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764707945726
-    },
-    {
-      "endpoint": "/api/slices",
-      "duration": 0,
-      "timestamp": 1764707950329
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707950336
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707950337
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707950337
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707950544
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707950544
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764707950719
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707950719
-    },
-    {
-      "endpoint": "/api/experiments",
-      "duration": 28,
-      "timestamp": 1764707952729
-    },
-    {
-      "endpoint": "/api/experiments",
-      "duration": 30,
-      "timestamp": 1764707952730
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 2,
-      "timestamp": 1764707953740
+      "timestamp": 1764708891656
     },
     {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 2,
-      "timestamp": 1764707954739
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707955750
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764707955752
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707955753
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707956736
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 2,
-      "timestamp": 1764707957739
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 2,
-      "timestamp": 1764707958738
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707959738
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764707960724
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707960725
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707960737
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 0,
-      "timestamp": 1764707961736
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 2,
-      "timestamp": 1764707962739
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707963737
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 2,
-      "timestamp": 1764707964739
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764707965727
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764707965730
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707965736
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 2,
-      "timestamp": 1764707966738
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707967737
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707968738
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 2,
-      "timestamp": 1764707969738
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764707970726
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707970727
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707970737
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 2,
-      "timestamp": 1764707971738
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 0,
-      "timestamp": 1764707972736
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707974631
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707975629
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764707975766
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707975767
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707975769
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707976742
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764707977737
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707981580
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764707981581
-    },
-    {
-      "endpoint": "/api/slices/4",
-      "duration": 1,
-      "timestamp": 1764707981583
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707981584
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707981585
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707981589
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707982549
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707982552
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764707985726
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707985727
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764707990722
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764707990724
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764707995720
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764707995721
-    },
-    {
-      "endpoint": "/api/slices",
-      "duration": 1,
-      "timestamp": 1764707996858
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707996860
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707996861
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707996865
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 1,
-      "timestamp": 1764707997549
-    },
-    {
-      "endpoint": "/api/statistics",
-      "duration": 0,
-      "timestamp": 1764707997550
-    },
-    {
-      "endpoint": "/api/experiments",
-      "duration": 1,
-      "timestamp": 1764707999919
-    },
-    {
-      "endpoint": "/api/experiments",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 3,
-      "timestamp": 1764707999921
+      "timestamp": 1764708892649
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708000719
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708000721
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708000929
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708001928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 0,
-      "timestamp": 1764708002925
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708003929
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708004928
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708005719
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708005721
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708005928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708006927
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708007929
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708008930
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708009930
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708010719
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708010719
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 0,
-      "timestamp": 1764708010928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 0,
-      "timestamp": 1764708011926
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708012928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708013931
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708014927
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708015720
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708015722
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708015927
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 0,
-      "timestamp": 1764708016926
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708017928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708018928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708019927
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708020721
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708020722
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708020927
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 0,
-      "timestamp": 1764708021926
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708022928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 0,
-      "timestamp": 1764708023929
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708025632
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708026631
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 2,
-      "timestamp": 1764708026634
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708026635
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 0,
-      "timestamp": 1764708027172
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708027927
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708028927
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708029927
-    },
-    {
-      "endpoint": "/api/experiments",
-      "duration": 1,
-      "timestamp": 1764708030237
-    },
-    {
-      "endpoint": "/api/experiments",
-      "duration": 0,
-      "timestamp": 1764708030238
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708030720
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708030722
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708030929
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708031186
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708031618
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707952701/metrics",
-      "duration": 1,
-      "timestamp": 1764708031623
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708031928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708032929
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708033931
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 2,
-      "timestamp": 1764708034935
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708035738
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708035739
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 0,
-      "timestamp": 1764708035928
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708036931
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708037927
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708038933
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708039931
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708040729
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708040730
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708040931
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708041930
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708042930
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 3,
-      "timestamp": 1764708043933
+      "timestamp": 1764708893647
     },
     {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708893650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708894646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708895643
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708895644
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 2,
-      "timestamp": 1764708044932
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708045465
+      "timestamp": 1764708896534
     },
     {
       "endpoint": "/api/metrics",
       "duration": 1,
-      "timestamp": 1764708045720
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708045722
-    },
-    {
-      "endpoint": "/api/experiments/exp_1764707999918/metrics",
-      "duration": 1,
-      "timestamp": 1764708045929
-    },
-    {
-      "endpoint": "/api/experiments",
-      "duration": 1,
-      "timestamp": 1764708049877
-    },
-    {
-      "endpoint": "/api/experiments",
-      "duration": 0,
-      "timestamp": 1764708049879
+      "timestamp": 1764708896536
     },
     {
       "endpoint": "/api/metrics/recent",
       "duration": 0,
-      "timestamp": 1764708050720
+      "timestamp": 1764708896537
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708050721
-    },
-    {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 1,
-      "timestamp": 1764708056632
+      "timestamp": 1764708896867
     },
     {
-      "endpoint": "/api/metrics/recent",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 1,
-      "timestamp": 1764708056635
+      "timestamp": 1764708896869
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708061630
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708061630
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708066631
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708066631
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708071632
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708071633
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708076632
-    },
-    {
-      "endpoint": "/api/metrics/recent",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 3,
-      "timestamp": 1764708076638
+      "timestamp": 1764708897871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708898869
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764708898877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708899872
     },
     {
       "endpoint": "/api/metrics",
       "duration": 1,
-      "timestamp": 1764708081634
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708081637
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708086634
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708086637
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708091633
+      "timestamp": 1764708900736
     },
     {
       "endpoint": "/api/metrics/recent",
       "duration": 0,
-      "timestamp": 1764708091635
+      "timestamp": 1764708900737
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708096634
-    },
-    {
-      "endpoint": "/api/metrics/recent",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 0,
-      "timestamp": 1764708096635
+      "timestamp": 1764708900868
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708101633
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708900875
     },
     {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708101636
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708901872
     },
     {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 0,
-      "timestamp": 1764708106634
+      "timestamp": 1764708902869
     },
     {
-      "endpoint": "/api/metrics/recent",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708902875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708903872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 1,
-      "timestamp": 1764708106637
+      "timestamp": 1764708904869
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708139635
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708139637
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708145861
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708145862
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708150723
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708150725
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708155722
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708155723
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708160722
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708160723
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708166636
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708166638
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708171635
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708171637
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708904875
     },
     {
       "endpoint": "/api/metrics",
       "duration": 0,
-      "timestamp": 1764708176637
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708176638
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708181636
+      "timestamp": 1764708905735
     },
     {
       "endpoint": "/api/metrics/recent",
       "duration": 1,
-      "timestamp": 1764708181638
+      "timestamp": 1764708905737
     },
     {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708905873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 1,
-      "timestamp": 1764708186637
+      "timestamp": 1764708906869
     },
     {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708186639
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708906875
     },
     {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708907873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 1,
-      "timestamp": 1764708191633
+      "timestamp": 1764708908868
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708908874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708909872
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764708910733
     },
     {
       "endpoint": "/api/metrics/recent",
       "duration": 0,
-      "timestamp": 1764708191633
+      "timestamp": 1764708910734
     },
     {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 1,
-      "timestamp": 1764708196635
+      "timestamp": 1764708910865
     },
     {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708196638
-    },
-    {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 1,
-      "timestamp": 1764708201633
+      "timestamp": 1764708910866
     },
     {
-      "endpoint": "/api/metrics/recent",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 1,
-      "timestamp": 1764708201635
+      "timestamp": 1764708911869
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708206632
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708206633
-    },
-    {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 1,
-      "timestamp": 1764708211635
+      "timestamp": 1764708912869
     },
     {
-      "endpoint": "/api/metrics/recent",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708912877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708913873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 0,
-      "timestamp": 1764708211636
+      "timestamp": 1764708914867
     },
     {
-      "endpoint": "/api/metrics/recent",
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 1,
-      "timestamp": 1764708216637
+      "timestamp": 1764708914869
     },
     {
       "endpoint": "/api/metrics",
       "duration": 0,
-      "timestamp": 1764708216638
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708221634
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708221636
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708259639
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708259641
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708262820
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708262820
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708266637
+      "timestamp": 1764708915737
     },
     {
       "endpoint": "/api/metrics/recent",
       "duration": 1,
-      "timestamp": 1764708266640
+      "timestamp": 1764708915739
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708915872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708917648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708917651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708918649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708919649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708919654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708920650
     },
     {
       "endpoint": "/api/metrics",
       "duration": 1,
-      "timestamp": 1764708271635
+      "timestamp": 1764708921647
     },
     {
       "endpoint": "/api/metrics/recent",
       "duration": 1,
-      "timestamp": 1764708271636
+      "timestamp": 1764708921650
     },
     {
-      "endpoint": "/api/metrics",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708921652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708921657
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708922649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708923646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708923652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708924649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
       "duration": 1,
-      "timestamp": 1764708276117
+      "timestamp": 1764708925645
     },
     {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708276119
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708281635
-    },
-    {
-      "endpoint": "/api/metrics/recent",
+      "endpoint": "/api/experiments/exp_1764708580852/status",
       "duration": 0,
-      "timestamp": 1764708281635
+      "timestamp": 1764708925646
     },
     {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708286636
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 1,
-      "timestamp": 1764708286637
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708926650
     },
     {
       "endpoint": "/api/metrics",
       "duration": 0,
-      "timestamp": 1764708290724
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708290725
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708296635
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708296636
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708300723
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708300724
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 1,
-      "timestamp": 1764708306636
-    },
-    {
-      "endpoint": "/api/metrics/recent",
-      "duration": 0,
-      "timestamp": 1764708306636
-    },
-    {
-      "endpoint": "/api/metrics",
-      "duration": 0,
-      "timestamp": 1764708311632
+      "timestamp": 1764708926652
     },
     {
       "endpoint": "/api/metrics/recent",
       "duration": 1,
-      "timestamp": 1764708311633
+      "timestamp": 1764708926654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708927645
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708927651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708928649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708929647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708929652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708930649
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 2,
+      "timestamp": 1764708931649
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764708931651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708931652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708931655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708932648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708933647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708933653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708934650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708935646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708935647
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764708936649
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764708936655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708936658
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708937647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708937651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708938648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708939646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708939648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708940649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708941645
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708941649
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764708941650
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764708941652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708942650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708943647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708943652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708944649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708945648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708945653
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764708946647
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764708946651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708946655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708947647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708947655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708948649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708949649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708949651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708950650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708951649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708951653
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764708951655
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764708951657
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708952650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708953648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708953654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708954648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708955647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708955652
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764708956645
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764708956647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708956652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708957646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708957652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708958647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708959647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708959652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708960645
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708961648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708961649
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764708961649
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764708961650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708962645
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708963644
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708963646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708964645
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708965644
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708965646
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764708966645
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764708966646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708966647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708967644
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708967646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764708968648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764708969650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708969652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708970645
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708971644
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764708971646
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764708971646
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764708971647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708972650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708973647
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708973650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708974646
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764708975648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764708975653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764708979653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764708979656
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764708979658
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764708979658
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709039665
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709039670
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709039672
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709039673
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709099655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709099662
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709099663
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709099666
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709144915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709144918
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 2,
+      "timestamp": 1764709144924
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709144932
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709145741
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709145743
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 10,
+      "timestamp": 1764709145881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709146872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 10,
+      "timestamp": 1764709146886
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709147876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 2,
+      "timestamp": 1764709148873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709148881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709149876
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709150737
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709150738
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709150868
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709150870
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764709151872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709152872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709152881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709153876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709154869
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764709154872
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709155738
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709155740
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709155876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709156872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709156879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709157876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709158871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709158878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709159879
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709160738
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709160739
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709160872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709160879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709161879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709162872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709162880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709163879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709164876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709164880
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709165739
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709165740
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709165871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709166873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709166881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709167879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709168871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709168877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709169877
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709170739
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709170740
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709170872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709170879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709171878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709172872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709172879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709173880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709174872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709174879
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709175740
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709175741
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709175876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709176870
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709176875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709177879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709178872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709178878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709179875
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709180739
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709180740
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709180871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709180877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709181878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709182872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709182878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709183875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709184872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709184881
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709185740
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709185741
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709185877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709186873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709186879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709187879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709188872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709188878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709189876
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709190739
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709190740
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709190872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709190878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709191877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709192871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709192878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709193877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709194873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709194880
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709195739
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709195740
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709195877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709196877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709196893
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709197879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709198872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709198878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709199878
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709200741
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709200742
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709200873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709200880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709201877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709202871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709202876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709203874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709205656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709205658
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709206648
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709206649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709206653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709207650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709207654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709208652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709209650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709209655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709210651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764709211650
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709211651
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709211651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709211652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709212649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709213651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709213658
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709214649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709215649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709215656
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709216650
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709216652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709216656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709217649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709217653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709218656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709219656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709219658
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709220656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709221649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709221653
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709221654
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709221655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709222656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709223652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709223658
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709224653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709225648
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709225650
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709226649
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709226650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709226654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709227649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709227653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709228657
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709229653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709229655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709230653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709231650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764709231652
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709231653
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709231654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709232193
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709232877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709232879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709233884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709234874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709234881
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709235741
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709235742
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709235880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709236874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709236881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709237880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709238873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709238881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709239880
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709240740
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709240741
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709240873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709240880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709241879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709242874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709242880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709243881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709244874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709244881
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709245741
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709245742
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709245877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709246874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709246882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709247881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709248873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709248879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709249885
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709250741
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709250742
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709250874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709250884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709251881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709252879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709252882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709253881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709254874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709254883
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709255742
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709255743
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709255879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709256875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709256884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709257881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709258878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709258880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709259879
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709260740
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709260740
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709260871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764709260873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709261875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709262872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764709262874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709263874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709264871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709264880
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709265738
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709265739
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709265873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709266875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709266875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709267874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709268871
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709268873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709269881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709271651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709271655
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709271657
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709271658
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709272653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709273654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709273655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709274652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709275651
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709275656
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709276649
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709276650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709276652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709277650
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709277653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709278653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709279653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709279656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764709280653
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709281652
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709281653
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709281654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709281655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709282652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709283296
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709283299
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709283878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709284874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709284884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709285740
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709285741
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709285874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709287652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709287654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709288658
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709289649
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709289655
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709290654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709291656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709291657
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709291658
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709291659
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709292459
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709292876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 1,
+      "timestamp": 1764709292878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709293883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709294879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709294881
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709295742
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709295743
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709295878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709296874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709296882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709297882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709298874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709298881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709299882
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709300742
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709300743
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709300875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709300884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709301881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709302880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709302882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709303881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709304875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709304884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709305742
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709305744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709305879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709306874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709306880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709307883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709308874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709308881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709309881
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709310743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709310744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709310881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709310884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709311880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709312875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709312887
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709313883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709314875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709314884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709315742
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709315744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709315880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709316874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709316882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 9,
+      "timestamp": 1764709317884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709318873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709318879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709319883
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709320743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709320744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709320874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709320882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709321882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709322874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709322884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709323882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709324880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709324884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709325743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709325744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709325879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709326875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709326884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709327883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709328872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709328878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709329882
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709330741
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709330741
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709330874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709330875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709331877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709332873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709332881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709333882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 5,
+      "timestamp": 1764709334885
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709334893
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709335743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709335744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709335879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709336875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709336880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709337880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709338875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709338883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709339883
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709340743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709340744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709340881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709340883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709341881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709342872
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709342879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709343884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709344873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709344876
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709345742
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709345743
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709345880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709346874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709346881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709347880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709348880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709348883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709349883
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709350744
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709350745
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709350874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709350880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709351880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709352875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709352879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709353883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709354875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709354884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709355744
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709355746
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709355882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709356881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709356882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709357883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709358875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709358881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709359880
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709360743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709360744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709360875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709360884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709361882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709362875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709362884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709363884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709364876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709364884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709365742
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709365743
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709365881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709366880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709366881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709367877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709368873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709368880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709369884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709370744
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709370745
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709370874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709370883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709371882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709372876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709372886
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709373882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709374875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709374884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709375743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709375744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709375879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709376876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709376880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709377883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709378874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709378880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709379885
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709380743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709380744
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709380875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709380883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709381882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709382875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709382881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709383882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709384876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709384884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709385744
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709385745
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709385881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709386875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709386881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709387882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709388874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709388883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709389884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709390741
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709390742
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709390875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709390876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709391877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709392875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709392883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709393885
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709394873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709394877
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709395743
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709395745
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709395882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709396875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709396883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709397882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709398874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709398882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709399883
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709400744
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709400746
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709400882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709400883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709401882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709402875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709402881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709403884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709404876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709404886
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709405744
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709405745
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709405881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709406875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709406884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709407883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709408873
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709408878
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709409885
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709410744
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709410745
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709410877
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709410883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709411882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709412875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709412882
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709413884
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709414876
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709414884
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709415740
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709415741
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709415879
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709416880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709416881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709417883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709418874
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709418881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709419885
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709420745
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709420746
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709420875
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709420880
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709421883
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709423660
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709423663
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709424657
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709425654
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709425665
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709426655
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709426656
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709426656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709427652
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709427656
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709428658
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709429662
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709429665
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709430587
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709430746
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709430747
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709430881
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709430885
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709431888
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709432885
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709432891
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709433894
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709434887
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709434894
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709435758
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709435759
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709435896
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709436890
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709436897
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709437899
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709438895
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709438902
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709439902
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709440763
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709440764
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709440895
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709440909
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709441902
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709442897
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709442902
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709443908
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709444904
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709444906
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709445766
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709445768
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709445905
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709446899
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709446904
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709447905
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709448899
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709448906
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709449910
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709450768
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709450768
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709450903
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709450903
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709451906
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709452902
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709452908
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709453911
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709454903
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709454906
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709455772
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709455774
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709455916
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709456905
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709456910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709457911
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709458903
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709458912
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709459916
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709460775
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709460777
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709460911
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709460912
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709461914
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709462905
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709462911
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709463914
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709464904
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709464911
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709465774
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709465775
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709465920
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709466907
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709466912
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709467914
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709468905
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709468910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709469916
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709470777
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709470779
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709470909
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709470916
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709471915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709472906
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709472909
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709473919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709474906
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709474911
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709475779
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709475780
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709475921
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709476909
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709476915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709477917
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709478908
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709478916
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709479920
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709480776
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709480777
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709480910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709480919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709481914
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709482910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709482916
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709483919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709484919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709484925
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709485778
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709485779
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709485922
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709486910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709486915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709487916
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709488910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709488917
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709489921
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709490779
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709490781
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709490910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709490921
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709491916
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709492914
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709492915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709493920
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709494912
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709494922
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709495779
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709495781
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709495918
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709496909
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709496915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709497918
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709498911
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709498919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709499918
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709500780
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709500781
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709500919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709500921
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709501918
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709502911
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709502917
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709503919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709504911
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709504920
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709505779
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709505781
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709505919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709506915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709506916
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709507918
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709508918
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709508921
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709509919
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709510778
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709510779
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709510910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709510913
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709511915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709512913
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709512919
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 8,
+      "timestamp": 1764709513920
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709514910
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709514914
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709515780
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709515781
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 7,
+      "timestamp": 1764709515918
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709516912
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709516917
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709517913
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709518911
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709518918
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709520692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709521688
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709521690
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709521691
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709521692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709522689
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709523688
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709523692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709524691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709525692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709525694
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709526689
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709526690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709526694
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709527688
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709527691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709528692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709529690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709529694
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709530692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709531691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709531692
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709531693
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709531694
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709532690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709533690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709533694
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709534693
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709535689
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709535693
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709536689
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709536691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709536693
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709537690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709537691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709538692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709539689
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709539692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709540693
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709541690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709541694
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709541694
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709541695
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709542691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709543692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709543694
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709544691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709545690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709545695
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709546690
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709546694
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 35,
+      "timestamp": 1764709546734
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709547689
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709547693
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709548692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709549693
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709549695
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709550692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709551691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709551692
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709551693
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709551693
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709552691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709553688
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 6,
+      "timestamp": 1764709553697
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 5,
+      "timestamp": 1764709554710
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709555694
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709555695
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709556690
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709556691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709556695
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709557689
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709557695
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709558692
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709559690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709559694
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709560691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 4,
+      "timestamp": 1764709561693
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 1,
+      "timestamp": 1764709561694
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709561694
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709561695
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709562691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709563688
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709563691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709564691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709565689
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709565692
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709566687
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709566688
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709566691
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709567689
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709567689
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709568690
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709569154
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 3,
+      "timestamp": 1764709569159
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1764709569899
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 1,
+      "timestamp": 1764709569900
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709569912
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1764709570017
+    },
+    {
+      "endpoint": "/api/statistics",
+      "duration": 0,
+      "timestamp": 1764709570017
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 0,
+      "timestamp": 1764709570779
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 0,
+      "timestamp": 1764709570780
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/status",
+      "duration": 0,
+      "timestamp": 1764709570912
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709570915
+    },
+    {
+      "endpoint": "/api/experiments/exp_1764708580852/metrics",
+      "duration": 2,
+      "timestamp": 1764709570917
+    },
+    {
+      "endpoint": "/api/metrics",
+      "duration": 1,
+      "timestamp": 1764709575786
+    },
+    {
+      "endpoint": "/api/metrics/recent",
+      "duration": 1,
+      "timestamp": 1764709575791
     }
   ],
   "websocketLatency": [],
@@ -1391,6 +5111,474 @@
       "heapTotal": 13156352,
       "external": 2220281,
       "timestamp": 1764708286741
+    },
+    {
+      "heapUsed": 11376280,
+      "heapTotal": 13156352,
+      "external": 2220549,
+      "timestamp": 1764708316742
+    },
+    {
+      "heapUsed": 11271024,
+      "heapTotal": 13156352,
+      "external": 2229009,
+      "timestamp": 1764708346744
+    },
+    {
+      "heapUsed": 11126968,
+      "heapTotal": 13156352,
+      "external": 2223977,
+      "timestamp": 1764708376744
+    },
+    {
+      "heapUsed": 11786600,
+      "heapTotal": 13156352,
+      "external": 2224157,
+      "timestamp": 1764708406745
+    },
+    {
+      "heapUsed": 11674232,
+      "heapTotal": 14204928,
+      "external": 2224337,
+      "timestamp": 1764708436746
+    },
+    {
+      "heapUsed": 11930944,
+      "heapTotal": 13156352,
+      "external": 2224517,
+      "timestamp": 1764708466746
+    },
+    {
+      "heapUsed": 11286056,
+      "heapTotal": 13156352,
+      "external": 2224697,
+      "timestamp": 1764708496748
+    },
+    {
+      "heapUsed": 11238064,
+      "heapTotal": 13156352,
+      "external": 2224877,
+      "timestamp": 1764708526749
+    },
+    {
+      "heapUsed": 11793928,
+      "heapTotal": 13156352,
+      "external": 2239077,
+      "timestamp": 1764708556750
+    },
+    {
+      "heapUsed": 11209216,
+      "heapTotal": 13156352,
+      "external": 2256084,
+      "timestamp": 1764708586752
+    },
+    {
+      "heapUsed": 12128416,
+      "heapTotal": 13156352,
+      "external": 2277815,
+      "timestamp": 1764708616752
+    },
+    {
+      "heapUsed": 11813856,
+      "heapTotal": 13156352,
+      "external": 2275357,
+      "timestamp": 1764708646756
+    },
+    {
+      "heapUsed": 12154112,
+      "heapTotal": 13680640,
+      "external": 2283786,
+      "timestamp": 1764708676758
+    },
+    {
+      "heapUsed": 12279120,
+      "heapTotal": 13942784,
+      "external": 2300478,
+      "timestamp": 1764708706759
+    },
+    {
+      "heapUsed": 12031056,
+      "heapTotal": 13942784,
+      "external": 2351466,
+      "timestamp": 1764708736761
+    },
+    {
+      "heapUsed": 13422496,
+      "heapTotal": 17088512,
+      "external": 2368212,
+      "timestamp": 1764708766761
+    },
+    {
+      "heapUsed": 12156224,
+      "heapTotal": 13942784,
+      "external": 2393171,
+      "timestamp": 1764708796763
+    },
+    {
+      "heapUsed": 12260568,
+      "heapTotal": 13942784,
+      "external": 2342723,
+      "timestamp": 1764708826764
+    },
+    {
+      "heapUsed": 12431160,
+      "heapTotal": 13942784,
+      "external": 2359432,
+      "timestamp": 1764708856766
+    },
+    {
+      "heapUsed": 12093176,
+      "heapTotal": 14991360,
+      "external": 2367953,
+      "timestamp": 1764708886767
+    },
+    {
+      "heapUsed": 12504776,
+      "heapTotal": 15515648,
+      "external": 2384652,
+      "timestamp": 1764708916769
+    },
+    {
+      "heapUsed": 12538936,
+      "heapTotal": 15515648,
+      "external": 2393198,
+      "timestamp": 1764708946771
+    },
+    {
+      "heapUsed": 12744944,
+      "heapTotal": 17874944,
+      "external": 2501489,
+      "timestamp": 1764708976773
+    },
+    {
+      "heapUsed": 12758400,
+      "heapTotal": 15777792,
+      "external": 2285071,
+      "timestamp": 1764709006773
+    },
+    {
+      "heapUsed": 13508880,
+      "heapTotal": 14729216,
+      "external": 2293443,
+      "timestamp": 1764709036776
+    },
+    {
+      "heapUsed": 13528792,
+      "heapTotal": 14729216,
+      "external": 2293623,
+      "timestamp": 1764709066777
+    },
+    {
+      "heapUsed": 12814304,
+      "heapTotal": 15777792,
+      "external": 2293803,
+      "timestamp": 1764709096779
+    },
+    {
+      "heapUsed": 13551112,
+      "heapTotal": 14729216,
+      "external": 2293983,
+      "timestamp": 1764709126780
+    },
+    {
+      "heapUsed": 11529120,
+      "heapTotal": 15826944,
+      "external": 2347543,
+      "timestamp": 1764709156781
+    },
+    {
+      "heapUsed": 14726800,
+      "heapTotal": 22462464,
+      "external": 2538990,
+      "timestamp": 1764709186781
+    },
+    {
+      "heapUsed": 14101168,
+      "heapTotal": 22462464,
+      "external": 2381368,
+      "timestamp": 1764709216782
+    },
+    {
+      "heapUsed": 14633352,
+      "heapTotal": 22478848,
+      "external": 2398073,
+      "timestamp": 1764709246784
+    },
+    {
+      "heapUsed": 13405744,
+      "heapTotal": 17858560,
+      "external": 2380993,
+      "timestamp": 1764709276785
+    },
+    {
+      "heapUsed": 14475840,
+      "heapTotal": 16318464,
+      "external": 2397696,
+      "timestamp": 1764709306786
+    },
+    {
+      "heapUsed": 17666584,
+      "heapTotal": 21168128,
+      "external": 2397081,
+      "timestamp": 1764709336788
+    },
+    {
+      "heapUsed": 12100600,
+      "heapTotal": 19300352,
+      "external": 2414223,
+      "timestamp": 1764709366790
+    },
+    {
+      "heapUsed": 16282000,
+      "heapTotal": 20021248,
+      "external": 2413420,
+      "timestamp": 1764709396791
+    },
+    {
+      "heapUsed": 12762192,
+      "heapTotal": 16777216,
+      "external": 2422606,
+      "timestamp": 1764709426792
+    },
+    {
+      "heapUsed": 15253488,
+      "heapTotal": 21004288,
+      "external": 2421644,
+      "timestamp": 1764709456823
+    },
+    {
+      "heapUsed": 11107008,
+      "heapTotal": 17334272,
+      "external": 2439080,
+      "timestamp": 1764709486828
+    },
+    {
+      "heapUsed": 14971760,
+      "heapTotal": 20381696,
+      "external": 2447507,
+      "timestamp": 1764709516831
+    },
+    {
+      "heapUsed": 11967240,
+      "heapTotal": 30474240,
+      "external": 2455535,
+      "timestamp": 1764709546833
+    },
+    {
+      "heapUsed": 20952792,
+      "heapTotal": 34963456,
+      "external": 3283065,
+      "timestamp": 1764709576834
+    },
+    {
+      "heapUsed": 21153496,
+      "heapTotal": 35110912,
+      "external": 3283111,
+      "timestamp": 1764709606836
+    },
+    {
+      "heapUsed": 21288360,
+      "heapTotal": 35258368,
+      "external": 3283111,
+      "timestamp": 1764709636839
+    },
+    {
+      "heapUsed": 9381712,
+      "heapTotal": 12419072,
+      "external": 2178063,
+      "timestamp": 1764709666840
+    },
+    {
+      "heapUsed": 9516824,
+      "heapTotal": 12566528,
+      "external": 2178063,
+      "timestamp": 1764709696843
+    },
+    {
+      "heapUsed": 9652064,
+      "heapTotal": 12713984,
+      "external": 2178063,
+      "timestamp": 1764709726844
+    },
+    {
+      "heapUsed": 9787432,
+      "heapTotal": 12861440,
+      "external": 2178063,
+      "timestamp": 1764709756846
+    },
+    {
+      "heapUsed": 9922936,
+      "heapTotal": 13008896,
+      "external": 2178063,
+      "timestamp": 1764709786847
+    },
+    {
+      "heapUsed": 10058568,
+      "heapTotal": 13156352,
+      "external": 2178063,
+      "timestamp": 1764709816848
+    },
+    {
+      "heapUsed": 10194328,
+      "heapTotal": 13303808,
+      "external": 2178063,
+      "timestamp": 1764709846850
+    },
+    {
+      "heapUsed": 10330216,
+      "heapTotal": 13451264,
+      "external": 2178063,
+      "timestamp": 1764709876851
+    },
+    {
+      "heapUsed": 9517752,
+      "heapTotal": 13615104,
+      "external": 2178063,
+      "timestamp": 1764709906853
+    },
+    {
+      "heapUsed": 9653904,
+      "heapTotal": 13762560,
+      "external": 2178063,
+      "timestamp": 1764709936854
+    },
+    {
+      "heapUsed": 9790184,
+      "heapTotal": 13910016,
+      "external": 2178063,
+      "timestamp": 1764709966856
+    },
+    {
+      "heapUsed": 9926592,
+      "heapTotal": 14057472,
+      "external": 2178063,
+      "timestamp": 1764709996859
+    },
+    {
+      "heapUsed": 10063128,
+      "heapTotal": 14204928,
+      "external": 2178063,
+      "timestamp": 1764710026859
+    },
+    {
+      "heapUsed": 10199792,
+      "heapTotal": 14352384,
+      "external": 2178063,
+      "timestamp": 1764710056862
+    },
+    {
+      "heapUsed": 10336584,
+      "heapTotal": 14499840,
+      "external": 2178063,
+      "timestamp": 1764710086863
+    },
+    {
+      "heapUsed": 9551248,
+      "heapTotal": 12566528,
+      "external": 2178063,
+      "timestamp": 1764710116865
+    },
+    {
+      "heapUsed": 9688304,
+      "heapTotal": 12713984,
+      "external": 2178063,
+      "timestamp": 1764710279670
+    },
+    {
+      "heapUsed": 9825456,
+      "heapTotal": 12861440,
+      "external": 2178063,
+      "timestamp": 1764710309702
+    },
+    {
+      "heapUsed": 9962472,
+      "heapTotal": 13008896,
+      "external": 2178063,
+      "timestamp": 1764710364493
+    },
+    {
+      "heapUsed": 10099616,
+      "heapTotal": 13156352,
+      "external": 2178063,
+      "timestamp": 1764710419182
+    },
+    {
+      "heapUsed": 10236888,
+      "heapTotal": 13303808,
+      "external": 2178063,
+      "timestamp": 1764710473132
+    },
+    {
+      "heapUsed": 10374296,
+      "heapTotal": 13451264,
+      "external": 2178063,
+      "timestamp": 1764710574302
+    },
+    {
+      "heapUsed": 9520952,
+      "heapTotal": 12566528,
+      "external": 2178063,
+      "timestamp": 1764710645197
+    },
+    {
+      "heapUsed": 9658616,
+      "heapTotal": 12713984,
+      "external": 2178063,
+      "timestamp": 1764711634616
+    },
+    {
+      "heapUsed": 9796408,
+      "heapTotal": 12861440,
+      "external": 2178063,
+      "timestamp": 1764712491677
+    },
+    {
+      "heapUsed": 9935256,
+      "heapTotal": 13008896,
+      "external": 2178063,
+      "timestamp": 1764712521678
+    },
+    {
+      "heapUsed": 10073336,
+      "heapTotal": 13156352,
+      "external": 2178063,
+      "timestamp": 1764712551681
+    },
+    {
+      "heapUsed": 10211552,
+      "heapTotal": 13303808,
+      "external": 2178063,
+      "timestamp": 1764712581682
+    },
+    {
+      "heapUsed": 10349896,
+      "heapTotal": 13451264,
+      "external": 2178063,
+      "timestamp": 1764712611683
+    },
+    {
+      "heapUsed": 9523920,
+      "heapTotal": 12566528,
+      "external": 2178063,
+      "timestamp": 1764712641686
+    },
+    {
+      "heapUsed": 9662520,
+      "heapTotal": 12713984,
+      "external": 2178063,
+      "timestamp": 1764712671688
+    },
+    {
+      "heapUsed": 9801304,
+      "heapTotal": 12861440,
+      "external": 2178063,
+      "timestamp": 1764712701689
+    },
+    {
+      "heapUsed": 9940224,
+      "heapTotal": 13008896,
+      "external": 2178063,
+      "timestamp": 1764712731691
     }
   ],
   "timestamp": 1764707911128
